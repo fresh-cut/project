@@ -1,4 +1,4 @@
-@extends('company.template')
+@extends('template')
 @section('main-content')
 {{--    <meta>--}}
 {{--        <title>--}}

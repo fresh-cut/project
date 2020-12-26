@@ -54,8 +54,8 @@ Route::group($groupData, function(){
         ->names('admin.reviews');
 
     // admin->setting
-    Route::get('settings', 'SettingController@index')
-        ->name('admin.settings');
+    Route::get('settings', 'SettingController@index')->name('admin.settings');
+    Route::post('settings', 'SettingController@fileDownload')->name('admin.download');
 
     Route::group(['prefix'=>'regions/{id}/'], function(){
         Route::resource('localities', 'LocalityController')
