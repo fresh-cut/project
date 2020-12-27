@@ -32,7 +32,7 @@
 
                             <label class="c-drus-form__label">
                                 Categories*
-                                <input class="typeahead c-drus-form__input" type="text" name="category_name" required
+                                <input class="typeahead c-drus-form__input" type="text" name="category" required
                                        value="{{ old('category_name', $company->category_name) }}">
                             </label>
 
@@ -136,7 +136,16 @@
     </article>
 </div>
 
-
+<script type="text/javascript">
+    var path = "{{ route('autocomplete') }}";
+    $('input.typeahead').typeahead({
+        source:  function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
 <script async src="//www.google.com/recaptcha/api.js"></script>
 
 

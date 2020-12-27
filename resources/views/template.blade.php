@@ -13,7 +13,12 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/css/main.css') }}">
-    <script>
+
+    @if(Route::is('offer-listing') || Route::is('edit-company'))
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    @endif
+        <script>
         WebFontConfig = {
             google: {
                 families: ['Open Sans:400,300,700:latin']
@@ -28,10 +33,8 @@
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-107038667-1', 'auto');
         ga('send', 'pageview');
-
     </script>
 
 </head>
