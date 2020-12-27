@@ -115,6 +115,9 @@
         defer></script>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
+<script>
+    if( {{ session()->has('message-success')}})
+        alert("{{ session()->get('message-success') }}");
+</script>
 </body>
 </html>

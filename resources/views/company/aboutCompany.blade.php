@@ -100,7 +100,7 @@
                     Write a  customer review
                 </a>
                 &nbsp;&nbsp;&nbsp;&#11049;&nbsp;&nbsp;&nbsp;
-                <a href="updtae">
+                <a href="{{ route('edit-company', [$company->region_url, $company->locality_url, $company->url]) }}">
                     Suggest an update
                 </a>
             </div>

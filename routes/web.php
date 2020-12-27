@@ -19,8 +19,13 @@ Route::get('/region/{region}', ['\App\Http\Controllers\IndexController', 'region
 Route::get('/region/{region}/city/{city}', ['\App\Http\Controllers\IndexController', 'city'] )->name('city');
 Route::get('/regions', ['\App\Http\Controllers\IndexController', 'allRegions'] )->name('all-regions');
 
+// оставить отзыв на компанию
 Route::get('/region/{region}/city/{city}/company/{company}/add-review', ['\App\Http\Controllers\ReviewController', 'create'] )->name('add-review');
 Route::post('/region/{region}/city/{city}/company/{company}/add-review', ['\App\Http\Controllers\ReviewController', 'store'] )->name('store-review');
+
+// предложить изменения компании
+Route::get('/region/{region}/city/{city}/company/{company}/edit', ['\App\Http\Controllers\EditCompanyController', 'create'] )->name('edit-company');
+Route::post('/region/{region}/city/{city}/company/{company}/edit', ['\App\Http\Controllers\EditCompanyController', 'store'] )->name('store-company');
 
 
 Route::get('/listing/new', ['\App\Http\Controllers\ListingController', 'create'] )->name('offer-listing');

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReviewStoreRequest;
-use App\Models\Review;
 use App\Repositories\CompanyRepository;
 use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
-use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class EditCompanyController extends Controller
 {
     private $companyRepository;
     private $regionRepository;
@@ -31,16 +29,18 @@ class ReviewController extends Controller
         $company     =   $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
         if(empty($company))
             abort(404);
+//        dd($company);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
             $locality->name =>  ['city', [$region_url, $locality_url]],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
         ];
-        return view('review.create', compact('company', 'breadcrumbs'));
+        return view('company.edit', compact('company', 'breadcrumbs'));
     }
 
     public function store(ReviewStoreRequest $request)
     {
+        dd($request->all());
         $data=$request->all();
         $data['ip']=$request->ip();
         $data['added']=now();
