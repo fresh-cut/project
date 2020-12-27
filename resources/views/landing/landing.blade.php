@@ -50,9 +50,9 @@
             <ul class="c-drus-list">
                 @foreach($localities as $locality)
                 <li class="c-drus-list__item c-drus-list__item--4">
-                    <a href="{{route('city', [$locality->region_url, $locality->url])}}"
+                    <a href="{{route('city', $locality->url)}}"
                        class="c-drus-list__link c-drus-list__link--nav"
-                       title="Entertainments in {{ $locality->name }}, {{ $locality->region_name }}">
+                       title="Entertainments in {{ $locality->name }}">
                         {{ $locality->name }}</a>
                 </li>
                 @endforeach

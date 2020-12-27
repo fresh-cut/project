@@ -21,10 +21,14 @@
                         <h2 class="l-drus-article__h2">
                             Suggest an Edit
                         </h2>
-
-                        <form method="post" action="{{ route('store-company', [$company->region_url, $company->locality_url, $company->url]) }}" class="c-drus-form">
+                        <form method="post" action="{{ route('editstore-company', [$company->region_url, $company->locality_url, $company->url]) }}" class="c-drus-form">
                             @csrf
-
+                            <input type="hidden" name="company_id" value="{{ $company->id }}">
+                            <input type="hidden" name="url" value="{{ $company->url }}">
+                            <input type="hidden" name="region_url" value="{{ $company->region_url }}">
+                            <input type="hidden" name="locality_url" value="{{ $company->locality_url }}">
+                            <input type="hidden" name="latitude" value="{{ $company->latitude }}">
+                            <input type="hidden" name="longitude" value="{{ $company->longitude }}">
                             <label class="c-drus-form__label">
                                 Name*
                                 <input type="text" name="name" class="c-drus-form__input" value="{{ old('name', $company->name) }}" required>
@@ -32,19 +36,19 @@
 
                             <label class="c-drus-form__label">
                                 Categories*
-                                <input class="typeahead c-drus-form__input" type="text" name="category" required
-                                       value="{{ old('category_name', $company->category_name) }}">
+                                <input type="text" class="c-drus-form__input" id="searchcategory" name="category_name"
+                                       value="{{ old('category_name', $company->category_name) }}" required>
                             </label>
 
                             <label class="c-drus-form__label">
                                 State*
-                                <input type="text" name="region_name" class="c-drus-form__input"
+                                <input type="text" name="region_name" id="searchregion" class="c-drus-form__input"
                                        value="{{ old('region_name', $company->region_name) }}" required>
                             </label>
 
                             <label class="c-drus-form__label">
                                 Locality*
-                                <input type="text" name="locality_name" class="c-drus-form__input"
+                                <input type="text" name="locality_name" id="searchlocality" class="c-drus-form__input"
                                        value="{{ old('locality_name', $company->locality_name) }}" required>
                             </label>
 
@@ -57,40 +61,33 @@
                             <label class="c-drus-form__label">
                                 Street address*
                                 <input type="text" name="streetaddress" class="c-drus-form__input"
-                                       value="{{ old('streetaddress', $company->streetaddress) }}"
-                                       required>
+                                       value="{{ old('streetaddress', $company->streetaddress) }}" required>
                             </label>
 
                             <label class="c-drus-form__label">
                                 Phone*
                                 <input type="text" name="telephone" class="c-drus-form__input"
-                                       value="{{ old('telephone', $company->telephone) }}"
-                                       required>
+                                       value="{{ old('telephone', $company->telephone) }}" required>
                             </label>
 
                             <label class="c-drus-form__label">
-                                Website
-                                <input type="text" name="website" class="c-drus-form__input"
-                                       value="{{ old('website', $company->website) }}">
+                                Website*
+                                <input type="text" name="website" class="c-drus-form__input" required
+                                       value="{{ old('website', urldecode($company->website)) }}">
                             </label>
 
                             <label class="c-drus-form__label">
-                                Company description
-                                <textarea name="descr" class="c-drus-form__input" style="height: auto;" rows="7">
-                                {{ old('descr', $company->descr) }}
-                            </textarea>
+                                Company description*
+                                <textarea name="descr" class="c-drus-form__input" style="height: auto;" rows="7" required>{{old('descr', $company->descr)}}</textarea>
                             </label>
 
                             <label class="c-drus-form__label">
-                                Your comments (not for publishing)
-                                <textarea name="user_comments" class="c-drus-form__input" style="height: auto;" rows="7">
-                                    {{ old('user_comments', '') }}
-                                </textarea>
+                                Your comments* (not for publishing)
+                                <textarea required name="edit" class="c-drus-form__input" style="height: auto;" rows="7">{{old('edit','')}}</textarea>
                             </label>
 
                             <label class="c-drus-form__label">
-                                <div class="g-recaptcha"
-                                     data-sitekey=""></div>
+                                <div class="g-recaptcha" data-sitekey="6Ldcc3MUAAAAABUGbNvU6VUzhG993Q5wPoGWSMjz"></div>
                             </label>
 
                             <label class="c-drus-form__label">
@@ -137,13 +134,22 @@
 </div>
 
 <script type="text/javascript">
-    var path = "{{ route('autocomplete') }}";
-    $('input.typeahead').typeahead({
-        source:  function (query, process) {
-            return $.get(path, { query: query }, function (data) {
-                return process(data);
-            });
-        }
+    $('#searchcategory').autocomplete({
+        source:'{!!URL::route('autocompleteCategory')!!}',
+        minlength:1,
+         autoFocus:true,
+    });
+
+    $('#searchregion').autocomplete({
+        source:'{!!URL::route('autocompleteRegion')!!}',
+        minlength:1,
+         autoFocus:true,
+    });
+
+    $('#searchlocality').autocomplete({
+        source:'{!!URL::route('autocompleteLocality')!!}',
+        minlength:1,
+         autoFocus:true,
     });
 </script>
 <script async src="//www.google.com/recaptcha/api.js"></script>

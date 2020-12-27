@@ -67,7 +67,7 @@
                         Contact Us</a>
                 </li>
                 <li class="l-drus-footer__list-item">
-                    <a href="{{ route('offer-listing') }}" class="l-drus-footer__list-link">Add
+                    <a href="{{ route('add-company') }}" class="l-drus-footer__list-link">Add
                         listing</a>
                 </li>
             </ul>

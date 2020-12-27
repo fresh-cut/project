@@ -44,7 +44,7 @@ class IndexController extends Controller
         $nearest_item = $this->companyRepository->getCompaniesByCity(6,$locality->id);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
-            $locality->name =>  ['city', [$region_url, $locality_url]],
+            $locality->name =>  ['city', $locality_url],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
          ];
         return view('company.aboutCompany', compact('company', 'reviews', 'breadcrumbs', 'nearest_item'));
@@ -63,15 +63,14 @@ class IndexController extends Controller
         return view('region.region', compact('region', 'localities', 'items', 'last_reviews', 'last_items', 'breadcrumbs'));
     }
 
-    public function city($region_url, $locality_url)
+    public function city( $locality_url)
     {
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
         $items       =   $this->companyRepository->getCompaniesByCity(24,$locality->id);
         $last_items  =   $this->companyRepository->getCompanies(4);
         $last_reviews     =   $this->reviewRepository->getReviews(3);
         $breadcrumbs =   [
-            $locality->region_name   =>  ['region', $region_url],
-            $locality->name =>  ['city', [$region_url, $locality_url]],
+            $locality->name =>  ['city', [$locality_url]],
         ];
         return view('city.city', compact('locality', 'items', 'last_items', 'last_reviews', 'breadcrumbs'));
     }

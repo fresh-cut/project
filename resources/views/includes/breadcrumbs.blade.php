@@ -1,4 +1,4 @@
-    <nav class="l-drus-bread">
+        <nav class="l-drus-bread">
         <ul class="l-drus-bread__box" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="l-drus-bread__item" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem">

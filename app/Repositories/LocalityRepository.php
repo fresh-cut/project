@@ -15,8 +15,6 @@ class LocalityRepository extends CoreRepository
     public function getLocalities($count=48)
     {
         return $this->startConditions()
-            ->join('region', 'locality.region_id', '=', 'region.id')
-            ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
             ->take($count)
             ->toBase()
             ->get();
@@ -33,21 +31,19 @@ class LocalityRepository extends CoreRepository
                 ->get();
         }
         else {
-            return $this->startConditions()
-                ->join('region', 'locality.region_id', '=', 'region.id')
-                ->where('region_id', $region_id)
-                ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
-                ->take($count)
-                ->toBase()
-                ->get();
+//            return $this->startConditions()
+////                ->join('region', 'locality.region_id', '=', 'region.id')
+////                ->where('region_id', $region_id)
+////                ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
+//                ->take($count)
+//                ->toBase()
+//                ->get();
         }
 
     }
     public function getLocalityByUrl($url)
     {
         return $this->startConditions()
-            ->join('region', 'locality.region_id', '=', 'region.id')
-            ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
             ->where('locality.url', $url)
             ->toBase()
             ->first();
