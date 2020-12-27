@@ -21,13 +21,9 @@
             </p>
         </header>
 
-{{--        <div class="l-drus-article__section l-drus-article__section--ads">--}}
-
-{{--            <?php include ROOT . '/Templates/AdSense/line.html'; ?>--}}
-
-
-
-{{--        </div>--}}
+        <div class="l-drus-article__section l-drus-article__section--ads">
+<!--            --><?php //include ROOT . '/Templates/AdSense/line.html'; ?>
+        </div>
 
         <section class="l-drus-article__section l-drus-article__section--white l-drus-article__item">
 
@@ -72,7 +68,7 @@
                     {{ $company->name }}:
                 </h2>
 
-                <table class="c-drus-table" width="100%">
+{{--                <table class="c-drus-table" width="100%">--}}
 {{--                    <?php foreach ($data['item']['hours']['days'] as $day_number => $day) { ?>--}}
 {{--                    <tr<?= ($day_number == $data['item']['hours']['this_day']) ? ' class="active"' : '' ?>>--}}
 {{--                        <td>--}}
@@ -87,7 +83,7 @@
 {{--                        </td>--}}
 {{--                    </tr>--}}
 {{--                    <?php } ?>--}}
-                </table>
+{{--                </table>--}}
 
             </div>
 
@@ -98,32 +94,15 @@
 
                 </h2>
             </div>
-
+{{--        {{ dd($company) }}--}}
             <div class="l-drus-article__btn-box">
-
-                <a href="#" class="js-share__btn">
-                    Share this
-                </a>
-
-                &nbsp;&nbsp;&nbsp;&#11049;&nbsp;&nbsp;&nbsp;
-
-                <a href="direction"
-                   class="c-drus-card__btn">
-                    Get directions
-                </a>
-
-                &nbsp;&nbsp;&nbsp;&#11049;&nbsp;&nbsp;&nbsp;
-
-                <a href="ostvit-otziv">
+                <a href="{{ route('add-review', [$company->region_url, $company->locality_url, $company->url]) }}">
                     Write a  customer review
                 </a>
-
                 &nbsp;&nbsp;&nbsp;&#11049;&nbsp;&nbsp;&nbsp;
-
                 <a href="updtae">
                     Suggest an update
                 </a>
-
             </div>
 
         </section>

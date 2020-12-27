@@ -75,7 +75,7 @@
         <div class="l-drus-footer__box">
             &copy;
             <a href="{{ route('home') }}"
-               class="l-drus-footer__link">{{ env('APP_URL') }}></a>
+               class="l-drus-footer__link">{{ env('APP_URL') }}</a>
             <?= date('Y') ?>
         </div>
     </div>

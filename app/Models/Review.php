@@ -9,6 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $table = 'review';
-    protected $guarded = ['_method', '_token']; // игнорировать при массовом сохранении
+    // только эти столбцы при массовом сохранении
+    protected $fillable = ['company_id', 'name', 'email', 'review', 'added', 'ip', 'status'];
     public $timestamps = false;
 }

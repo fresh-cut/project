@@ -26,13 +26,6 @@ class RegionRepository extends CoreRepository
                 ->get();
         }
     }
-    public function getRegionIdByUrl($url)
-    {
-        return $this->startConditions()
-            ->where('url', $url)
-            ->toBase()
-            ->first();
-    }
 
     public function getRegionByUrl($url)
     {

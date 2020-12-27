@@ -16,13 +16,15 @@ class SettingController extends Controller
     public function fileDownload(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg|max:2048',
+//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = 'bg_first_big'.'.'.$request->image->extension();
         $result=$request->image->move(public_path('img'), $imageName);
 //        dd($result);
         Artisan::call('view:clear');
+        Artisan::call('cache:clear');
         return back()
             ->with('success','You have successfully upload image.')
             ->with('image',$imageName);

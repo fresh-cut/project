@@ -37,11 +37,10 @@ class IndexController extends Controller
 
     public function company($region_url, $locality_url, $company_url)
     {
-        $region      =   $this->regionRepository->getRegionIdByUrl($region_url);
+        $region      =   $this->regionRepository->getRegionByUrl($region_url);
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
-        $company_id     =   $this->companyRepository->getCompanyIdByUrl($region->id, $locality->id, $company_url);
-        $company        =   $this->companyRepository->getCompanyById($company_id->id);
-        $reviews        =   $this->reviewRepository->getReviewsByCompanyId($company_id->id);
+        $company     =   $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
+        $reviews        =   $this->reviewRepository->getReviewsByCompanyId($company->id);
         $nearest_item = $this->companyRepository->getCompaniesByCity(6,$locality->id);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],

@@ -15,9 +15,6 @@ class ReviewRepository extends CoreRepository
     public function getReviewsByCompanyId($companyId)
     {
         return $this->startConditions()
-//            ->where('company_id', $companyId)
-//            ->toBase()
-//            ->get();
         ->join('companies', 'review.company_id', '=', 'companies.id')
         ->join('region', 'companies.region_id', '=', 'region.id')
         ->join('locality', 'companies.locality_id', '=', 'locality.id')
@@ -25,6 +22,8 @@ class ReviewRepository extends CoreRepository
             'review.added as review_data', 'region.url as region_url', 'region.name as region_name',
             'locality.url as locality_url', 'locality.name as locality_name', 'companies.*')
         ->where('company_id', $companyId)
+        ->where('status', 1)
+        ->orderBy('review.id','desc')
         ->toBase()
         ->get();
     }
@@ -53,6 +52,7 @@ class ReviewRepository extends CoreRepository
                     'locality.url as locality_url', 'locality.name as locality_name', 'companies.*')
                 ->where('status', 1)
                 ->take($count)
+                ->orderBy('review.id','desc')
                 ->toBase()
                 ->get();
         }

@@ -19,6 +19,9 @@ Route::get('/region/{region}', ['\App\Http\Controllers\IndexController', 'region
 Route::get('/region/{region}/city/{city}', ['\App\Http\Controllers\IndexController', 'city'] )->name('city');
 Route::get('/regions', ['\App\Http\Controllers\IndexController', 'allRegions'] )->name('all-regions');
 
+Route::get('/region/{region}/city/{city}/company/{company}/add-review', ['\App\Http\Controllers\ReviewController', 'create'] )->name('add-review');
+Route::post('/region/{region}/city/{city}/company/{company}/add-review', ['\App\Http\Controllers\ReviewController', 'store'] )->name('store-review');
+
 
 Route::get('/listing/new', ['\App\Http\Controllers\ListingController', 'create'] )->name('offer-listing');
 Route::post('/listing/store', ['\App\Http\Controllers\ListingController', 'store'] )->name('listing-store');

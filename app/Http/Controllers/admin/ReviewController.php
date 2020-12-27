@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminReviewUpdateRequest;
+use App\Models\Review;
 use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 
@@ -83,8 +84,7 @@ class ReviewController extends Controller
      */
     public function update(AdminReviewUpdateRequest $request, $id)
     {
-        $item=$this->reviewRepository->getReviewById($id);
-
+        $item=Review::find($id);
         if(empty($item))
         {
             return back()

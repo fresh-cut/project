@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label for="title">E-mail автора</label>
-                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email', $review->reviewer_email) }}" autocomplete="off" required>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $review->reviewer_email) }}" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="title">IP автора</label>
