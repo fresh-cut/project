@@ -233,6 +233,27 @@
     </article>
 </div>
 
+<script src="{{ asset('js/OpenLayers.js') }}"></script>
+<script>
+    map = new OpenLayers.Map("basicMap");
+    map.addLayer(new OpenLayers.Layer.OSM());
+
+    var lonLat = new OpenLayers.LonLat({{ $company->longitude}},{{ $company->latitude }})
+        .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+        );
+
+    var zoom=16;
+
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+
+    map.setCenter (lonLat, zoom);
+
+</script>
 
 {{--<script>--}}
 

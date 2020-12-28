@@ -76,9 +76,10 @@
     @else
 
         @if( Route::is('company'))
-        <div id="js-my-map-box" class="l-drus-main__map">
-            Map content is loading...
-            </div>
+{{--        <div id="js-my-map-box" class="l-drus-main__map">--}}
+{{--            Map content is loading...--}}
+{{--            </div>--}}
+            <div id="basicMap" class="l-drus-main__map" style="width: 100%;height: 300px;"></div>
         @endif
 
 

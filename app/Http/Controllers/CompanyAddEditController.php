@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyStoreRequest;
+use App\Mail\AddCompanyMail;
 use App\Models\Category;
 use App\Models\CompaniesAddEdit;
 use App\Models\Locality;
@@ -12,6 +13,7 @@ use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
@@ -49,9 +51,11 @@ class CompanyAddEditController extends Controller
         $data=$request->all();
         $data=$this->store($data,'edit', $request->ip());
         $item=CompaniesAddEdit::create($data);
-        if($item)
+        if($item){
+            // отправляем письмо Mail::to('dorofeevvadim86@gmail.com')->send(new EditCompanyMail());
             return redirect()->route('company', [$data['region_url'], $data['locality_url'], $data['url']])
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
+        }
         else{
             return back()
                 ->withErrors(['msg'=>'Fail saving'])
@@ -74,9 +78,11 @@ class CompanyAddEditController extends Controller
         $data['latitude']=0;
         $data['longitude']=0;
         $item=CompaniesAddEdit::create($data);
-        if($item)
+        if($item) {
+            // отправляем письмо Mail::to('dorofeevvadim86@gmail.com')->send(new AddCompanyMail());
             return redirect()->route('home')
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
+        }
         else{
             return back()
                 ->withErrors(['msg'=>'Fail saving'])
