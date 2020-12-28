@@ -110,19 +110,19 @@ class CompanyAddEditController extends Controller
     // autocomplite category
     public function autocompleteCategory(Request $request)
     {
-        return $this->autocomplite('Category', $request);
+        return $this->autocomplite('category', $request);
     }
 
     // autocomplite region
     public function autocompleteRegion(Request $request)
     {
-        return $this->autocomplite('Region', $request);
+        return $this->autocomplite('region', $request);
     }
 
     // autocomplite locality
     public function autocompleteLocality(Request $request)
     {
-        return $this->autocomplite('Locality', $request);
+        return $this->autocomplite('locality', $request);
     }
 
     public function autocomplite($table, $request)
