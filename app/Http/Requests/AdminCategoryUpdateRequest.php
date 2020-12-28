@@ -25,7 +25,9 @@ class AdminCategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'string|max:250',
+            'name'=>['string','max:250',
+                Rule::unique('category')->ignore($this->route('category'))
+                ],
             'url'=>['regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/',
                 Rule::unique('category')->ignore($this->route('category'))
             ],
@@ -35,6 +37,7 @@ class AdminCategoryUpdateRequest extends FormRequest
     {
         return [
             'url.unique'=>'Такой url уже существует',
+            'name.unique'=>'Такоя категория уже существует',
             'url.regex'=>'Не правильный формат url'
         ];
     }

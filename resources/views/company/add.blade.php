@@ -1,18 +1,22 @@
 @extends('template')
 @section('main-content')
-{{--    <meta>--}}
-{{--        <title>--}}
-{{--            Add listing--}}
-{{--        </title>--}}
-{{--        <description>--}}
-{{--            Add listing--}}
-{{--        </description>--}}
-{{--    </meta>--}}
+@section('title')
+            Add listing
+@endsection
+@section('description')
+            Add listing
+@endsection
+
     <div class="l-drus-main__article">
         <article class="l-drus-article">
             <div class="l-drus-article__two l-drus-article__two--reverse">
                 <div class="l-drus-article__two-first l-drus-article__two-first--reverse">
                     <section class="l-drus-article__section l-drus-article__section--white">
+                        @if($errors->any())
+                            <div style="border: 1px solid red; border-radius: 2px; margin-bottom: 10px; padding: 5px">
+                                @include('includes.result_messages')
+                            </div>
+                        @endif
                         <h2 class="l-drus-article__h2">
                             Add listing
                         </h2>
@@ -22,6 +26,7 @@
                                 Name*
                                 <input type="text" name="name" class="c-drus-form__input" value="{{ old('name', '') }}" required>
                             </label>
+                            <input type="hidden" name="type" value="add">
                             <label class="c-drus-form__label">
                                 Categories*
                                 <input type="text" class="c-drus-form__input" id="searchcategory" name="category_name"

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('admin', 'admin/regions');
+Route::redirect('admin', 'admin/settings');
 
 Route::get('/', ['\App\Http\Controllers\IndexController', 'landing'])->name('home');
 Route::get('/region/{region}/city/{city}/company/{company}', ['\App\Http\Controllers\IndexController', 'company'] )->name('company');
@@ -51,19 +51,19 @@ $groupData=[
 ];
 Route::group($groupData, function(){
     // admin->company
-    Route::resource('companies', 'CompanyController')
+    Route::resource('company', 'CompanyController')
         ->names('admin.companies');
 
     // admin->region
-    Route::resource('regions', 'RegionController')
+    Route::resource('region', 'RegionController')
         ->names('admin.regions');
 
     // admin->category
-    Route::resource('categories', 'CategoryController')
+    Route::resource('category', 'CategoryController')
         ->names('admin.categories');
 
     // admin->review
-    Route::resource('reviews', 'ReviewController')
+    Route::resource('review', 'ReviewController')
         ->names('admin.reviews');
 
     // admin->setting

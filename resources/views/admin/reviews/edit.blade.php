@@ -9,24 +9,24 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="title">Имя автора</label>
+                    <label for="name">Имя автора</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $review->reviewer_name) }}" autocomplete="off" required>
                 </div>
                 <div class="form-group">
-                    <label for="title">E-mail автора</label>
+                    <label for="email">E-mail автора</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $review->reviewer_email) }}" autocomplete="off" required>
                 </div>
                 <div class="form-group">
-                    <label for="title">IP автора</label>
+                    <label for="ip">IP автора</label>
                         <input type="text" class="form-control" id="ip" name="ip" value="{{ $review->reviewer_ip }}" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="title">Название компании</label>
+                    <label for="company_name">Название компании</label>
                         <input type="text" class="form-control" id="company_name" name="company_name" value="{{ $review->name }}" autocomplete="off" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label for="slug">Отзыв</label>
+                    <label for="review">Отзыв</label>
                     <textarea name="review" class="form-control" cols="30" rows="10" required> {{ old('review', $review->review_comment) }}</textarea>
                 </div>
                 <div class="form-check">
@@ -38,6 +38,7 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-dark" type="submit">Сохранить</button>
+                    <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary ">назад</a>
                 </div>
             </form>
 @endsection

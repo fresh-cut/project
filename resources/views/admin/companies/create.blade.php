@@ -1,25 +1,26 @@
 @extends('admin.adminTemplate')
 @section('title')
-    Добавить город в {{ $region->name }}
+    Добавление региона
 @endsection
 @section('content')
-    <h1>Добавление города в {{ $region->name }}</h1>
+    <h1>Добавление региона</h1>
     @include('admin.includes.result_messages')
-    <form action="{{ route('admin.localities.store', $region->id) }}" method="post">
+    <form action="{{ route('admin.regions.store') }}" method="post">
         @csrf
         @method('POST')
         <div class="form-group">
-            <label for="name">Название</label>
+            <label for="title">Название</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', '') }}" autocomplete="off" required>
         </div>
-        <input type="hidden" name="region_id" value="{{ $region->id }}">
+
         <div class="form-group">
-            <label for="url">Url</label>
+            <label for="slug">Url</label>
             <input type="text" class="form-control" id="url" name="url" value="{{ old('url', '') }}" autocomplete="off" required>
         </div>
         <div class="form-group">
             <button class="btn btn-dark" type="submit">Сохранить</button>
-            <a href="{{ route('admin.localities.index', $region->id) }}" class="btn btn-secondary ">назад</a>
+            <a href="{{ route('admin.regions.index') }}" class="btn btn-secondary ">назад</a>
         </div>
     </form>
+
 @endsection

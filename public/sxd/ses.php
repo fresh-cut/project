@@ -1,6 +1,6 @@
 <?php
 $SES = array (
-  'a03c7c01d09d89ba42dfe695df871324' => 
+  '274734d1609a71e0b0bdf1a1533ddf85' => 
   array (
     'cfg' => 
     array (
@@ -27,7 +27,7 @@ $SES = array (
       'outfile_size' => '64',
       'debug' => false,
     ),
-    'time' => 1608927455,
+    'time' => 1609152521,
     'lng' => 'ru',
   ),
 );

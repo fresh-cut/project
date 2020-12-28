@@ -115,7 +115,7 @@
 
 <script src="{{ asset('js/main.js') }}"></script>
 <script async
-{{--        src="//maps.googleapis.com/maps/api/js?key=<?= Config::getSettings('google_maps_key') ?>&libraries=places&callback=initMap&language=en"--}}
+        src="//maps.googleapis.com/maps/api/js?key=AIzaSyDbickfYySUu9zg4MdoaWT5p7gQQnKyawQ&libraries=places&callback=initMap&language=en"
         defer></script>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

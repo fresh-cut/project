@@ -6,6 +6,7 @@
     <h1>Все города в {{ $region->name }}</h1>
     <nav>
         <a href="{{ route('admin.localities.create', $region->id) }}" class="btn btn-success">Добавить город</a>
+        <a href="{{ route('admin.regions.index') }}" class="btn btn-secondary ">назад</a>
     </nav>
     <br>
     <table class="table">

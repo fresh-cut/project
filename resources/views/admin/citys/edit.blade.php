@@ -9,16 +9,17 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="title">Название</label>
+                    <label for="name">Название</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $locality->name) }}" autocomplete="off" required>
                 </div>
                 <input type="hidden" name="region_id" value="{{ $region->id }}">
                 <div class="form-group">
-                    <label for="slug">Url</label>
+                    <label for="url">Url</label>
                         <input type="text" class="form-control" id="url" name="url" value="{{ old('url', $locality->url) }}" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-dark" type="submit">Сохранить</button>
+                    <a href="{{ route('admin.localities.index', $region->id) }}" class="btn btn-secondary ">назад</a>
                 </div>
             </form>
 @endsection

@@ -25,7 +25,9 @@ class AdminLocalityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'string|max:250',
+            'name'=>['string', 'max:250',
+                Rule::unique('locality')->ignore($this->route('locality'))
+            ],
             'url'=>['regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/',
                 Rule::unique('locality')->ignore($this->route('locality'))
             ],
@@ -35,7 +37,8 @@ class AdminLocalityUpdateRequest extends FormRequest
     {
         return [
             'url.unique'=>'Такой url уже существует',
-            'url.regex'=>'Не правильный формат url'
+            'url.regex'=>'Не правильный формат url',
+            'name.unique'=>'Такой город уже существует',
         ];
     }
 }
