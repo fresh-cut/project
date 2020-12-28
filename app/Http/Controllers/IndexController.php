@@ -8,6 +8,7 @@ use App\Repositories\CompanyRepository;
 use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
 use App\Repositories\ReviewRepository;
+use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -28,8 +29,10 @@ class IndexController extends Controller
         $this->categoryRepository   =   app(CategoryRepository::class);
     }
 
-    public function landing()
+    public function landing(Settings $settings)
     {
+        $settings->put('olya', 'dyrak');
+        dd(settings('petia','ddd'));
         $items      =   $this->companyRepository->getCompanies(10);
         $regions    =   $this->regionRepository->getRegions(48);
         $localities =   $this->localityRepository->getLocalities(48);
