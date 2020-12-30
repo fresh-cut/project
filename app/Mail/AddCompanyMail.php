@@ -10,15 +10,17 @@ use Illuminate\Queue\SerializesModels;
 class AddCompanyMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data;
+    public $url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data, $url)
     {
-        //
+        $this->data=$data;
+        $this->url=$url;
     }
 
     /**
@@ -28,6 +30,6 @@ class AddCompanyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('postView.addCompany');
+        return $this->view('mail.addCompany');
     }
 }

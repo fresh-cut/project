@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminSettingsAddRequest;
+use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -10,7 +12,13 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return view('admin.settings.all');
+        $data=[
+            'admin_email'=>'Е-mail на который присылать уведомление',
+            'google_maps_key'=>'Google maps key',
+            'google_recapcha_site_key'=>'Google reCAPTCHA ключ сайта',
+            'google_recapcha_secret_key'=>'Google reCAPTCHA секретный ключ',
+            ];
+        return view('admin.settings.all', compact('data'));
     }
 
     public function fileDownload(Request $request)
@@ -28,5 +36,18 @@ class SettingController extends Controller
         return back()
             ->with('success','You have successfully upload image.')
             ->with('image',$imageName);
+    }
+
+    public function addSettings(AdminSettingsAddRequest $request, Settings $settings)
+    {
+        $data=$request->all();
+        $result=false;
+        foreach($data as $key=>$value)
+        {
+            $result=$settings->put($key,$value);
+        }
+        if(!$result)
+            return response()->json('', 404);
+        return response()->json('', 200);
     }
 }

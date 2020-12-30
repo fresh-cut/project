@@ -69,6 +69,7 @@ Route::group($groupData, function(){
     // admin->setting
     Route::get('settings', 'SettingController@index')->name('admin.settings');
     Route::post('settings', 'SettingController@fileDownload')->name('admin.download');
+    Route::post('settings/add', 'SettingController@addSettings')->name('admin.addSettings');
 
     Route::group(['prefix'=>'regions/{id}/'], function(){
         Route::resource('localities', 'LocalityController')

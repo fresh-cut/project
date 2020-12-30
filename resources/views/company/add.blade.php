@@ -79,7 +79,7 @@
                             </label>
 
                             <label class="c-drus-form__label">
-                                <div class="g-recaptcha" data-sitekey="6Ldcc3MUAAAAABUGbNvU6VUzhG993Q5wPoGWSMjz"></div>
+                                <div class="g-recaptcha" data-sitekey="{{settings('google_recapcha_site_key')}}"></div>
                             </label>
 
 

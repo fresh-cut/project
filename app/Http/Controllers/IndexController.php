@@ -31,8 +31,6 @@ class IndexController extends Controller
 
     public function landing(Settings $settings)
     {
-        $settings->put('olya', 'dyrak');
-        dd(settings('petia','ddd'));
         $items      =   $this->companyRepository->getCompanies(10);
         $regions    =   $this->regionRepository->getRegions(48);
         $localities =   $this->localityRepository->getLocalities(48);

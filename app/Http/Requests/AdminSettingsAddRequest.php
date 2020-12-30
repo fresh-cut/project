@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class AdminReviewUpdateRequest extends FormRequest
+class AdminSettingsAddRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,10 @@ class AdminReviewUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'max:250',
-            'email'=>'email',
-            'review'=>'string',
+            'admin_email'=>'nullable|email',
         ];
     }
+
     public function messages()
     {
         return [

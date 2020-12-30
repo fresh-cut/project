@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReviewStoreRequest;
+use App\Mail\AddCompanyMail;
+use App\Mail\ReviewCompanyMail;
 use App\Models\Review;
 use App\Repositories\CompanyRepository;
 use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
 use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class ReviewController extends Controller
 {
@@ -46,8 +50,11 @@ class ReviewController extends Controller
         $data['added']=now();
         $data['status']=0;
         $item=Review::create($data);
-        if($item)
+        if($item){
+            $url=URL::route('admin.reviews.edit', $item->id);
+            Mail::to(settings('admin_email'))->send(new ReviewCompanyMail($data, $url));
             return redirect()->route('home')->with('message-success', 'Thank you for your review, after being moderated it appears on the site!');
+        }
         else{
             return back()
                 ->withErrors(['msg'=>'Ошибка сохранения'])

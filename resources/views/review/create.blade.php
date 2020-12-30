@@ -38,10 +38,11 @@
                         </label>
 
                         <input type="hidden" name="company_id" value="{{ $company->id }}">
+                        <input type="hidden" name="company_name" value="{{ $company->name }}">
 
                         <label class="c-drus-form__label">
                             <div class="g-recaptcha"
-                                 data-sitekey="rk.xhtrfgx"></div>
+                                 data-sitekey="{{settings('google_recapcha_site_key')}}"></div>
                         </label>
 
                         <label class="c-drus-form__label">

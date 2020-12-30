@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyStoreRequest;
 use App\Mail\AddCompanyMail;
+use App\Mail\EditCompanyMail;
 use App\Models\Category;
 use App\Models\CompaniesAddEdit;
 use App\Models\Locality;
@@ -14,6 +15,7 @@ use App\Repositories\RegionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
@@ -51,9 +53,11 @@ class CompanyAddEditController extends Controller
         $data=$request->all();
         $data=$this->store($data,'edit', $request->ip());
         $item=CompaniesAddEdit::create($data);
+        $datafoUrl=[$data['region_url'], $data['locality_url'], $data['url']];
         if($item){
-            // отправляем письмо Mail::to('dorofeevvadim86@gmail.com')->send(new EditCompanyMail());
-            return redirect()->route('company', [$data['region_url'], $data['locality_url'], $data['url']])
+            $url=URL::route('admin.companies.edit', $item->id);
+            Mail::to(settings('admin_email'))->send(new EditCompanyMail($data, $url));
+            return redirect()->route('company',$datafoUrl )
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
         }
         else{
@@ -79,7 +83,8 @@ class CompanyAddEditController extends Controller
         $data['longitude']=0;
         $item=CompaniesAddEdit::create($data);
         if($item) {
-            // отправляем письмо Mail::to('dorofeevvadim86@gmail.com')->send(new AddCompanyMail());
+            $url=URL::route('admin.companies.edit', $item->id);
+            Mail::to(settings('admin_email'))->send(new AddCompanyMail($data, $url));
             return redirect()->route('home')
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
         }
