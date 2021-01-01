@@ -1,6 +1,6 @@
 @extends('admin.adminTemplate')
 @section('title')
-    Все категории
+    Все настройки
 @endsection
 @section('content')
 
@@ -12,14 +12,15 @@
             <form id="form-{{ $key }}">
                 @csrf
                 <label>
-                    {{ $value }}
-                    <input type="text" class="form-control" onblur="run('{{$key}}')" style="width: 300px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
+                    {{ $value[0] }}
+                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
                     <button class="visually-hidden" disabled></button>
                 </label>
             </form>
             @endforeach
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <p>Текущая шапка</p>
@@ -34,11 +35,7 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
 
-        </div>
-    </div>
 
 
 @endsection

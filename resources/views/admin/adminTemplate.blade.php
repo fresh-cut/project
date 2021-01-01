@@ -23,7 +23,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2 sidebar">
+        <div class="col-2 sidebar" >
             <ul class="sidebar-menu list-unstyled">
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.regions.index') }}">Регионы / Города</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.categories.index') }}">Категории</a>

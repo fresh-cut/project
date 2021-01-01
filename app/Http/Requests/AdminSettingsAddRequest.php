@@ -25,6 +25,8 @@ class AdminSettingsAddRequest extends FormRequest
     {
         return [
             'admin_email'=>'nullable|email',
+            'count_last_review'=>'nullable|integer',
+            'count_popular_company'=>'nullable|integer',
         ];
     }
 

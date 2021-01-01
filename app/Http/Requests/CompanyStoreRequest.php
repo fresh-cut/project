@@ -33,15 +33,15 @@ class CompanyStoreRequest extends FormRequest
                 'max:250',
                 (isset($data['type']) && $data['type']=='add')?Rule::unique('companies_add_edit', 'name'):'',
             ],
-            'category'=>'string|max:250',
-            'region_name'=>'string|max:250',
-            'locality_name'=>'string|max:250',
-            'postalcode'=>'string|min:2',
-            'streetaddress'=>'string|max:250',
-            'telephone'=>'string|max:250',
-            'website'=>'string|max:250',
-            'descr'=>'string',
-            'edit'=>'string',
+            'category_name'=>'required|string|max:250',
+            'region_name'=>'required|string|max:250',
+            'locality_name'=>'required|string|max:250',
+            'postalcode'=>'required|string|min:2',
+            'streetaddress'=>'required|string|max:250',
+            'telephone'=>'required|string|max:250',
+            'website'=>'required|string|max:250',
+            'descr'=>'required|string|min:20',
+            'edit'=>'required|string|min:20',
         ];
     }
 
@@ -49,6 +49,8 @@ class CompanyStoreRequest extends FormRequest
     {
         return [
             'name.unique'=>'Сompany with this name already exists',
+            'edit.min'=>'Your comments must be at least :min characters.',
+            'descr.min'=>'Company description must be at least :min characters.',
         ];
     }
 }

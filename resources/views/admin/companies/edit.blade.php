@@ -10,6 +10,7 @@
             @endif
             @include('admin.includes.result_messages')
             <div class="row">
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -114,6 +115,81 @@
                         </div>
                     </div>
                 </div>
+
+
+                @if($item->type=='edit')
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="">
+                                    <div class="form-group" >
+                                        <label for="name">Название</label>
+                                        <input type="text"  class="form-control" id="name" name="name" value="{{ $old_item->name }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="searchcategory">Категория</label>
+                                        <input type="text" class="form-control" id="searchcategory" name="category_name" value="{{  $old_item->category_name }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="searchregion">Регион</label>
+                                        <input type="text" class="form-control" id="searchregion" name="region_name" value="{{ $old_item->region_name }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="searchlocality">Город</label>
+                                        <input type="text" class="form-control" id="searchlocality" name="locality_name" value="{{ $old_item->locality_name }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="streetaddress">Адресс</label>
+                                        <input type="text" class="form-control" id="streetaddress" name="streetaddress" value="{{  $old_item->streetaddress }}" disabled>
+                                    </div>
+
+                                    {{--                                @if($item->type=='add')--}}
+                                    {{--                                    <div class="form-group">--}}
+                                    {{--                                        <label for="latitude">Широта</label>--}}
+                                    {{--                                        <input type="text" class="form-control" id='latitude' name="latitude" value="{{ $old_item->latitude }}" disabled>--}}
+                                    {{--                                    </div>--}}
+
+                                    {{--                                    <div class="form-group">--}}
+                                    {{--                                        <label for="longitude">Долгота</label>--}}
+                                    {{--                                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $old_item->longitude }}" disabled>--}}
+                                    {{--                                    </div>--}}
+                                    {{--                                @endif--}}
+
+
+
+                                    <div class="form-group">
+                                        <label for="postalcode">Почтовый индекс</label>
+                                        <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{ $old_item->postalcode }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="telephone">Телефон</label>
+                                        <input type="text" class="form-control" id="telephone" name="telephone" value="{{  $old_item->telephone }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="website">Сайт</label>
+                                        <input type="text" class="form-control" id="website" name="website" value="{{ $old_item->website }}" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="descr">Описание</label>
+                                        <textarea name="descr" class="form-control" style="height: auto;" rows="10" disabled>{{ $old_item->descr }}</textarea>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+
+
+
+
+
             </div>
             <script type="text/javascript">
                 $('#searchcategory').autocomplete({

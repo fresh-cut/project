@@ -63,7 +63,7 @@
 {{--                </li>--}}
 {{--                <?php } ?>--}}
                 <li class="l-drus-footer__list-item">
-                    <a href="contact-us" class="l-drus-footer__list-link">
+                    <a href="{{ route('contact-us') }}" class="l-drus-footer__list-link">
                         Contact Us</a>
                 </li>
                 <li class="l-drus-footer__list-item">

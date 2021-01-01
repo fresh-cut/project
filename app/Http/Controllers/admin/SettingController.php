@@ -13,10 +13,16 @@ class SettingController extends Controller
     public function index()
     {
         $data=[
-            'admin_email'=>'Е-mail на который присылать уведомление',
-            'google_maps_key'=>'Google maps key',
-            'google_recapcha_site_key'=>'Google reCAPTCHA ключ сайта',
-            'google_recapcha_secret_key'=>'Google reCAPTCHA секретный ключ',
+            'admin_email'=>['Е-mail на который присылать уведомление', 'text'],
+            'google_maps_key'=>['Google maps key', 'text'],
+            'google_recapcha_site_key'=>['Google reCAPTCHA ключ сайта', 'text'],
+            'google_recapcha_secret_key'=>['Google reCAPTCHA секретный ключ', 'text'],
+            'count_popular_company'=>['Количество компаний в блоке Popular services', 'text'],
+            'count_last_review'=>['Количество комментариев в блоке Latest reviews', 'text'],
+            'body-color'=>['Цвет основного шрифта сайта', 'color'],
+            'logo-text-color'=>['Цвет шрифта в шапке около лого', 'color'],
+            'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color'],
+            'footer-background-color'=>['Цвет футера', 'color'],
             ];
         return view('admin.settings.all', compact('data'));
     }
@@ -44,6 +50,10 @@ class SettingController extends Controller
         $result=false;
         foreach($data as $key=>$value)
         {
+            if($value==null){
+                $result=$settings->forget($key);
+                continue;
+            }
             $result=$settings->put($key,$value);
         }
         if(!$result)

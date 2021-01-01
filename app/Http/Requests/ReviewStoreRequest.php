@@ -24,10 +24,10 @@ class ReviewStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'min:2|max:250',
-            'email'=>'email|string',
+            'name'=>'required|min:2|max:250',
+            'email'=>'required|email|string',
             'company_id'=>'int',
-            'review'=>'string|min:10',
+            'review'=>'string|min:20',
         ];
     }
 }

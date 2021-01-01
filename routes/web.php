@@ -38,9 +38,9 @@ Route::get('company/api/autocompliteRegion',['\App\Http\Controllers\CompanyAddEd
 Route::get('company/api/autocompliteLocality',['\App\Http\Controllers\CompanyAddEditController', 'autocompleteLocality'])->name('autocompleteLocality');
 
 
-//Route::get('/sypex/', function () {
-//    echo require_once 'sxd/index.php';
-//});
+// contact us
+Route::get('/contact-us', ['\App\Http\Controllers\ContactUsController', 'create'] )->name('contact-us');
+Route::post('/contact-us', ['\App\Http\Controllers\ContactUsController', 'store'] )->name('store-contact-us');
 
 
 

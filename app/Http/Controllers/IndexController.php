@@ -31,10 +31,11 @@ class IndexController extends Controller
 
     public function landing(Settings $settings)
     {
+//        dd(settings('last_count_review', 3));
         $items      =   $this->companyRepository->getCompanies(10);
         $regions    =   $this->regionRepository->getRegions(48);
         $localities =   $this->localityRepository->getLocalities(48);
-        $reviews    =   $this->reviewRepository->getReviews(3);
+        $reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
         return view('landing.landing', compact('items', 'regions', 'localities', 'reviews'));
     }
 
@@ -58,8 +59,8 @@ class IndexController extends Controller
         $region     =   $this->regionRepository->getRegionByUrl($region_url);
         $localities =   $this->localityRepository->getLocalitiesByRegion(24, $region->id);
         $items      =   $this->companyRepository->getCompaniesByRegion(6,$region->id);
-        $last_items =   $this->companyRepository->getCompanies(4);
-        $last_reviews    =   $this->reviewRepository->getReviews(3);
+        $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
+        $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
         $breadcrumbs    =   ([
             $region->name   =>  ['region', $region_url],
         ]);
@@ -70,8 +71,8 @@ class IndexController extends Controller
     {
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
         $items       =   $this->companyRepository->getCompaniesByCity(24,$locality->id);
-        $last_items  =   $this->companyRepository->getCompanies(4);
-        $last_reviews     =   $this->reviewRepository->getReviews(3);
+        $last_items  =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
+        $last_reviews     =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
         $breadcrumbs =   [
             $locality->name =>  ['city', [$locality_url]],
         ];
