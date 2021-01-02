@@ -20,14 +20,10 @@ class CompanyController extends Controller
 {
     private $companyAddEditRepository;
     private $companyRepository;
-    private $regionRepository;
-    private $localityRepository;
     public function __construct()
     {
         $this->companyAddEditRepository =  app(CompanyAddEditRepository::class);
         $this->companyRepository =  app(CompanyRepository::class);
-//        $this->regionRepository     =   app(RegionRepository::class);
-//        $this->localityRepository   =   app(LocalityRepository::class);
     }
     /**
      * Display a listing of the resource.

@@ -37,11 +37,23 @@ class AdminCompanyUpdateRequest extends FormRequest
             'region_name'=>'string|max:250',
             'locality_name'=>'string|max:250',
             'postalcode'=>'string|min:2',
-            'streetaddress'=>'string|max:250',
+            'streetaddress'=>[
+                'string',
+                'max:250',
+                (isset($data['type']) && $data['type']=='add')?Rule::unique('companies', 'streetaddress'):'',
+            ],
             'telephone'=>'string|max:250',
             'website'=>'string|max:250',
-            'descr'=>'string',
-            'edit'=>'string',
+            'descr'=>'string|min:20',
+            'edit'=>'string|min:20',
             ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique'=>'Компания с таким названием уже существует',
+            'streetaddress.unique'=>'Компания с таким адресом уже существует',
+        ];
     }
 }

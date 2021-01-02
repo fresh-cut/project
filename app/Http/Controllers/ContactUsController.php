@@ -30,7 +30,12 @@ class ContactUsController extends Controller
     public function store(ContactUsRequest $request)
     {
         $data=$request->all();
-        Mail::to(settings('admin_email'))->send(new ContactUsMail($data));
+        try{
+            Mail::to(settings('admin_email'))->send(new ContactUsMail($data));
+        }catch (\Swift_TransportException $e) {
+            return redirect()->route('home' )
+                ->with('message-success', 'Thank you for your message!');
+        }
         return redirect()->route('home' )
             ->with('message-success', 'Thank you for your message!');
 

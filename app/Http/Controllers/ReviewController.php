@@ -52,7 +52,11 @@ class ReviewController extends Controller
         $item=Review::create($data);
         if($item){
             $url=URL::route('admin.reviews.edit', $item->id);
-            Mail::to(settings('admin_email'))->send(new ReviewCompanyMail($data, $url));
+            try{
+                Mail::to(settings('admin_email'))->send(new ReviewCompanyMail($data, $url));
+            } catch (\Swift_TransportException $e){
+                return redirect()->route('home')->with('message-success', 'Thank you for your review, after being moderated it appears on the site!');
+            }
             return redirect()->route('home')->with('message-success', 'Thank you for your review, after being moderated it appears on the site!');
         }
         else{

@@ -110,10 +110,27 @@ class ReviewController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if(!$request->has('delete'))
+        {
+            return back()->withErrors(['msg'=>'Ошибка удаления']);
+        }
+        $count=0;
+        foreach($request->delete as $id)
+        {
+            if($item=Review::find($id))
+            {
+                $item->delete();
+                $count++;
+            }
+            else
+                return back()->withErrors(['msg'=>'Ошибка удаления']);
+        }
+        return redirect()
+            ->route('admin.reviews.index')
+            ->with(['success'=>'Успешно удалено '.$count.' записей']);
     }
 }

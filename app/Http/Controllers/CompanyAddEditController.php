@@ -51,12 +51,21 @@ class CompanyAddEditController extends Controller
     public function editStore(CompanyStoreRequest $request)
     {
         $data=$request->all();
-        $data=$this->store($data,'edit', $request->ip());
+        $data['ip']=$request->ip();
+        $data['type']='edit';
+        $data['added']=now();
+        $data['status']='1';
         $item=CompaniesAddEdit::create($data);
         $datafoUrl=[$data['region_url'], $data['locality_url'], $data['url']];
         if($item){
             $url=URL::route('admin.companies.edit', $item->id);
-            Mail::to(settings('admin_email'))->send(new EditCompanyMail($data, $url));
+            try{
+                Mail::to(settings('admin_email'))->send(new EditCompanyMail($data, $url));
+            }catch (\Swift_TransportException $e)
+            {
+                return redirect()->route('company',$datafoUrl )
+                    ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
+            }
             return redirect()->route('company',$datafoUrl )
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
         }
@@ -76,15 +85,23 @@ class CompanyAddEditController extends Controller
     public function addStore(CompanyStoreRequest $request)
     {
         $data=$request->all();
-        $data=$this->store($data,'add', $request->ip());
         $data['company_id']=0;
         $data['url']=Str::slug($data['name']);
         $data['latitude']=0;
         $data['longitude']=0;
+        $data['ip']=$request->ip();
+        $data['type']='add';
+        $data['added']=now();
+        $data['status']='1';
         $item=CompaniesAddEdit::create($data);
         if($item) {
             $url=URL::route('admin.companies.edit', $item->id);
-            Mail::to(settings('admin_email'))->send(new AddCompanyMail($data, $url));
+            try{
+                Mail::to(settings('admin_email'))->send(new AddCompanyMail($data, $url));
+            }catch (\Swift_TransportException $e) {
+                return redirect()->route('home')
+                    ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
+            }
             return redirect()->route('home')
                 ->with('message-success', 'Thank you for your suggest, after being moderated it appears on the site!');
         }
@@ -93,28 +110,6 @@ class CompanyAddEditController extends Controller
                 ->withErrors(['msg'=>'Fail saving'])
                 ->withInput();
         }
-    }
-
-    public function store($data, $type, $ip)
-    {
-        $category=Category::where('name','=', $data['category_name'])->first();
-        if(!$category)
-            $category=Category::create(['name'=>$data['category_name'],'url'=>Str::slug($data['category_name'])]);
-        $region=Region::where('name','=', $data['region_name'])->first();
-        if(!$region)
-            $region=Region::create(['name'=>$data['region_name'],'url'=>Str::slug($data['region_name'])]);
-        $locality=Locality::where('name','=', $data['locality_name'])->first();
-        if(!$locality)
-            $locality=Locality::create(['name'=>$data['locality_name'],'url'=>Str::slug($data['locality_name']),'region_id'=>$region->id, 'bla-bla'=>'bla-bla']);
-
-        $data['category_id']=$category->id;
-        $data['region_id']=$region->id;
-        $data['locality_id']=$locality->id;
-        $data['ip']=$ip;
-        $data['type']=$type;
-        $data['added']=now();
-        $data['status']=1;
-        return $data;
     }
 
 

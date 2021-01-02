@@ -17,9 +17,9 @@ class CreateCompaniesAddEditTable extends Migration
             $columns=[
                 'url',
                 'name',
-                'region_id',
-                'locality_id',
-                'category_id',
+                'region_name',
+                'locality_name',
+                'category_name',
                 'postalcode',
                 'streetaddress',
                 'latitude',
@@ -37,9 +37,9 @@ class CreateCompaniesAddEditTable extends Migration
             else {
                 $table->string('url', 250);
                 $table->string('name', 250);
-                $table->integer('region_id');
-                $table->integer('locality_id');
-                $table->integer('category_id');
+                $table->string('region_name', 250);
+                $table->string('locality_name', 250);
+                $table->string('category_name', 250);
                 $table->string('postalcode', 250);
                 $table->string('streetaddress', 250);
                 $table->decimal('latitude', 10, 7);
