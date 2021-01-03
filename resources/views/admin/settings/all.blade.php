@@ -3,14 +3,14 @@
     Все настройки
 @endsection
 @section('content')
-
-    <h1>Все настройки</h1>
     @include('admin.includes.result_messages')
     <div class="row">
         <div class="col-md-12">
-            @foreach($data as $key=>$value)
-            <form id="form-{{ $key }}">
-                @csrf
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Основные настройки сайта</h3>
+                <hr style="margin-top: 0">
+            </div>
+            @foreach($mainSettings as $key=>$value)
                 <label>
                     {{ $value[0] }}
                     @if($value[1]==='text-area')
@@ -18,27 +18,62 @@
                     @else
                     <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
                     @endif
-                    <button class="visually-hidden" disabled></button>
                 </label>
-            </form>
             @endforeach
+            <hr>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
-            <p>Текущая шапка</p>
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Цветовые настройки сайта</h3>
+                <hr style="margin-top: 0">
+            </div>
+            @foreach($colorSettings as $key=>$value)
+                <label>
+                    {{ $value[0] }}
+                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
+                </label>
+            @endforeach
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Настройки рекламы</h3>
+                <hr style="margin-top: 0; ">
+            </div>
+            @foreach($adsSettings as $key=>$value)
+                <label>
+                    {{ $value[0] }}
+                        <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
+                </label>
+            @endforeach
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Текущая шапка</h3>
+                <hr style="margin-top: 0">
+            </div>
             <img class="img-fluid" src="../img/bg_first_big.jpg" alt="...">
             <form class="form-control" action="{{ route("admin.download") }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="image" accept="image/jpg" class="form-control-file" >
-
                     <button class="btn btn-success" type="submit">отправить</button>
                 </div>
             </form>
         </div>
+        <hr>
     </div>
+
+
+
+
 
 
 

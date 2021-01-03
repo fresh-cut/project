@@ -12,29 +12,32 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $data=[
+        $mainSettings=[
             'admin_email'=>['Е-mail на который присылать уведомление', 'text'],
             'google_maps_key'=>['Google maps key', 'text'],
             'google_recapcha_site_key'=>['Google reCAPTCHA ключ сайта', 'text'],
             'google_recapcha_secret_key'=>['Google reCAPTCHA секретный ключ', 'text'],
             'count_popular_company'=>['Количество компаний в блоке Popular services', 'text'],
             'count_last_review'=>['Количество комментариев в блоке Latest reviews', 'text'],
+            ];
+        $colorSettings=[
             'body-color'=>['Цвет основного шрифта сайта', 'color'],
             'logo-text-color'=>['Цвет шрифта в шапке около лого', 'color'],
             'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color'],
             'footer-background-color'=>['Цвет футера', 'color'],
-//            'ads-5'=>['Реклама: 5-ое место', 'text-area'],
-            'ads-one'=>['Реклама: 1-ое место', 'text-area'],
-            'ads-two'=>['Реклама: 2-ое место', 'text-area'],
-            'ads-three'=>['Реклама: 3-ое место', 'text-area'],
-            'ads-four'=>['Реклама: 4-ое место', 'text-area'],
-            'ads-five'=>['Реклама: 5-ое место', 'text-area'],
-            'ads-six'=>['Реклама: 6-ое место', 'text-area'],
-            'ads-seven'=>['Реклама: 7-ое место', 'text-area'],
-            'ads-eight'=>['Реклама: 8-ое место', 'text-area'],
-            'ads-nine'=>['Реклама: 9-ое место', 'text-area'],
-            ];
-        return view('admin.settings.all', compact('data'));
+        ];
+        $adsSettings=[
+            'ads-one'=>['Главная страница: 1-ое место', 'text-area'],
+            'ads-two'=>['Главная страница: 2-ое место', 'text-area'],
+            'ads-three'=>['Главная страница: 3-ое место', 'text-area'],
+            'ads-four'=>['Страница региона/города: 4-ое место', 'text-area'],
+            'ads-five'=>['Страница региона/города: 5-ое место', 'text-area'],
+            'ads-six'=>['Страница компани: 6-ое место', 'text-area'],
+            'ads-seven'=>['Страница компани: 7-ое место', 'text-area'],
+            'ads-eight'=>['Страница компани: 8-ое место', 'text-area'],
+            'ads-nine'=>['Страница компани: 9-ое место', 'text-area'],
+        ];
+        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'adsSettings'));
     }
 
     public function fileDownload(Request $request)

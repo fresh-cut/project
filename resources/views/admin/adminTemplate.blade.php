@@ -27,7 +27,6 @@
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.categories.index') }}">Категории</a>
                 </li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.companies.index') }}">Компании</a></li>
-                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="#3">Новости</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.reviews.index') }}">Отзывы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.settings') }}">Глобальные настройки</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('home') }}">Вернуться на сайт</a></li>
