@@ -7,7 +7,12 @@
 
     <title>@yield('title')</title>
     <meta name="description" content=@yield('description')>
-{{--    <link rel="canonical" href="//<?= App::getRouter()->getUrl() ?>"/>--}}
+    <link rel="canonical" href="{{url()->current()}}"/>
+
+{{--    <script type="text/javascript"> rbConfig={start:performance.now(),rbDomain:"rwbk.kikwwwi.site",rotator:'1a0'};</script>--}}
+{{--    <script async="async" type="text/javascript" src="//rwbk.kikwwwi.site/1a0.min.js"></script>--}}
+
+
 
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -42,12 +47,10 @@
 <body>
 
 <div class="l-drus-main">
-
     @include('header')
     @if( !Route::is('home'))
         @include('includes.breadcrumbs')
     @endif
-    @include('includes.adaptive')
 
     @if( Route::is('home'))
     <div class="p-drus-first">

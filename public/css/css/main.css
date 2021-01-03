@@ -520,8 +520,8 @@ body {
         .l-drus-article__section--white {
           padding: 20px; } }
     .l-drus-article__section--ads {
-      box-shadow: 0 1px 3px rgba(1,163,223), 0 1px 1px rgba(1,163,223);
-      background-color: #fff;
+      /*box-shadow: 0 1px 3px rgba(1,163,223), 0 1px 1px rgba(1,163,223);*/
+      /*background-color: #fff;*/
       border-radius: 2px; }
     @media (min-width: 1112px) {
       .l-drus-article__section--ads-item {

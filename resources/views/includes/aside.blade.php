@@ -25,6 +25,9 @@
 
 
     <div class="l-drus-aside__section">
+        <section class="l-drus-article__section l-drus-article__section--ads">
+            @include('includes.ads.ads-five')
+        </section>
         <h3 class="l-drus-aside__header">
             Popular business services
         </h3>
@@ -35,7 +38,7 @@
                    href="{{ route('company', [$item->region_url, $item->locality_url, $item->url]) }}">
                     {{ $item->name }}
                 </a>
-                <div class="l-drus-aside-list__flex">
+                <div class="l-drus-aside-list   __flex">
                     <small class="l-drus-aside-list__small">
                         {{ $item->streetaddress }},
                         {{ $item->locality_name }},

@@ -20,25 +20,28 @@
                 consumer reviews, opening hours, driving directions, photos etc.
             </p>
         </header>
-
         <div class="l-drus-article__section l-drus-article__section--ads">
-<!--            --><?php //include ROOT . '/Templates/AdSense/line.html'; ?>
+            @include('includes.ads.ads-six')
         </div>
-
         <section class="l-drus-article__section l-drus-article__section--white l-drus-article__item">
 
-            <a name="contacts"></a>
+            <div class="l-drus-article__item-item">
+                <div class="l-drus-article__section l-drus-article__section--ads">
+                    @include('includes.ads.ads-seven')
+                </div>
+            </div>
+
+
             <div class="l-drus-article__item-item">
                 <h2 class="l-drus-article__h2">
-                    Contacts
+                    Contacts of {{ $company->name }}:
                 </h2>
                 <p>
-                        <a href="region-localiry-category_url"
-                           class="l-drus-article__btn"
-                           title="{{ $company->category_name }}">
-                            {{ $company->category_name }}</a>
+                    <a href=""
+                       class="l-drus-article__btn"
+                       title="{{ $company->category_name }}">
+                        {{ $company->category_name }}</a>
                 </p>
-
                 <p>
                 <address>
                     {{ $company->streetaddress }},<br>
@@ -60,14 +63,6 @@
                            rel="nofollow">Company site</a>
                     </p>
                 @endif
-            </div>
-
-            <a name="hours"></a>
-            <div class="l-drus-article__item-item">
-                <h2 class="l-drus-article__h2">
-                    {{ $company->name }}:
-                </h2>
-
 {{--                <table class="c-drus-table" width="100%">--}}
 {{--                    <?php foreach ($data['item']['hours']['days'] as $day_number => $day) { ?>--}}
 {{--                    <tr<?= ($day_number == $data['item']['hours']['this_day']) ? ' class="active"' : '' ?>>--}}
@@ -89,12 +84,12 @@
 
             <div class="l-drus-article__item-item l-drus-article__item-item--ads">
 
+                    @include('includes.ads.ads-eight')
 
-                <h2 class="l-drus-article__h2">
+{{--                <h2 class="l-drus-article__h2">--}}
 
-                </h2>
+{{--                </h2>--}}
             </div>
-{{--        {{ dd($company) }}--}}
             <div class="l-drus-article__btn-box">
                 <a href="{{ route('add-review', [$company->region_url, $company->locality_url, $company->url]) }}">
                     Write a  customer review
@@ -110,15 +105,6 @@
         <div class="l-drus-article__two">
 
             <div class="l-drus-article__two-first">
-
-                <div class="l-drus-article__section">
-<!--                    --><?php //include ROOT . '/Templates/AdSense/line.html'; ?>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- austria -->
-                </div>
-
-
-                <a name="reviews"></a>
                 <section class="l-drus-article__section l-drus-article__section--white">
 
                     <h2 class="l-drus-article__h2">
@@ -140,7 +126,7 @@
                              data-default-text="How would you rate this service?">
                             How would you rate this service?
                         </div>
-                        <a class="c-drus-add-rev__btn js-add-rev__btn" href="add-review">
+                        <a class="c-drus-add-rev__btn js-add-rev__btn" href="{{ route('add-review', [$company->region_url, $company->locality_url, $company->url]) }}">
                             <span class="c-drus-add-rev__star js-add-rev__star" data-star-number="1"
                                   data-star-text="Terrible">&#9734;</span>
                             <span class="c-drus-add-rev__star js-add-rev__star" data-star-number="2"
@@ -153,32 +139,24 @@
                                   data-star-text="Excellent">&#9734;</span>
                         </a>
                     </div>
-
                 </section>
 
-                <div class="l-drus-article__section l-drus-article__section--ads">
-                    @include('includes.adaptive')
-                </div>
+{{--                <a name="gallery"></a>--}}
+{{--                <section class="l-drus-article__section l-drus-article__section--white">--}}
 
-                <a name="gallery"></a>
-                <section class="l-drus-article__section l-drus-article__section--white">
-
-                    <h2 class="l-drus-article__h2">
-                        Photo gallery of {{ $company->name }}
-                    </h2>
-                    <ul class="c-drus-list">
-                        пока фото нету
+{{--                    <h2 class="l-drus-article__h2">--}}
+{{--                        Photo gallery of {{ $company->name }}--}}
+{{--                    </h2>--}}
+{{--                    <ul class="c-drus-list">--}}
+{{--                        пока фото нету--}}
 {{--                        <?php foreach ($data['item']['photos'] as $photo) { ?>--}}
 {{--                        <div class="c-drus-list__item c-drus-list__item--photo js-gallery__item"--}}
 {{--                             data-src="<?= $photo ?>"--}}
 {{--                             style="background-image: url('<?= $photo ?>')"></div>--}}
 {{--                        <?php } ?>--}}
-                    </ul>
-                </section>
+{{--                    </ul>--}}
+{{--                </section>--}}
 
-                <div class="l-drus-article__section l-drus-article__section--ads">
-                    @include('includes.adaptive')
-                </div>
 
                 <section class="l-drus-article__section l-drus-article__section--white">
 
@@ -200,6 +178,9 @@
 
             <div class="l-drus-article__two-second">
                 <div class="l-drus-article__section l-drus-article__section--white">
+                    <div class="l-drus-article__section l-drus-article__section--ads">
+                        @include('includes.ads.ads-nine')
+                    </div>
                     <h3 class="l-drus-aside__header">
                         The nearest business services in  {{ $company->locality_name }}
                     </h3>
@@ -226,7 +207,6 @@
                         </li>
                         @endforeach
                     </ul>
-{{--                    @include('includes.aside')--}}
                 </div>
             </div>
         </div>

@@ -22,10 +22,10 @@
 
 
             <section class="l-drus-article__section l-drus-article__section--ads">
-                @include('includes.adaptive')
+                @include('includes.ads.ads-four')
             </section>
 
-            @if($localities && $localities->count())
+            @if(isset($localities) && $localities->count())
             <section class="l-drus-article__section l-drus-article__section--white">
                 <h2 class="l-drus-article__h2">
                     Popular  cities in {{ $region->name }}, where there are business services
@@ -43,20 +43,13 @@
             </section>
             @endif
 
-            <section class="l-drus-article__section l-drus-article__section--ads">
-                @include('includes.adaptive')
-            </section>
 
-
-            @if($items && $items->count())
+            @if(isset($items) && $items->count())
             <section class="l-drus-article__section">
                 <h2 class="l-drus-article__h2">
                     Popular business services in {{ $region->name }}
                 </h2>
                 @include('includes.list-items')
-            </section>
-            <section class="l-drus-article__section l-drus-article__section--ads">
-                @include('includes.adaptive')
             </section>
             @endif
         </header>

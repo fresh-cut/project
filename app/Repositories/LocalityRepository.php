@@ -15,6 +15,8 @@ class LocalityRepository extends CoreRepository
     public function getLocalities($count=48)
     {
         return $this->startConditions()
+            ->join('region', 'locality.region_id', '=', 'region.id')
+            ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
             ->take($count)
             ->toBase()
             ->get();

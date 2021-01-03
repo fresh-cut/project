@@ -33,6 +33,8 @@ class ReviewController extends Controller
         $region      =   $this->regionRepository->getRegionByUrl($region_url);
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
         $company     =   $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         if(empty($company))
             abort(404);
         $breadcrumbs    =   [
@@ -40,7 +42,7 @@ class ReviewController extends Controller
             $locality->name =>  ['city', [$region_url, $locality_url]],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
         ];
-        return view('review.create', compact('company', 'breadcrumbs'));
+        return view('review.create', compact('company', 'breadcrumbs', 'footer_regions','footer_localities'));
     }
 
     public function store(ReviewStoreRequest $request)

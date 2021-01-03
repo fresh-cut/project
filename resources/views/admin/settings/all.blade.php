@@ -13,7 +13,11 @@
                 @csrf
                 <label>
                     {{ $value[0] }}
+                    @if($value[1]==='text-area')
+                       <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
+                    @else
                     <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
+                    @endif
                     <button class="visually-hidden" disabled></button>
                 </label>
             </form>

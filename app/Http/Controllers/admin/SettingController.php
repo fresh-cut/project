@@ -23,6 +23,16 @@ class SettingController extends Controller
             'logo-text-color'=>['Цвет шрифта в шапке около лого', 'color'],
             'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color'],
             'footer-background-color'=>['Цвет футера', 'color'],
+//            'ads-5'=>['Реклама: 5-ое место', 'text-area'],
+            'ads-one'=>['Реклама: 1-ое место', 'text-area'],
+            'ads-two'=>['Реклама: 2-ое место', 'text-area'],
+            'ads-three'=>['Реклама: 3-ое место', 'text-area'],
+            'ads-four'=>['Реклама: 4-ое место', 'text-area'],
+            'ads-five'=>['Реклама: 5-ое место', 'text-area'],
+            'ads-six'=>['Реклама: 6-ое место', 'text-area'],
+            'ads-seven'=>['Реклама: 7-ое место', 'text-area'],
+            'ads-eight'=>['Реклама: 8-ое место', 'text-area'],
+            'ads-nine'=>['Реклама: 9-ое место', 'text-area'],
             ];
         return view('admin.settings.all', compact('data'));
     }

@@ -46,12 +46,14 @@ class IndexController extends Controller
         $company     =   $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
         $reviews        =   $this->reviewRepository->getReviewsByCompanyId($company->id);
         $nearest_item = $this->companyRepository->getCompaniesByCity(6,$locality->id);
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
             $locality->name =>  ['city', $locality_url],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
          ];
-        return view('company.aboutCompany', compact('company', 'reviews', 'breadcrumbs', 'nearest_item'));
+        return view('company.aboutCompany', compact('company', 'reviews', 'breadcrumbs', 'nearest_item', 'footer_regions', 'footer_localities'));
     }
 
     public function region($region_url)
@@ -61,10 +63,12 @@ class IndexController extends Controller
         $items      =   $this->companyRepository->getCompaniesByRegion(6,$region->id);
         $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
         $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs    =   ([
             $region->name   =>  ['region', $region_url],
         ]);
-        return view('region.region', compact('region', 'localities', 'items', 'last_reviews', 'last_items', 'breadcrumbs'));
+        return view('region.region', compact('region', 'localities', 'items', 'last_reviews', 'last_items', 'breadcrumbs', 'footer_regions', 'footer_localities'));
     }
 
     public function city( $locality_url)
@@ -73,10 +77,12 @@ class IndexController extends Controller
         $items       =   $this->companyRepository->getCompaniesByCity(24,$locality->id);
         $last_items  =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
         $last_reviews     =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs =   [
             $locality->name =>  ['city', [$locality_url]],
         ];
-        return view('city.city', compact('locality', 'items', 'last_items', 'last_reviews', 'breadcrumbs'));
+        return view('city.city', compact('locality', 'items', 'last_items', 'last_reviews', 'breadcrumbs', 'footer_regions', 'footer_localities'));
     }
 
     public function allRegions()
@@ -84,8 +90,10 @@ class IndexController extends Controller
         $regions = $this->regionRepository->getRegions('all');
         $last_items =   $this->companyRepository->getCompanies(4);
         $last_reviews    =   $this->reviewRepository->getReviews(3);
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs=   ['All states'=>['all-regions','']];
-        return view(    'region.all', compact('regions', 'last_items', 'last_reviews', 'breadcrumbs'));
+        return view(    'region.all', compact('regions', 'last_items', 'last_reviews', 'breadcrumbs', 'footer_localities', 'footer_regions'));
     }
 
 }

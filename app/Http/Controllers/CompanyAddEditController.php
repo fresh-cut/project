@@ -38,6 +38,8 @@ class CompanyAddEditController extends Controller
         $region   = $this->regionRepository->getRegionByUrl($region_url);
         $locality = $this->localityRepository->getLocalityByUrl($locality_url);
         $company  =  $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
         if(empty($company))
             abort(404);
         $breadcrumbs    =   [
@@ -45,7 +47,7 @@ class CompanyAddEditController extends Controller
             $locality->name =>  ['city', [$region_url, $locality_url]],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
         ];
-        return view('company.edit', compact('company', 'locality', 'region', 'breadcrumbs'));
+        return view('company.edit', compact('company', 'locality', 'region', 'breadcrumbs', 'footer_localities', 'footer_regions'));
     }
 
     public function editStore(CompanyStoreRequest $request)
@@ -79,7 +81,9 @@ class CompanyAddEditController extends Controller
     public function addCompany()
     {
         $breadcrumbs=   ['Add listing'=>['add-company','']];
-        return view('company.add', compact('breadcrumbs'));
+        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_localities =   $this->localityRepository->getLocalities(12);
+        return view('company.add', compact('breadcrumbs', 'footer_localities', 'footer_regions'));
     }
 
     public function addStore(CompanyStoreRequest $request)

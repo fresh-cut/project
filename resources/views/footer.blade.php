@@ -1,42 +1,35 @@
-@if(!Route::is('home'))
-{{--<div class="l-drus-pre-footer">--}}
-{{--    <div class="l-drus-main__box l-drus-pre-footer__main-box">--}}
-{{--        <div class="l-drus-pre-footer__box">--}}
-{{--            <h4 class="l-drus-pre-footer__header">Popular locations with business services:</h4>--}}
-{{--            <ul class="l-drus-pre-footer__list">--}}
-{{--                <?php foreach ($data['localities'] as $locality_category) { ?>--}}
-
-{{--                <li class="l-drus-pre-footer__list-item l-drus-pre-footer__list-item--two">--}}
-{{--                    <a class="l-drus-pre-footer__link"--}}
-{{--                       href="//<?= $locality_category['url'] ?>.<?= App::getRouter()->getHostMain() ?>/">--}}
-{{--                        <?= $locality_category['name'] ?>,--}}
-{{--                        <?= $locality_category['region']['name'] ?>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <?php } ?>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
-{{--        <div class="l-drus-pre-footer__box">--}}
-{{--            <h4 class="l-drus-pre-footer__header">Popular states with business services:</h4>--}}
-{{--            <ul class="l-drus-pre-footer__list">--}}
-{{--                <?php foreach ($data['regions'] as $region) { ?>--}}
-{{--                <li class="l-drus-pre-footer__list-item l-drus-pre-footer__list-item--two">--}}
-{{--                    <a class="l-drus-pre-footer__link"--}}
-{{--                       href="//<?= App::getRouter()->getHostMain() ?>/<?= $region['url'] ?>/">--}}
-{{--                        <?= $region['name'] ?>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <?php } ?>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
-{{--        <div class="l-drus-pre-footer__box">--}}
-{{--            <h4 class="l-drus-pre-footer__header">Other countries:</h4>--}}
-
-
-
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+@if(!Route::is('home') && isset($footer_localities) && $footer_localities->count() && isset($footer_regions) && $footer_regions->count())
+<div class="l-drus-pre-footer">
+    <div class="l-drus-main__box l-drus-pre-footer__main-box">
+        <div class="l-drus-pre-footer__box">
+            <h4 class="l-drus-pre-footer__header">Popular locations with business services:</h4>
+            <ul class="l-drus-pre-footer__list">
+                @foreach ($footer_localities as $locality)
+                <li class="l-drus-pre-footer__list-item l-drus-pre-footer__list-item--two">
+                    <a class="l-drus-pre-footer__link"
+                       href="{{route('city', $locality->url)}}">
+                        {{ $locality->name }},
+                        {{ $locality->region_name }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="l-drus-pre-footer__box">
+            <h4 class="l-drus-pre-footer__header">Popular states with business services:</h4>
+            <ul class="l-drus-pre-footer__list">
+                @foreach ($footer_regions as $region)
+                <li class="l-drus-pre-footer__list-item l-drus-pre-footer__list-item--two">
+                    <a class="l-drus-pre-footer__link"
+                       href="{{ route('region', $region->url) }}">
+                        {{ $region->name }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
 @endif
 
 <footer class="l-drus-footer">

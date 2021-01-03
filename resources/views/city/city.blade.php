@@ -22,7 +22,7 @@
             </p>
 
             <section class="l-drus-article__section l-drus-article__section--ads">
-                @include('includes.adaptive')
+                @include('includes.ads.ads-four')
             </section>
             @if($items && $items->count())
                 <section class="l-drus-article__section">
@@ -30,9 +30,6 @@
                         Popular business services in {{ $locality->name }}
                     </h2>
                     @include('includes.list-items')
-                </section>
-                <section class="l-drus-article__section l-drus-article__section--ads">
-                    @include('includes.adaptive')
                 </section>
         @endif
         </header>

@@ -11,7 +11,9 @@
             </p>
 
         </header>
-        @include('includes.adaptive')
+        <div class="l-drus-article__section l-drus-article__section--ads">
+            @include('includes.ads.ads-one')
+        </div>
         <section class="l-drus-article__section">
 
             <div align="middle">
@@ -22,10 +24,10 @@
             </h2>
             @include('includes.list-items')
         </section>
+        <div class="l-drus-article__section l-drus-article__section--ads">
+            @include('includes.ads.ads-two')
+        </div>
         <section class="l-drus-article__section l-drus-article__section--white">
-            <div align="middle">
-
-            </div>
             <h2 class="l-drus-article__h2" style="text-align: center;">
                 Popular states
             </h2>
@@ -40,10 +42,10 @@
                 @endforeach
             </ul>
         </section>
-        @include('includes.adaptive')
+        <div class="l-drus-article__section l-drus-article__section--ads">
+            @include('includes.ads.ads-three')
+        </di    v>
         <section class="l-drus-article__section l-drus-article__section--white">
-            <div align="middle">
-            </div>
             <h2 class="l-drus-article__h2" style="text-align: center;">
                 Popular cities
             </h2>
