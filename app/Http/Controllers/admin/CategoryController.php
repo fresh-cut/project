@@ -7,6 +7,8 @@ use App\Http\Requests\AdminCategoryUpdateRequest;
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class CategoryController extends Controller
 {
@@ -21,10 +23,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories=$this->categoryRepository->getCategories('all');
-        return view('admin.categories.all', compact('categories'));
+        $results=$this->categoryRepository->getCategoriesWithPaginate(20);
+        return view('admin.categories.all', compact('results'));
     }
 
     /**
@@ -126,5 +128,20 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function search(Request $request)
+    {
+        if($request->input('term')==null || $request->input('term')==' ')
+        {
+            $results=$this->categoryRepository->getCategoriesWithPaginate(20);
+            $results->setPath('/admin/category');
+            return view('admin.categories.includes.results')->with('results',$results);
+        }
+        $results = Category::select('id','name', 'url')
+            ->where('name', 'LIKE', "%{$request->input('term')}%") //Your selected row
+            ->orderBy('id','desc')->take(10)->get();
+        return view('admin.categories.includes.results')->with('results',$results)->render();
     }
 }

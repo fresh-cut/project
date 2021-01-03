@@ -28,6 +28,13 @@ class CategoryRepository extends CoreRepository
             ->get();
     }
 
+    public function getCategoriesWithPaginate($count)
+    {
+        return $this->startConditions()
+            ->orderBy('id','desc')
+            ->paginate($count);
+    }
+
     public function getCategoryById($id)
     {
         return $this->startConditions()->find($id);

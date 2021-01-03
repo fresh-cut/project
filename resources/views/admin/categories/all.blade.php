@@ -8,29 +8,41 @@
         <a href="{{ route('admin.categories.create') }}" class="btn btn-success">Добавить категорию</a>
     </nav>
     <br>
-    <table class="table">
-        <thead>
-        <tr style="text-align: left">
-            <th>id</th>
-            <th>Название категории</th>
-            <th>Url</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($categories as $category)
-            <tr>
-                <td align="left" width="5%">{{$category->id}}</td>
-                <td align="left">
-                    <a href="{{ route('admin.categories.edit',$category->id) }}">
-                        {{$category->name}}
-                    </a>
-                </td>
-                <td align="left">{{$category->url}}</td>
-                <td align="left">
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control search" id="category" onkeyup="run()" autocomplete="off">
+            </div>
+        </div>
+    </div>
+    <div id="results">
+        @include('admin.categories.includes.results')
+    </div>
+
+
+    <script type="text/javascript">
+        function run(){
+            var arr='term='+$('#category').val();
+            $.ajax({
+                url: '{{ route('admin.categories.search') }}',
+                type: "POST",
+                traditional: true,
+                data:  arr,
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                    'X-Requested-With': 'XMLHttpRequest'
+                }}).done(function(response){
+                $('#results').html(response); // put the returning html in the 'results' div
+            });
+        }
+    </script>
 @endsection
+<style>
+    .search{
+        background: url('../../img/formCheck/search.png');
+        background-size: 40px;
+        background-repeat: no-repeat;
+        background-position: right center;
+    }
+</style>
+

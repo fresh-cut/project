@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::redirect('admin', 'admin/settings');
+//Route::redirect('admin/category/search', '/admin/category');
 
 Route::get('/', ['\App\Http\Controllers\IndexController', 'landing'])->name('home');
 Route::get('/region/{region}/city/{city}/company/{company}', ['\App\Http\Controllers\IndexController', 'company'] )->name('company');
@@ -59,6 +60,8 @@ Route::group($groupData, function(){
         ->names('admin.regions');
 
     // admin->category
+    Route::get('category/search','CategoryController@search')->name('admin.categories.search');
+    Route::post('category/search','CategoryController@search')->name('admin.categories.search');
     Route::resource('category', 'CategoryController')
         ->names('admin.categories');
 
