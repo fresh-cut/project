@@ -43,10 +43,15 @@ Route::get('company/api/autocompliteLocality',['\App\Http\Controllers\CompanyAdd
 Route::get('/contact-us', ['\App\Http\Controllers\ContactUsController', 'create'] )->name('contact-us');
 Route::post('/contact-us', ['\App\Http\Controllers\ContactUsController', 'store'] )->name('store-contact-us');
 
+// login
+Route::get('/login', ['\App\Http\Controllers\LoginController', 'index'] )->name('login.index');
+Route::post('/login', ['\App\Http\Controllers\LoginController', 'authenticate'] )->name('login');
+Route::get('/logout', ['\App\Http\Controllers\LoginController', 'logout'] )->name('logout');
 
 
 // Админка
 $groupData=[
+    'middleware'=>'costumAuth',
     'namespace'=>'\App\Http\Controllers\admin',
     'prefix'=>'admin/', // то что будет в строке url после имени сайта
 ];

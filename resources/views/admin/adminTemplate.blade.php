@@ -31,7 +31,7 @@
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.settings') }}">Глобальные настройки</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.translate') }}">Переводы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('home') }}">Вернуться на сайт</a></li>
-                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="#3">Выход</a></li>
+                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('logout') }}">Выход</a></li>
             </ul>
         </div>
         <div class="col-10">
