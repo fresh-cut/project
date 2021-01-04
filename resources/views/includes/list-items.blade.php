@@ -15,7 +15,7 @@
                            class="c-drus-card__header">
                             {{$item->name}}</a>
                         <p class="c-drus-card__line">
-                                <a href="category-url"
+                                <a href="{{ route('company', [$item->region_url, $item->locality_url, $item->url]) }}"
                                    class="c-drus-card__category">{{$item->category_name}}</a>
                         </p>
                         @if(isset($item->telephone))
@@ -33,17 +33,6 @@
                 </div>
             </div>
         </li>
-
-        <?php if ((isset($items_ads) && ($items_ads)) && (($i % 4) == 0) && (count($items) >= ($i + 4))) { ?>
-
-            <li class="c-drus-list__item c-drus-list__item--ads">
-
-                <?php include ROOT . '/Templates/AdSense/adaptive.html'; ?>
-
-            </li>
-
-        <?php } ?>
-
     @endforeach
 
 </ul>

@@ -603,6 +603,8 @@ function initMap() {
 
     var jsHeaderFormInput = document.getElementById('js-header-form__input');
     var jsHeaderFormInputQuery = document.getElementById('js-header-form__input--query');
+    // var jsHeaderFormInputLat = document.getElementById('js-header-form__input--lat');
+    // var jsHeaderFormInputLng = document.getElementById('js-header-form__input--lng');
     var jsHeaderFormInputLat = document.getElementById('js-header-form__input--lat');
     var jsHeaderFormInputLng = document.getElementById('js-header-form__input--lng');
 
@@ -630,7 +632,7 @@ function initMap() {
     });
 
     if (typeof myLatLng === 'undefined') {
-        //console.log('no map');
+        console.log('no map');
         return false;
     } else {
 

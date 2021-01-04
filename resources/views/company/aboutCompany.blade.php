@@ -1,11 +1,18 @@
 @extends('template')
 @section('main-content')
     @section('title')
-        {{ $company->name}} in {{ $company->streetaddress }},
-        {{ $company->region_name }}: opening hours, driving directions, official site, phone numbers &  customer reviews.
+        <?php $str=settings('company-title-text', '{ $company->name } in { $company->streetaddress }, { $company->region_name }: opening hours, driving directions, official site, phone numbers &  customer reviews.');
+            $search=['{ $company->name }', '{ $company->streetaddress }', '{ $company->region_name }'];
+            $replace=[$company->name, $company->streetaddress, $company->region_name];
+            echo str_replace($search, $replace, $str);
+        ?>
     @endsection
     @section('description')
-        {{ $company->locality_name }}, {{ $company->region_name }}.Find the nearest location, opening hours and driving diections. Customer reviews and available services.
+        <?php $str=settings('company-description-text', '{ $company->locality_name }, { $company->region_name }.Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
+                $search=['{ $company->locality_name }', '{ $company->region_name }'];
+                $replace=[$company->locality_name, $company->region_name];
+                echo str_replace($search, $replace, $str);
+        ?>
     @endsection
 
 <div class="l-drus-main__article">
@@ -17,7 +24,7 @@
             </h1>
             <p class="l-drus-article__header-text">
                 {{ $company->name  }} in {{ $company->streetaddress }}, {{ $company->region_name }}:
-                consumer reviews, opening hours, driving directions, photos etc.
+                <?php echo settings('company-after-head-text', 'consumer reviews, opening hours, driving directions, photos etc.')?>
             </p>
         </header>
         <div class="l-drus-article__section l-drus-article__section--ads">
@@ -34,7 +41,7 @@
 
             <div class="l-drus-article__item-item">
                 <h2 class="l-drus-article__h2">
-                    Contacts of {{ $company->name }}:
+                    <?php echo settings('company-contacts-of-text', 'Contacts of').' '?>{{ $company->name }}:
                 </h2>
                 <p>
                     <a href=""
@@ -63,40 +70,18 @@
                            rel="nofollow">Company site</a>
                     </p>
                 @endif
-{{--                <table class="c-drus-table" width="100%">--}}
-{{--                    <?php foreach ($data['item']['hours']['days'] as $day_number => $day) { ?>--}}
-{{--                    <tr<?= ($day_number == $data['item']['hours']['this_day']) ? ' class="active"' : '' ?>>--}}
-{{--                        <td>--}}
-{{--                            <?= $data['days'][$day_number] ?>--}}
-{{--                        </td>--}}
-{{--                        <td>--}}
-{{--                            <?php foreach ($day as $hours) { ?>--}}
-{{--                            <div class="big">--}}
-{{--                                <?= $hours['start'] ?> &mdash; <?= $hours['end'] ?>--}}
-{{--                            </div>--}}
-{{--                            <?php } ?>--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-{{--                    <?php } ?>--}}
-{{--                </table>--}}
-
             </div>
 
             <div class="l-drus-article__item-item l-drus-article__item-item--ads">
-
                     @include('includes.ads.ads-eight')
-
-{{--                <h2 class="l-drus-article__h2">--}}
-
-{{--                </h2>--}}
             </div>
             <div class="l-drus-article__btn-box">
                 <a href="{{ route('add-review', [$company->region_url, $company->locality_url, $company->url]) }}">
-                    Write a  customer review
+                    <?php echo settings('company-costumer-review-text', 'Write a  customer review')?>
                 </a>
                 &nbsp;&nbsp;&nbsp;&#11049;&nbsp;&nbsp;&nbsp;
                 <a href="{{ route('edit-company', [$company->region_url, $company->locality_url, $company->url]) }}">
-                    Suggest an update
+                    <?php echo settings('company-suggest-update-text', 'Suggest an update')?>
                 </a>
             </div>
 
@@ -108,7 +93,7 @@
                 <section class="l-drus-article__section l-drus-article__section--white">
 
                     <h2 class="l-drus-article__h2">
-                        Customer  Reviews about {{ $company->name }}:
+                        <?php echo settings('company-costumer-review-about-text', 'Customer Reviews about').' '?>{{ $company->name }}:
                     </h2>
 
                     @if(isset($reviews) && $reviews->count())
@@ -116,15 +101,16 @@
                     @else
 
                     <p>
-                        At the moment, there are no reviews about {{ $company->name }}
-                        If you bought something at a {{ $company->name }} or visited a service - leave feedback about this business service:
+                        <?php $str=settings('company-after-costumer-review-about-text','At the moment, there are no reviews about {$company->name}. If you bought something at a {$company->name} or visited a service - leave feedback about this business service:');
+                                echo str_replace('{$company->name}', $company->name, $str);
+                        ?>
                     </p>
                     @endif
 
                     <div class="c-drus-add-rev">
                         <div class="c-drus-add-rev__text js-add-rev__text"
                              data-default-text="How would you rate this service?">
-                            How would you rate this service?
+                            <?php echo settings('company-how-rate-text', 'How would you rate this service?')?>
                         </div>
                         <a class="c-drus-add-rev__btn js-add-rev__btn" href="{{ route('add-review', [$company->region_url, $company->locality_url, $company->url]) }}">
                             <span class="c-drus-add-rev__star js-add-rev__star" data-star-number="1"
@@ -161,7 +147,7 @@
                 <section class="l-drus-article__section l-drus-article__section--white">
 
                     <h2 class="l-drus-article__h2">
-                        About {{ $company->name }} in {{ $company->locality_name }}
+                        <?php echo settings('company-about-text', 'About').' '?> {{ $company->name }} in {{ $company->locality_name }}
                     </h2>
 
                     @if( isset($company->descr))
@@ -182,7 +168,7 @@
                         @include('includes.ads.ads-nine')
                     </div>
                     <h3 class="l-drus-aside__header">
-                        The nearest business services in  {{ $company->locality_name }}
+                        <?php echo settings('company-nearest-text', 'The nearest business services in').' '?> {{ $company->locality_name }}
                     </h3>
                     <ul class="l-drus-aside-list">
                         @foreach($nearest_item as $item)

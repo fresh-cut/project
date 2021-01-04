@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.includes.result_messages')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="page-header">
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Основные настройки сайта</h3>
                 <hr style="margin-top: 0">
@@ -13,18 +13,14 @@
             @foreach($mainSettings as $key=>$value)
                 <label>
                     {{ $value[0] }}
-                    @if($value[1]==='text-area')
-                       <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
-                    @else
                     <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
-                    @endif
                 </label>
             @endforeach
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="page-header">
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Цветовые настройки сайта</h3>
                 <hr style="margin-top: 0">
@@ -32,19 +28,49 @@
             @foreach($colorSettings as $key=>$value)
                 <label>
                     {{ $value[0] }}
-                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
+                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key, '#01A3DF') }}" autocomplete="off">
                 </label>
             @endforeach
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="page-header">
-                <h3 style="margin-bottom: 0; color:#0d5c6d">Настройки рекламы</h3>
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Настройки рекламы (главная страница)</h3>
                 <hr style="margin-top: 0; ">
             </div>
-            @foreach($adsSettings as $key=>$value)
+            @foreach($landingAdsSettings as $key=>$value)
+                <label>
+                    {{ $value[0] }}
+                        <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
+                </label>
+            @endforeach
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Настройки рекламы (cтраница региона/города)</h3>
+                <hr style="margin-top: 0; ">
+            </div>
+            @foreach($regionAdsSetting as $key=>$value)
+                <label>
+                    {{ $value[0] }}
+                        <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
+                </label>
+            @endforeach
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Настройки рекламы (cтраница компании)</h3>
+                <hr style="margin-top: 0; ">
+            </div>
+            @foreach($companyAdsSettings as $key=>$value)
                 <label>
                     {{ $value[0] }}
                         <textarea onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>

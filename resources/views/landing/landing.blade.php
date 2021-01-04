@@ -4,10 +4,10 @@
     <article class="l-drus-article">
         <header class="l-drus-article__header" style="text-align: center;">
             <h1 class="l-drus-article__h1">
-                All business services in the United States
+                <?php echo settings('head-text', 'All business services in the United States') ?>
             </h1>
             <p class="l-drus-article__header-text">
-                Welcome to our website where you can find all companies and organizations providing business services in the United States
+                <?php echo settings('after-head-text', 'Welcome to our website where you can find all companies and organizations providing business services in the United States') ?>
             </p>
 
         </header>
@@ -20,7 +20,7 @@
 
             </div>
             <h2 class="l-drus-article__h2" style="text-align: center;">
-                Popular business services
+            <?php echo settings('popular-company-text','Popular business services')?>
             </h2>
             @include('includes.list-items')
         </section>
@@ -29,7 +29,7 @@
         </div>
         <section class="l-drus-article__section l-drus-article__section--white">
             <h2 class="l-drus-article__h2" style="text-align: center;">
-                Popular states
+                <?php echo settings('popular-region-text','Popular states')?>
             </h2>
             <ul class="c-drus-list">
                 @foreach($regions as $region)
@@ -47,7 +47,7 @@
         </di    v>
         <section class="l-drus-article__section l-drus-article__section--white">
             <h2 class="l-drus-article__h2" style="text-align: center;">
-                Popular cities
+                <?php echo settings('popular-locality-text','Popular cities')?>
             </h2>
             <ul class="c-drus-list">
                 @foreach($localities as $locality)
@@ -68,7 +68,7 @@
             <div align="middle">
             </div>
             <h2 class="l-drus-article__h2" style="text-align: center;">
-                Latest reviews
+                <?php echo settings('latest-reviews-text', 'Latest reviews')?>
             </h2>
             @include('includes.list_reviews')
         </section>

@@ -29,7 +29,7 @@
             @include('includes.ads.ads-five')
         </section>
         <h3 class="l-drus-aside__header">
-            Popular business services
+            <?php echo settings('aside-popular-services-text', 'Popular business services')?>
         </h3>
         <ul class="l-drus-aside-list">
             @foreach($last_items as $item)
@@ -61,7 +61,7 @@
     @if($last_reviews && $last_reviews->count())
      <div class="l-drus-aside__section">
         <h3 class="l-drus-aside__header">
-            Latest reviews
+            <?php echo settings('aside-latest-reviews-text', 'Latest reviews')?>
         </h3>
         <ul class="l-drus-aside-list">
             @foreach($last_reviews as $review)

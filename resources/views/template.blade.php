@@ -56,7 +56,7 @@
     <div class="p-drus-first">
         <div class="p-drus-first__box">
             <div class="p-drus-first__form-name">
-                Find business services in the United States
+                <?php echo settings('search-text', 'Find business services in the United States') ?>
             </div>
             <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"
                   action="search">

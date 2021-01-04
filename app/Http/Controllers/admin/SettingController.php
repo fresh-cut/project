@@ -26,18 +26,22 @@ class SettingController extends Controller
             'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color'],
             'footer-background-color'=>['Цвет футера', 'color'],
         ];
-        $adsSettings=[
-            'ads-one'=>['Главная страница: 1-ое место', 'text-area'],
-            'ads-two'=>['Главная страница: 2-ое место', 'text-area'],
-            'ads-three'=>['Главная страница: 3-ое место', 'text-area'],
-            'ads-four'=>['Страница региона/города: 4-ое место', 'text-area'],
-            'ads-five'=>['Страница региона/города: 5-ое место', 'text-area'],
-            'ads-six'=>['Страница компани: 6-ое место', 'text-area'],
-            'ads-seven'=>['Страница компани: 7-ое место', 'text-area'],
-            'ads-eight'=>['Страница компани: 8-ое место', 'text-area'],
-            'ads-nine'=>['Страница компани: 9-ое место', 'text-area'],
+        $landingAdsSettings=[
+            'ads-one'=>['1-ое место', 'text-area'],
+            'ads-two'=>['2-ое место', 'text-area'],
+            'ads-three'=>['3-ое место', 'text-area'],
         ];
-        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'adsSettings'));
+        $regionAdsSetting=[
+            'ads-four'=>['4-ое место', 'text-area'],
+            'ads-five'=>['5-ое место', 'text-area'],
+        ];
+        $companyAdsSettings=[
+            'ads-six'=>['6-ое место', 'text-area'],
+            'ads-seven'=>['7-ое место', 'text-area'],
+            'ads-eight'=>['8-ое место', 'text-area'],
+            'ads-nine'=>['9-ое место', 'text-area'],
+        ];
+        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings'));
     }
 
     public function fileDownload(Request $request)

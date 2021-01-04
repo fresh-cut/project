@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <link rel="stylesheet" href="{{asset('css/css/app.css')}}">
     <meta charset="UTF-8">
@@ -29,6 +29,7 @@
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.companies.index') }}">Компании</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.reviews.index') }}">Отзывы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.settings') }}">Глобальные настройки</a></li>
+                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.translate') }}">Переводы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('home') }}">Вернуться на сайт</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="#3">Выход</a></li>
             </ul>

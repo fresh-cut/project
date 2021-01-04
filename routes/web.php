@@ -74,6 +74,10 @@ Route::group($groupData, function(){
     Route::post('settings', 'SettingController@fileDownload')->name('admin.download');
     Route::post('settings/add', 'SettingController@addSettings')->name('admin.addSettings');
 
+    // admin->translate
+    Route::get('translate', 'TranslateController@index')->name('admin.translate');
+    Route::post('translate/add', 'TranslateController@addTranslate')->name('admin.addTranslate');
+
     Route::group(['prefix'=>'regions/{id}/'], function(){
         Route::resource('localities', 'LocalityController')
             ->names('admin.localities');

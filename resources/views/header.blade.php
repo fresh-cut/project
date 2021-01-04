@@ -2,7 +2,7 @@
     <div class="l-drus-main__box l-drus-header__box">
         <a class="l-drus-header__logo" href="{{ route('home') }}">
             <span class="l-drus-header__logo-img"></span>
-            <span class="l-drus-header__logo-text">Business services<br>in the United States</span>
+            <span class="l-drus-header__logo-text"><?php echo settings('logo-text','Business services<br>in the United States') ?></span>
         </a>
 
         @if(!Route::is('home'))

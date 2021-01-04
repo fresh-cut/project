@@ -1,23 +1,29 @@
 @extends('template')
 @section('main-content')
     @section('title')
-        Business services locations in {{ $region->name }} near me. Opening hours, driving directions, services and customer reviews
+        <?php $str=settings('region-title-text','Business services locations in { $region->name } near me. Opening hours, driving directions, services and customer reviews');
+                echo str_replace('{ $region->name }', $region->name, $str);
+        ?>
     @endsection
     @section('description')
-        Full information about business services
-        locations in {{ $region->name }}. Find the nearest location, opening hours and driving diections. Customer reviews and available services.
+        <?php $str=settings('region-description-text','Full information about business services locations in { $region->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
+            echo str_replace('{ $region->name }', $region->name, $str);
+        ?>
     @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
             <header class="l-drus-article__header">
                 <h1 class="l-drus-article__h1">
-                    All Business services in {{ $region->name }}, United States by cities
+                    <?php $str=settings('region-head-text','All Business services in { $region->name }, United States by cities');
+                            echo str_replace('{ $region->name }', $region->name, $str);
+                    ?>
                 </h1>
 
                 <p class="l-drus-article__header-text">
-                    Full information about business services locations
-                    in {{ $region->name }}.They are conveniently located near you. Get driving directions for every  location in {{ $region->name }}. Write a review to rate. Get customer phone numbers, opening hours for every business services in {{ $region->name }}.
+                    <?php $str=settings('region-after-head-text', 'Full information about business services locations in { $region->name }.They are conveniently located near you. Get driving directions for every  location in { $region->name }. Write a review to rate. Get customer phone numbers, opening hours for every business services in { $region->name }.');
+                    echo str_replace('{ $region->name }', $region->name, $str);
+                    ?>
                 </p>
 
 
@@ -47,7 +53,7 @@
             @if(isset($items) && $items->count())
             <section class="l-drus-article__section">
                 <h2 class="l-drus-article__h2">
-                    Popular business services in {{ $region->name }}
+                    <?php echo settings('region-popular-service-text', 'Popular business services in').' '?> {{ $region->name }}
                 </h2>
                 @include('includes.list-items')
             </section>
