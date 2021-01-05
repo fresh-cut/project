@@ -55,4 +55,28 @@ class LocalityRepository extends CoreRepository
     {
         return $this->startConditions()->find($id);
     }
+
+    public function getLocalitiesByRegionWithPaginate($count=20, $region_id)
+    {
+            return $this->startConditions()
+                ->join('region', 'locality.region_id', '=', 'region.id')
+                ->where('region_id', $region_id)
+                ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
+                ->toBase()
+                ->orderBy('id', 'desc')
+                ->paginate($count);
+    }
+
+    public function getLocalitiesForSearch($search, $count, $region_id)
+    {
+        return $this->startConditions()
+            ->join('region', 'locality.region_id', '=', 'region.id')
+            ->where('locality.name', 'LIKE', "%{$search}%")
+            ->where('region_id', $region_id)
+            ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
+            ->toBase()
+            ->orderBy('locality.id', 'desc')
+            ->take($count)
+            ->get();
+    }
 }

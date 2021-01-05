@@ -39,7 +39,7 @@
 @endsection
 <style>
     .search{
-        background: url('../../img/formCheck/search.png');
+        background: url('/img/formCheck/search.png');
         background-size: 40px;
         background-repeat: no-repeat;
         background-position: right center;

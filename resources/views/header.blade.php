@@ -30,7 +30,6 @@
             <button type="submit" class="l-drus-header__form-submit" id="js-header-form__submit">
                 <span></span>
             </button>
-
         </form>
         @endif
 

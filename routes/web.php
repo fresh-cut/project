@@ -43,6 +43,13 @@ Route::get('company/api/autocompliteLocality',['\App\Http\Controllers\CompanyAdd
 Route::get('/contact-us', ['\App\Http\Controllers\ContactUsController', 'create'] )->name('contact-us');
 Route::post('/contact-us', ['\App\Http\Controllers\ContactUsController', 'store'] )->name('store-contact-us');
 
+// about us
+Route::get('/about-us', ['\App\Http\Controllers\IndexController', 'aboutUs'] )->name('about-us');
+
+// search
+Route::get('/search', ['\App\Http\Controllers\SearchController', 'search'] )->name('search');
+
+
 // login
 Route::get('/login', ['\App\Http\Controllers\LoginController', 'index'] )->name('login.index');
 Route::post('/login', ['\App\Http\Controllers\LoginController', 'authenticate'] )->name('login');
@@ -65,7 +72,6 @@ Route::group($groupData, function(){
         ->names('admin.regions');
 
     // admin->category
-    Route::get('category/search','CategoryController@search')->name('admin.categories.search');
     Route::post('category/search','CategoryController@search')->name('admin.categories.search');
     Route::resource('category', 'CategoryController')
         ->names('admin.categories');
@@ -84,6 +90,8 @@ Route::group($groupData, function(){
     Route::post('translate/add', 'TranslateController@addTranslate')->name('admin.addTranslate');
 
     Route::group(['prefix'=>'regions/{id}/'], function(){
+        Route::post('localities/search','LocalityController@search')->name('admin.localities.search');
+
         Route::resource('localities', 'LocalityController')
             ->names('admin.localities');
     });

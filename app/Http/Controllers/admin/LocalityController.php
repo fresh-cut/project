@@ -8,6 +8,7 @@ use App\Models\Locality;
 use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class LocalityController extends Controller
 {
@@ -30,7 +31,7 @@ class LocalityController extends Controller
         if(empty($region)){
             abort(404);
         }
-        $localities=$this->localityRepository->getLocalitiesByRegion('all', $region_id);
+        $localities=$this->localityRepository->getLocalitiesByRegionWithPaginate(20, $region_id);
         return view('admin.citys.all', compact('localities', 'region'));
     }
 
@@ -142,4 +143,17 @@ class LocalityController extends Controller
     {
         //
     }
+
+    public function search(Request $request, $region_id)
+    {
+        if($request->input('term')==null || $request->input('term')==' ')
+        {
+            $localities=$this->localityRepository->getLocalitiesByRegionWithPaginate(20, $region_id);
+            URL::route('admin.localities.index', $region_id);
+            return view('admin.citys.includes.results')->with('localities',$localities);
+        }
+        $localities=$this->localityRepository->getLocalitiesForSearch($request->input('term'),10,$region_id);
+        return view('admin.citys.includes.results')->with('localities',$localities)->render();
+    }
+
 }

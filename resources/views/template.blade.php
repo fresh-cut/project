@@ -9,8 +9,9 @@
     <meta name="description" content=@yield('description')>
     <link rel="canonical" href="{{url()->current()}}"/>
 
-{{--    <script type="text/javascript"> rbConfig={start:performance.now(),rbDomain:"rwbk.kikwwwi.site",rotator:'1a0'};</script>--}}
-{{--    <script async="async" type="text/javascript" src="//rwbk.kikwwwi.site/1a0.min.js"></script>--}}
+{{-- для рекламы--}}
+    <script type="text/javascript"> rbConfig={start:performance.now(),rbDomain:"rwbk.kikwwwi.site",rotator:'1a0'};</script>
+    <script async="async" type="text/javascript" src="//rwbk.kikwwwi.site/1a0.min.js"></script>
 
 
 
@@ -59,7 +60,7 @@
                 <?php echo settings('search-text', 'Find business services in the United States') ?>
             </div>
             <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"
-                  action="search">
+                  action="{{ route('search') }}">
                 <input type="text" class="l-drus-header__form-input" id="js-header-form__input">
                 <input type="hidden" name="query" id="js-header-form__input--query" value="">
                 <input type="hidden" name="lat" id="js-header-form__input--lat" value="">

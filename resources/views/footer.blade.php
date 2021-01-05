@@ -67,6 +67,11 @@
                     </a>
                 </li>
                 <li class="l-drus-footer__list-item">
+                    <a href="{{ route('about-us') }}" class="l-drus-footer__list-link">
+                        <?php echo settings('footer-about-us-text', 'About Us')?>
+                    </a>
+                </li>
+                <li class="l-drus-footer__list-item">
                     <a href="{{ route('add-company') }}" class="l-drus-footer__list-link">
                         <?php echo settings('footer-add-listing-text', 'Add listing')?>
                     </a>

@@ -56,6 +56,7 @@ class TranslateController extends Controller
             'footer-popular-region-text'=>['Текст "Popular states with business services"', 'text-area', 'Popular states with business services:'],
             'footer-all-states-text'=>['Текст "All states"', 'text-area', 'All states'],
             'footer-contact-us-text'=>['Текст "Contact Us"', 'text-area', 'Contact Us'],
+            'footer-about-us-text'=>['Текст "About Us"', 'text-area', 'About Us'],
             'footer-add-listing-text'=>['Текст "Add listing"', 'text-area', 'Add listing'],
         ];
         $allStatesPage=[
