@@ -65,9 +65,13 @@
                 @endif
 
                 @if($company->website)
-                    <p>
-                        <a href="{{ $company->website }}" target="_blank"
-                           rel="nofollow">Company site</a>
+                    <p>Company site:
+                        @if($company->follow==1)
+                        <a href="<?php echo '//'.urldecode($company->website) ?>" target="_blank"
+                           rel="follow">{{ urldecode($company->website) }}</a>
+                         @else
+                            {{ urldecode($company->website) }}
+                        @endif
                     </p>
                 @endif
             </div>

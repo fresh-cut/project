@@ -48,13 +48,36 @@
                 </ul>
             </section>
             @endif
+                @if(isset($region_reviews) && $region_reviews->count())
+                <section class="l-drus-article__section l-drus-article__section--white">
 
+                    <h2 class="l-drus-article__h2">
+                        <?php echo settings('region-latest-review-text', 'Latest reviews about the United States business services in').' '?> {{ $region->name }}
+                    </h2>
+
+                    <ul class="c-drus-list">
+                        @foreach($region_reviews as $review)
+                            <li class="c-drus-list__item c-drus-review">
+                                <div class="c-drus-review__line c-drus-review__line--small">
+                                    <a href="{{ route('company', [$review->region_url, $review->locality_url, $review->url]) }}">Review
+                                        of "{{ $review->name }}" at {{ $review->locality_name }}</a>
+                                </div>
+                                <div class="c-drus-review__line">
+                                    {{ $review->review_comment }}
+                                </div>
+                                <div class="c-drus-review__line c-drus-review__line--small">
+                                    <div class="c-drus-review__date">
+                                        By {{ $review->reviewer_name }}, {{ $review->review_data }}
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </section>
+                @endif
 
             @if(isset($items) && $items->count())
             <section class="l-drus-article__section">
-                <h2 class="l-drus-article__h2">
-                    <?php echo settings('region-popular-service-text', 'Popular business services in').' '?> {{ $region->name }}
-                </h2>
                 @include('includes.list-items')
             </section>
             @endif

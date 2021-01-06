@@ -55,6 +55,12 @@ Route::get('/login', ['\App\Http\Controllers\LoginController', 'index'] )->name(
 Route::post('/login', ['\App\Http\Controllers\LoginController', 'authenticate'] )->name('login');
 Route::get('/logout', ['\App\Http\Controllers\LoginController', 'logout'] )->name('logout');
 
+// sitemap
+Route::get('/sitemap.xml', ['\App\Http\Controllers\SitemapController', 'index'] )->name('sitemap.index');
+Route::get('/sitemap.main.xml', ['\App\Http\Controllers\SitemapController', 'main'] )->name('sitemap.main');
+Route::get('/sitemap.localities.xml', ['\App\Http\Controllers\SitemapController', 'localities'] )->name('sitemap.localities');
+Route::get('/sitemap.items.{id}.xml', ['\App\Http\Controllers\SitemapController', 'items'] )->where('id', '[0-9]+')->name('sitemap.items');
+
 
 // Админка
 $groupData=[

@@ -31,7 +31,6 @@ class IndexController extends Controller
 
     public function landing(Settings $settings)
     {
-//        dd(settings('last_count_review', 3));
         $items      =   $this->companyRepository->getCompanies(10);
         $regions    =   $this->regionRepository->getRegions(48);
         $localities =   $this->localityRepository->getLocalities(48);
@@ -42,8 +41,11 @@ class IndexController extends Controller
     public function company($region_url, $locality_url, $company_url)
     {
         $region      =   $this->regionRepository->getRegionByUrl($region_url);
+        if(!$region) abort(404);
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
+        if(!$locality) abort(404);
         $company     =   $this->companyRepository->getCompanyByUrl($region->id, $locality->id, $company_url);
+        if(!$company) abort(404);
         $reviews        =   $this->reviewRepository->getReviewsByCompanyId($company->id);
         $nearest_item = $this->companyRepository->getCompaniesByCity(6,$locality->id);
         $footer_regions    =   $this->regionRepository->getRegions(12);
@@ -59,8 +61,10 @@ class IndexController extends Controller
     public function region($region_url)
     {
         $region     =   $this->regionRepository->getRegionByUrl($region_url);
+        if(!$region) abort(404);
         $localities =   $this->localityRepository->getLocalitiesByRegion(24, $region->id);
         $items      =   $this->companyRepository->getCompaniesByRegion(6,$region->id);
+        $region_reviews= $this->reviewRepository->getReviewsByRegion($region->id);
         $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
         $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
         $footer_regions    =   $this->regionRepository->getRegions(12);
@@ -68,12 +72,13 @@ class IndexController extends Controller
         $breadcrumbs    =   ([
             $region->name   =>  ['region', $region_url],
         ]);
-        return view('region.region', compact('region', 'localities', 'items', 'last_reviews', 'last_items', 'breadcrumbs', 'footer_regions', 'footer_localities'));
+        return view('region.region', compact('region', 'localities', 'items', 'last_reviews', 'last_items', 'breadcrumbs', 'footer_regions', 'footer_localities', 'region_reviews'));
     }
 
     public function city( $locality_url)
     {
         $locality    =   $this->localityRepository->getLocalityByUrl($locality_url);
+        if(!$locality) abort(404);
         $items       =   $this->companyRepository->getCompaniesByCity(24,$locality->id);
         $last_items  =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
         $last_reviews     =   $this->reviewRepository->getReviews(settings('count_last_review', 3));

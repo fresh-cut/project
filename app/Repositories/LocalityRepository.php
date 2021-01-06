@@ -33,13 +33,13 @@ class LocalityRepository extends CoreRepository
                 ->get();
         }
         else {
-//            return $this->startConditions()
-////                ->join('region', 'locality.region_id', '=', 'region.id')
-////                ->where('region_id', $region_id)
-////                ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
-//                ->take($count)
-//                ->toBase()
-//                ->get();
+            return $this->startConditions()
+                ->join('region', 'locality.region_id', '=', 'region.id')
+                ->where('region_id', $region_id)
+                ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
+                ->take($count)
+                ->toBase()
+                ->get();
         }
 
     }

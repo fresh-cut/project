@@ -22,12 +22,11 @@
 {{--    </div>--}}
 {{--    <?php } ?>--}}
 
-
-
+    <section class="l-drus-article__section l-drus-article__section--ads">
+        @include('includes.ads.ads-five')
+    </section>
+    @if(isset($last_items) && $last_items->count())
     <div class="l-drus-aside__section">
-        <section class="l-drus-article__section l-drus-article__section--ads">
-            @include('includes.ads.ads-five')
-        </section>
         <h3 class="l-drus-aside__header">
             <?php echo settings('aside-popular-services-text', 'Popular business services')?>
         </h3>
@@ -54,11 +53,10 @@
             @endforeach
         </ul>
     </div>
+    @endif
 
 
-
-
-    @if($last_reviews && $last_reviews->count())
+    @if(isset($last_reviews) && $last_reviews->count())
      <div class="l-drus-aside__section">
         <h3 class="l-drus-aside__header">
             <?php echo settings('aside-latest-reviews-text', 'Latest reviews')?>

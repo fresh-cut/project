@@ -38,7 +38,7 @@ class TranslateController extends Controller
             'region-description-text'=>['Текст "description"', 'text-area', 'Full information about business services locations in { $region->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.'],
             'region-head-text'=>['Текст заголовка', 'text-area', 'All Business services in { $region->name }, United States by cities'],
             'region-after-head-text'=>['Текст после заголовка', 'text-area', 'Full information about business services locations in { $region->name }.They are conveniently located near you. Get driving directions for every  location in { $region->name }. Write a review to rate. Get customer phone numbers, opening hours for every business services in { $region->name }.'],
-            'region-popular-service-text'=>['Текст "Popular business services in"', 'text-area', 'Popular business services in'],
+            'region-latest-review-text'=>['Текст "Latest reviews" (если есть)', 'text-area', 'Latest reviews about the United States business services in'],
         ];
         $localityPage=[
             'locality-title-text'=>['Текст "title"', 'text-area', 'Business services in { $locality->name }. Opening hours, driving directions, services and customer reviews'],

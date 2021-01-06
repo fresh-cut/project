@@ -84,12 +84,25 @@
                                     <textarea name="descr" class="form-control" style="height: auto;" rows="10" required>{{old('descr', $item->descr)}}</textarea>
                                 </div>
                                 <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input name="follow"
+                                               type="hidden"
+                                               value="0">
+                                        <input type="checkbox" id="follow" class="form-check-input" value="1" name="follow">
+                                        <label for="follow" class="form-check-label">Follow</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="user-comment">Коментарий пользователя</label>
                                     <textarea name="user-comment" class="form-control" style="height: auto;" rows="10" disabled>{{ $item->edit}}</textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <button class="btn btn-dark" type="submit"><?= ($item->type=='edit')?'Принять изменения':'Добавить компанию'?></button>
                                 </div>
+
                             </form>
                             <form action="{{ route('admin.companies.destroy', $item->id) }}" method="post">
                                 @csrf

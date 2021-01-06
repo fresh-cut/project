@@ -1,6 +1,7 @@
-@if(!Route::is('home') && isset($footer_localities) && $footer_localities->count() && isset($footer_regions) && $footer_regions->count())
+@if(!Route::is('home') && (isset($footer_localities) && $footer_localities->count()) || (isset($footer_regions) && $footer_regions->count()))
 <div class="l-drus-pre-footer">
     <div class="l-drus-main__box l-drus-pre-footer__main-box">
+        @if(isset($footer_localities) && $footer_localities->count())
         <div class="l-drus-pre-footer__box">
             <h4 class="l-drus-pre-footer__header">
                 <?php echo settings('footer-popular-locality-text', 'Popular locations with business services:')?>
@@ -17,10 +18,11 @@
                 @endforeach
             </ul>
         </div>
+        @endif
+        @if(isset($footer_regions) && $footer_regions->count())
         <div class="l-drus-pre-footer__box">
             <h4 class="l-drus-pre-footer__header">
                 <?php echo settings('footer-popular-region-text', 'Popular states with business services:')?>
-
             </h4>
             <ul class="l-drus-pre-footer__list">
                 @foreach ($footer_regions as $region)
@@ -33,6 +35,7 @@
                 @endforeach
             </ul>
         </div>
+        @endif
     </div>
 </div>
 @endif
