@@ -28,7 +28,7 @@
             @foreach($colorSettings as $key=>$value)
                 <label>
                     {{ $value[0] }}
-                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key, '#01A3DF') }}" autocomplete="off">
+                    <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key, $value[2]) }}" autocomplete="off">
                 </label>
             @endforeach
             <hr>

@@ -21,10 +21,11 @@ class SettingController extends Controller
             'count_last_review'=>['Количество комментариев в блоке Latest reviews', 'text'],
             ];
         $colorSettings=[
-            'body-color'=>['Цвет основного шрифта сайта', 'color'],
-            'logo-text-color'=>['Цвет шрифта в шапке около лого', 'color'],
-            'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color'],
-            'footer-background-color'=>['Цвет футера', 'color'],
+            'body-color'=>['Цвет основного шрифта сайта', 'color','#01A3DF'],
+            'logo-text-color'=>['Цвет шрифта в шапке около лого', 'color','#01A3DF'],
+            'box-shadow-color'=>['Цвет тени вокруг блочных элементов', 'color','#01A3DF'],
+            'footer-background-color'=>['Цвет футера', 'color','#01A3DF'],
+            'focus-color'=>['Цвет при наведении', 'color','#0A246A'],
         ];
         $landingAdsSettings=[
             'ads-one'=>['1-ое место', 'text-area'],

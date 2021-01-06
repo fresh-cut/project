@@ -18,4 +18,7 @@
     .l-drus-footer{
         background-color: {{ settings('footer-background-color', '#01A3DF') }} ;
     }
+    .c-drus-list__link--nav:hover {
+        background-color: {{ settings('focus-color', '#0A246A') }};
+    }
 </style>
