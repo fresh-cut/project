@@ -16,7 +16,7 @@
                 {{ $item->added }}
             </td>
             <td align="left">
-                <a href="{{ route('admin.companies.edit', $item->id) }}">
+                <a href="{{ route('admin.offers-companies.edit', $item->id) }}">
                     {{$item->name}}
                 </a>
             </td>

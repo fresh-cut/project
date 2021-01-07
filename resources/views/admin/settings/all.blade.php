@@ -12,7 +12,7 @@
             </div>
             @foreach($mainSettings as $key=>$value)
                 <label>
-                    {{ $value[0] }}
+                    <?php echo $value[0] ?>
                     <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key) }}" autocomplete="off">
                 </label>
             @endforeach

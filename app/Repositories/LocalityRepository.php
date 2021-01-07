@@ -17,6 +17,7 @@ class LocalityRepository extends CoreRepository
         return $this->startConditions()
             ->join('region', 'locality.region_id', '=', 'region.id')
             ->select('locality.*', 'region.url as region_url', 'region.name as region_name')
+            ->inRandomOrder()
             ->take($count)
             ->toBase()
             ->get();

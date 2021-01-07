@@ -66,9 +66,9 @@
 
                 @if($company->website)
                     <p>Company site:
-                        @if($company->follow==1)
+                        @if($company->follow==1 || $company->follow==2)
                         <a href="<?php echo '//'.urldecode($company->website) ?>" target="_blank"
-                           rel="follow">{{ urldecode($company->website) }}</a>
+                           rel="<?=($company->follow==1)?'follow':'nofollow'?>">{{ urldecode($company->website) }}</a>
                          @else
                             {{ urldecode($company->website) }}
                         @endif
@@ -156,7 +156,8 @@
 
                     @if( isset($company->descr))
                         <p>
-                            <?= str_replace("\n", '</p><p>', $company->descr) ?>
+                            <?php $desc=str_replace("\n", '</p><p>', $company->descr) ?>
+                            <?= str_replace("TITLE", $company->name, $desc) ?>
                         </p>
                     @else
                         {{ $company->name }} is business services based in {{ $company->region_name }}. <br>

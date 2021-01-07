@@ -44,10 +44,10 @@ class CompanyAddEditController extends Controller
             abort(404);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
-            $locality->name =>  ['city', [$region_url, $locality_url]],
+            $locality->name =>  ['city',  $locality_url],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
         ];
-        return view('company.edit', compact('company', 'locality', 'region', 'breadcrumbs', 'footer_localities', 'footer_regions'));
+        return view('company.edit', compact('company', 'breadcrumbs', 'footer_localities', 'footer_regions'));
     }
 
     public function editStore(CompanyStoreRequest $request)
@@ -60,7 +60,7 @@ class CompanyAddEditController extends Controller
         $item=CompaniesAddEdit::create($data);
         $datafoUrl=[$data['region_url'], $data['locality_url'], $data['url']];
         if($item){
-            $url=URL::route('admin.companies.edit', $item->id);
+            $url=URL::route('admin.offers-companies.edit', $item->id);
             try{
                 Mail::to(settings('admin_email'))->send(new EditCompanyMail($data, $url));
             }catch (\Swift_TransportException $e)
@@ -99,7 +99,7 @@ class CompanyAddEditController extends Controller
         $data['status']='1';
         $item=CompaniesAddEdit::create($data);
         if($item) {
-            $url=URL::route('admin.companies.edit', $item->id);
+            $url=URL::route('admin.offers-companies.edit', $item->id);
             try{
                 Mail::to(settings('admin_email'))->send(new AddCompanyMail($data, $url));
             }catch (\Swift_TransportException $e) {
@@ -139,12 +139,12 @@ class CompanyAddEditController extends Controller
     {
         $queries = DB::table($table)
             ->select('id','name')
-            ->where('name', 'LIKE', "%{$request->input('term')}%") //Your selected row
+            ->where('name', 'LIKE', "%{$request->input('term')}%")
             ->take(7)->get();
 
         foreach ($queries as $query)
         {
-            $results[] = ['id' => $query->id, 'value' => $query->name]; //you can take custom values as you want
+            $results[] = ['id' => $query->id, 'value' => $query->name];
         }
         return response()->json($results);
     }

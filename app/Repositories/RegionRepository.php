@@ -21,6 +21,7 @@ class RegionRepository extends CoreRepository
         }
         else {
             return $this->startConditions()
+                ->inRandomOrder()
                 ->take($count)
                 ->toBase()
                 ->get();

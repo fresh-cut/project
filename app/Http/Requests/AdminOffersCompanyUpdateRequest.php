@@ -3,9 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class AdminCompanyUpdateRequest extends FormRequest
+class AdminOffersCompanyUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +25,15 @@ class AdminCompanyUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $data=Request::all();
         return [
+            'company_id'=>'required|int',
             'name'=>[
                 'required',
                 'string',
                 'max:250',
-                Rule::unique('companies', 'name')->ignore($this->route('company')),
+                (isset($data['type']) && $data['type']=='add')?Rule::unique('companies', 'name'):
+                    Rule::unique('companies', 'name')->ignore($data['company_id']),
             ],
             'category_name'=>'required|string|max:250',
             'region_name'=>'required|string|max:250',
@@ -39,15 +43,14 @@ class AdminCompanyUpdateRequest extends FormRequest
                 'required',
                 'string',
                 'max:250',
-                Rule::unique('companies', 'streetaddress')->ignore($this->route('company')),
+                (isset($data['type']) && $data['type']=='add')?Rule::unique('companies', 'streetaddress'):
+                    Rule::unique('companies', 'streetaddress')->ignore($data['company_id']),
             ],
             'telephone'=>'required|string|max:250',
             'website'=>'required|string|max:250',
             'descr'=>'required|string|min:20',
             'follow'=>'required|int',
-            'latitude'=>'required',
-            'longitude'=>'required',
-        ];
+            ];
     }
 
     public function messages()

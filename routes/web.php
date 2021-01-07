@@ -16,7 +16,7 @@ Route::redirect('admin', 'admin/settings');
 //Route::redirect('admin/category/search', '/admin/category');
 
 Route::get('/', ['\App\Http\Controllers\IndexController', 'landing'])->name('home');
-Route::get('/region/{region}/city/{city}/company/{company}', ['\App\Http\Controllers\IndexController', 'company'] )->name('company');
+Route::get('/{region}/{city}/{company}', ['\App\Http\Controllers\IndexController', 'company'] )->name('company');
 Route::get('/region/{region}', ['\App\Http\Controllers\IndexController', 'region'] )->name('region');
 Route::get('/city/{city}', ['\App\Http\Controllers\IndexController', 'city'] )->name('city');
 Route::get('/regions', ['\App\Http\Controllers\IndexController', 'allRegions'] )->name('all-regions');
@@ -33,10 +33,6 @@ Route::post('/region/{region}/city/{city}/company/{company}/edit', ['\App\Http\C
 Route::get('/company/new', ['\App\Http\Controllers\CompanyAddEditController', 'addCompany'] )->name('add-company');
 Route::post('/company/new', ['\App\Http\Controllers\CompanyAddEditController', 'addStore'] )->name('addstore-company');
 
-// autocomplite компании
-Route::get('company/api/autocompliteCategory',['\App\Http\Controllers\CompanyAddEditController', 'autocompleteCategory'])->name('autocompleteCategory');
-Route::get('company/api/autocompliteRegion',['\App\Http\Controllers\CompanyAddEditController', 'autocompleteRegion'])->name('autocompleteRegion');
-Route::get('company/api/autocompliteLocality',['\App\Http\Controllers\CompanyAddEditController', 'autocompleteLocality'])->name('autocompleteLocality');
 
 
 // contact us
@@ -69,9 +65,14 @@ $groupData=[
     'prefix'=>'admin/', // то что будет в строке url после имени сайта
 ];
 Route::group($groupData, function(){
+    // admin->offerscompany
+    Route::resource('offers-company', 'OffersCompanyController')
+        ->names('admin.offers-companies');
+
     // admin->company
+    Route::post('company/search','CompanyController@search')->name('admin.company.search');
     Route::resource('company', 'CompanyController')
-        ->names('admin.companies');
+        ->names('admin.company');
 
     // admin->region
     Route::resource('region', 'RegionController')

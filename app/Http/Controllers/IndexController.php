@@ -33,7 +33,9 @@ class IndexController extends Controller
     {
         $items      =   $this->companyRepository->getCompanies(10);
         $regions    =   $this->regionRepository->getRegions(48);
+        $regions    =   $regions->take(floor($regions->count()/4)*4);
         $localities =   $this->localityRepository->getLocalities(48);
+        $localities =   $localities->take(floor($localities->count()/4)*4);
         $reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
         return view('landing.landing', compact('items', 'regions', 'localities', 'reviews'));
     }
@@ -93,9 +95,9 @@ class IndexController extends Controller
     public function allRegions()
     {
         $regions = $this->regionRepository->getRegions('all');
-        $last_items =   $this->companyRepository->getCompanies(4);
+        $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
         $last_reviews    =   $this->reviewRepository->getReviews(3);
-        $footer_regions    =   $this->regionRepository->getRegions(12);
+        $footer_regions    =   $regions->random(($regions->count()>12)?12:$regions->count());
         $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs=   ['All states'=>['all-regions','']];
         return view('region.all', compact('regions', 'last_items', 'last_reviews', 'breadcrumbs', 'footer_localities', 'footer_regions'));

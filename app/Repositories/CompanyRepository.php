@@ -14,12 +14,16 @@ class CompanyRepository extends CoreRepository
 
     public function getCompanies($count=10)
     {
-        return $this->startConditions()
+        $item=$this->startConditions();
+        $item_count= $item->count();
+        $from=rand(1, (($item_count-$count*2)>2000)?2000:($item_count-$count*2));
+        return $item
             ->join('category', 'companies.category_id', '=', 'category.id')
             ->join('locality', 'companies.locality_id', '=', 'locality.id')
             ->join('region', 'companies.region_id', '=', 'region.id')
             ->select('companies.*', 'category.url as category_url', 'category.name as category_name', 'locality.url as locality_url', 'locality.name as locality_name', 'region.url as region_url', 'region.name as region_name')
-            ->take($count)
+            ->limit($count)
+            ->offset($from)
             ->toBase()
             ->get();
     }
@@ -74,4 +78,25 @@ class CompanyRepository extends CoreRepository
             ->get();
     }
 
+    public function getLastCompanies($count=10)
+    {
+        return $this->startConditions()
+            ->orderBy('id', 'desc')
+            ->take($count)
+            ->toBase()
+            ->get();
+    }
+
+    public function isCompanyByUrl($region_id, $locality_id, $company_url)
+    {
+        return $this->startConditions()
+            ->select('companies.id')
+            ->join('locality', 'companies.locality_id', '=', 'locality.id')
+            ->join('region', 'companies.region_id', '=', 'region.id')
+            ->where('companies.url', $company_url)
+            ->where('region.id', $region_id)
+            ->where('locality.id', $locality_id)
+            ->toBase()
+            ->first();
+    }
 }

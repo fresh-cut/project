@@ -12,10 +12,8 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
-{{--    <script async--}}
-{{--            src="//maps.googleapis.com/maps/api/js?key=AIzaSyDbickfYySUu9zg4MdoaWT5p7gQQnKyawQ&libraries=places&callback=initMap&language=en"--}}
-{{--            defer></script>--}}
-{{--    <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>--}}
+
+    {{--    <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>--}}
 
 </head>
 <body>
@@ -24,9 +22,9 @@
         <div class="col-2 sidebar" >
             <ul class="sidebar-menu list-unstyled">
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.regions.index') }}">Регионы / Города</a></li>
-                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.categories.index') }}">Категории</a>
-                </li>
-                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.companies.index') }}">Компании</a></li>
+                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.categories.index') }}">Категории</a></li>
+                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.company.index') }}">Все компании</a></li>
+                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.offers-companies.index') }}">Компании<br>(правки/предложения)</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.reviews.index') }}">Отзывы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.settings') }}">Глобальные настройки</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.translate') }}">Переводы</a></li>

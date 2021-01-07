@@ -14,7 +14,7 @@ class SettingController extends Controller
     {
         $mainSettings=[
             'admin_email'=>['Е-mail на который присылать уведомление', 'text'],
-            'google_maps_key'=>['Google maps key', 'text'],
+            'maps_key'=>['Maps key (<a href="//opencagedata.com" target="_blank">opencagedata.com</a>)', 'text'],
             'google_recapcha_site_key'=>['Google reCAPTCHA ключ сайта', 'text'],
             'google_recapcha_secret_key'=>['Google reCAPTCHA секретный ключ', 'text'],
             'count_popular_company'=>['Количество компаний в блоке Popular services', 'text'],

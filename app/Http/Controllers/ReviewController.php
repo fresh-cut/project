@@ -39,7 +39,7 @@ class ReviewController extends Controller
             abort(404);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
-            $locality->name =>  ['city', [$region_url, $locality_url]],
+            $locality->name =>  ['city',  $locality_url],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
         ];
         return view('review.create', compact('company', 'breadcrumbs', 'footer_regions','footer_localities'));

@@ -23,7 +23,7 @@ class CreateCompaniesTable extends Migration
 
         }
         else{
-            $table->enum('follow', [0,1])->default(0);
+            $table->enum('follow', [0,1,2])->default(0);
         }
         });
     }

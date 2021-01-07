@@ -5,11 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCompanyUpdateRequest;
 use App\Models\Category;
-use App\Models\CompaniesAddEdit;
 use App\Models\Company;
 use App\Models\Locality;
 use App\Models\Region;
-use App\Repositories\CompanyAddEditRepository;
 use App\Repositories\CompanyRepository;
 use App\Repositories\LocalityRepository;
 use App\Repositories\RegionRepository;
@@ -18,13 +16,15 @@ use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
-    private $companyAddEditRepository;
     private $companyRepository;
+    private $regionRepository;
+    private $localityRepository;
+
     public function __construct()
     {
-        $this->companyAddEditRepository =  app(CompanyAddEditRepository::class);
-        $this->companyRepository =  app(CompanyRepository::class);
+        $this->companyRepository = app(CompanyRepository::class);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,9 +32,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $editCompany=$this->companyAddEditRepository->getCompanies('all', 'edit');
-        $addCompany=$this->companyAddEditRepository->getCompanies('all', 'add');
-        return view('admin.companies.all', compact('addCompany', 'editCompany'));
+        $last_companies=$this->companyRepository->getLastCompanies(20);
+        if(!$last_companies)
+        {
+            return view('admin.companies.all', compact('last_companies'))
+                ->withErrors(['msg'=>'Ошибка в базе данных, записи не найдены']);
+        }
+        return view('admin.companies.all', compact('last_companies'));
     }
 
     /**
@@ -73,20 +77,18 @@ class CompanyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $item=$this->companyAddEditRepository->getCompanyById($id);
-        if(!$item)
-            return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
-        $old_item='';
-        if($item->type=='edit') {
-            $old_item=$this->companyRepository->getCompanyById($item->company_id);
-            if(!$old_item)
-                return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
+        $company=$this->companyRepository->getCompanyById($id);
+        if(!$company)
+        {
+            return back()
+                ->withErrors(['msg'=>'Ошибка в базе данных'])
+                ->withInput();
         }
-        return view('admin.companies.edit', compact('item', 'old_item'));
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
@@ -96,24 +98,22 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(AdminCompanyUpdateRequest $request, $comAddEdit_id)
+    public function update(AdminCompanyUpdateRequest $request, $company_id)
     {
         $data=$request->all();
-        $data=$this->helpStore($data);
+        $data=$this->helpUpdate($data);
         $data['url']=Str::slug($data['name']);
         $data['fax']=$data['telephone'];
         $data['email']=$data['website'];
-        if($data['type']=='edit'){
-            $item=Company::find($data['company_id']);
-            if(!$item)
-                return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
-            $result=$item->update($data);
-        }
-        else {
-            $result=Company::create($data);
-        }
-        if($result){
-            return $this->destroy($comAddEdit_id);
+        $item=Company::find($company_id);
+        if(!$item)
+            return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
+        $result=$item->update($data);
+        if($result)
+        {
+            return redirect()
+                ->route('admin.company.edit', $company_id)
+                ->with(['success'=>'Успешно сохранено']);
         }
         else {
             return back()
@@ -130,20 +130,51 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $result=CompaniesAddEdit::find($id)->delete();
-        if($result){
+        $company=Company::find($id);
+        if(!$company){
+            return back()
+                ->withErrors(['msg'=>'Не найдена компания для удаления'])
+                ->withInput();
+        }
+        $result=$company->delete();
+        if($result) {
             return redirect()
-                ->route('admin.companies.index')
-                ->with(['success'=>'Операция успешно завершена']);
+                ->route('admin.company.index')
+                ->with(['success' => 'Компания успешно удалена']);
         }
         else {
             return back()
-                ->withErrors(['msg' => 'Ошибка операции'])
+                ->withErrors(['msg'=>'Ошибка удаления'])
                 ->withInput();
         }
     }
 
-    public function helpStore($data){
+    public function search(Request $request)
+    {
+        $this->regionRepository   =   app(RegionRepository::class);
+        $this->localityRepository =   app(LocalityRepository::class);
+        $url=rtrim($request->input('search'),'/');
+        $url_array=explode('/', $url);
+        $count=count($url_array);
+        $region_url=$url_array[$count-3];
+        $locality_url=$url_array[$count-2];
+        $company_url=$url_array[$count-1];
+        $region = $this->regionRepository->getRegionByUrl($region_url);
+        if(!$region)
+            return back()->withErrors(['msg'=>'Не найден регион '.$region_url])->withInput();
+        $locality = $this->localityRepository->getLocalityByUrl($locality_url);
+        if(!$locality)
+            return back()->withErrors(['msg'=>'Не найден город '.$locality_url])->withInput();
+        $id=$this->companyRepository->isCompanyByUrl($region->id, $locality->id, $company_url);
+        if(!$id)
+            return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
+        return redirect()->route('admin.company.edit', $id->id);
+
+
+    }
+
+    public function helpUpdate($data)
+    {
         $category=Category::where('name','=', $data['category_name'])->first();
         if(!$category)
             $category=Category::create(['name'=>$data['category_name'],'url'=>Str::slug($data['category_name'])]);
