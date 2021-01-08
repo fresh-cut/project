@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title')</title>
-    <meta name="description" content=@yield('description')>
+    <meta name="description" content="@yield('description')">
     <link rel="canonical" href="{{url()->current()}}"/>
 
 {{-- для рекламы--}}

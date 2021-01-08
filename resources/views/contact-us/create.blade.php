@@ -1,11 +1,9 @@
 @extends('template')
 @section('main-content')
 @section('title')
-            Contact Us
+            <?php echo settings('footer-contact-us-text', 'Contact us')?>
 @endsection
-@section('description')
-    Send message to site administrator
-@endsection
+@section('description')Send message to site administrator @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
@@ -18,7 +16,7 @@
                             </div>
                         @endif
                         <h2 class="l-drus-article__h2">
-                            Contact us
+                            <?php echo settings('footer-contact-us-text', 'Contact us')?>
                         </h2>
                         <form action="{{ route('store-contact-us') }}" method="post" class="c-drus-form">
                             @csrf

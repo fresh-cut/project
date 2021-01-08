@@ -3,9 +3,7 @@
 @section('title')
             About Us
 @endsection
-@section('description')
-    About Us
-@endsection
+@section('description')About Us @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">

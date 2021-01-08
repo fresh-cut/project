@@ -7,13 +7,10 @@
             echo str_replace($search, $replace, $str);
         ?>
     @endsection
-    @section('description')
-        <?php $str=settings('company-description-text', '{ $company->locality_name }, { $company->region_name }.Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
+    @section('description')<?php $str=settings('company-description-text', '{ $company->locality_name }, { $company->region_name }.Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
                 $search=['{ $company->locality_name }', '{ $company->region_name }'];
                 $replace=[$company->locality_name, $company->region_name];
-                echo str_replace($search, $replace, $str);
-        ?>
-    @endsection
+                echo str_replace($search, $replace, $str);?> @endsection
 
 <div class="l-drus-main__article">
     <article class="l-drus-article">

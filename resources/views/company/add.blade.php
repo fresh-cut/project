@@ -1,11 +1,9 @@
 @extends('template')
 @section('main-content')
 @section('title')
-            Add listing
+    <?php echo settings('footer-add-listing-text','Add listing')?>
 @endsection
-@section('description')
-            Add listing
-@endsection
+@section('description')<?php echo settings('footer-add-listing-text','Add listing')?> @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
@@ -18,7 +16,7 @@
                             </div>
                         @endif
                         <h2 class="l-drus-article__h2">
-                            Add listing
+                            <?php echo settings('footer-add-listing-text','Add listing')?>
                         </h2>
                         <form action="{{ route('addstore-company') }}" method="post" class="c-drus-form">
                             @csrf

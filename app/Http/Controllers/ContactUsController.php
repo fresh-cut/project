@@ -31,7 +31,7 @@ class ContactUsController extends Controller
         $last_reviews = $this->reviewRepository->getReviews(settings('count_last_review', 3));
         $footer_regions    =   $this->regionRepository->getRegions(12);
         $footer_localities =   $this->localityRepository->getLocalities(12);
-        $breadcrumbs = ['Contact us'=>['contact-us','']];
+        $breadcrumbs = [settings('footer-contact-us-text', 'Contact us')=>['contact-us','']];
         return view('contact-us.create', compact('breadcrumbs', 'last_reviews', 'last_items', 'footer_regions','footer_localities'));
     }
 

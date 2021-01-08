@@ -6,11 +6,8 @@
                 echo str_replace('{ $locality->name }', $locality->name, $str);
         ?>
     @endsection
-    @section('description')
-        <?php $str=settings('locality-description-text', 'Full information about Business services in { $locality->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
-            echo str_replace('{ $locality->name }', $locality->name, $str);
-        ?>
-    @endsection
+    @section('description')<?php $str=settings('locality-description-text', 'Full information about Business services in { $locality->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
+            echo str_replace('{ $locality->name }', $locality->name, $str);?> @endsection
 
 
 <div class="l-drus-main__article">

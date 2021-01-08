@@ -4,9 +4,7 @@
 @section('title')
     Suggest an Edit  {{ $company->name }}
 @endsection
-@section('description')
-    Suggest an Edit  {{ $company->name }}
-@endsection
+@section('description')Suggest an Edit  {{ $company->name }} @endsection
 
 <div class="l-drus-main__article">
     <article class="l-drus-article">

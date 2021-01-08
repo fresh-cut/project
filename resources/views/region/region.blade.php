@@ -5,11 +5,8 @@
                 echo str_replace('{ $region->name }', $region->name, $str);
         ?>
     @endsection
-    @section('description')
-        <?php $str=settings('region-description-text','Full information about business services locations in { $region->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
-            echo str_replace('{ $region->name }', $region->name, $str);
-        ?>
-    @endsection
+    @section('description')<?php $str=settings('region-description-text','Full information about business services locations in { $region->name }. Find the nearest location, opening hours and driving diections. Customer reviews and available services.');
+            echo str_replace('{ $region->name }', $region->name, $str);?> @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
