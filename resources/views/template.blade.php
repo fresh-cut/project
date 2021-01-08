@@ -59,16 +59,20 @@
             <div class="p-drus-first__form-name">
                 <?php echo settings('search-text', 'Find business services in the United States') ?>
             </div>
-            <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"
-                  action="{{ route('search') }}">
-                <input type="text" class="l-drus-header__form-input" id="js-header-form__input">
-                <input type="hidden" name="query" id="js-header-form__input--query" value="">
-                <input type="hidden" name="lat" id="js-header-form__input--lat" value="">
-                <input type="hidden" name="lng" id="js-header-form__input--lng" value="">
-                <button type="submit" class="l-drus-header__form-submit" id="js-header-form__submit">
-                    <span></span>
-                </button>
-            </form>
+{{--            <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"--}}
+{{--                  action="{{ route('search') }}">--}}
+{{--                <input type="text" class="l-drus-header__form-input" id="js-header-form__input">--}}
+{{--                <input type="hidden" name="query" id="js-header-form__input--query" value="">--}}
+{{--                <input type="hidden" name="lat" id="js-header-form__input--lat" value="">--}}
+{{--                <input type="hidden" name="lng" id="js-header-form__input--lng" value="">--}}
+{{--                <button type="submit" class="l-drus-header__form-submit" id="js-header-form__submit">--}}
+{{--                    <span></span>--}}
+{{--                </button>--}}
+{{--            </form>--}}
+            <div>
+                <script async src="https://cse.google.com/cse.js?cx={{ settings('google_search_key', '') }}"></script>
+                <div class="gcse-search"></div>
+            </div>
         </div>
     </div>
 
