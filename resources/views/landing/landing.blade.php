@@ -20,9 +20,6 @@
         </div>
         <section class="l-drus-article__section">
 
-            <div align="middle">
-
-            </div>
             <h2 class="l-drus-article__h2" style="text-align: center;">
             <?php echo settings('popular-company-text','Popular business services')?>
             </h2>

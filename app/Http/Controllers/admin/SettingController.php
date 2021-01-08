@@ -46,7 +46,7 @@ class SettingController extends Controller
         return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings'));
     }
 
-    public function fileDownload(Request $request)
+    public function fileHeadDownload(Request $request)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpg|max:2048',
@@ -55,12 +55,39 @@ class SettingController extends Controller
 
         $imageName = 'bg_first_big'.'.'.$request->image->extension();
         $result=$request->image->move(public_path('img'), $imageName);
-//        dd($result);
-        Artisan::call('view:clear');
-        Artisan::call('cache:clear');
-        return back()
-            ->with('success','You have successfully upload image.')
-            ->with('image',$imageName);
+        if($result){
+            Artisan::call('view:clear');
+            Artisan::call('cache:clear');
+            return back()
+                ->with('success','You have successfully upload image.')
+                ->with('image',$imageName);
+        }
+        else return back()
+            ->withErrors(['msg'=>'Ошибка сохранения'])
+            ->withInput();
+    }
+
+
+    public function fileLogoDownload(Request $request)
+    {
+        $request->validate([
+//            'image' => 'required|image|mimes:jpg|max:2048',
+            'image' => 'required|image|mimes:png|max:2048',
+        ]);
+
+        $imageName = 'sprite'.'.'.$request->image->extension();
+        $result=$request->image->move(public_path('img'), $imageName);
+        if($result){
+            Artisan::call('view:clear');
+            Artisan::call('cache:clear');
+            return back()
+                ->with('success','You have successfully upload image.')
+                ->with('image',$imageName);
+        }
+        else
+            return back()
+                ->withErrors(['msg'=>'Ошибка сохранения'])
+                ->withInput();
     }
 
     public function addSettings(AdminSettingsAddRequest $request, Settings $settings)

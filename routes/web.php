@@ -43,7 +43,7 @@ Route::post('/contact-us', ['\App\Http\Controllers\ContactUsController', 'store'
 Route::get('/about-us', ['\App\Http\Controllers\IndexController', 'aboutUs'] )->name('about-us');
 
 // search
-Route::get('/search', ['\App\Http\Controllers\SearchController', 'search'] )->name('search');
+//Route::get('/search', ['\App\Http\Controllers\SearchController', 'search'] )->name('search');
 
 
 // login
@@ -89,7 +89,8 @@ Route::group($groupData, function(){
 
     // admin->setting
     Route::get('settings', 'SettingController@index')->name('admin.settings');
-    Route::post('settings', 'SettingController@fileDownload')->name('admin.download');
+    Route::post('settings/filehead', 'SettingController@fileHeadDownload')->name('admin.download.head');
+    Route::post('settings/filelogo', 'SettingController@fileLogoDownload')->name('admin.download.logo');
     Route::post('settings/add', 'SettingController@addSettings')->name('admin.addSettings');
 
     // admin->translate

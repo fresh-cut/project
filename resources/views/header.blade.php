@@ -40,8 +40,8 @@
 
         @endif
 
-        <div class="l-drus-header__menu" id="js-header__menu--btn">
-            <span class="l-drus-header__menu-img"></span>
-        </div>
+{{--        <div class="l-drus-header__menu" id="js-header__menu--btn">--}}
+{{--            <span class="l-drus-header__menu-img"></span>--}}
+{{--        </div>--}}
     </div>
 </header>

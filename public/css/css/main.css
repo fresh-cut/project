@@ -221,10 +221,13 @@ body {
         display: block; } }
   .l-drus-header__logo-img {
     background-image: url('../../img/sprite.png');
-    background-position: 0px -92px;
-    width: 40px;
-    height: 40px;
-    display: inline-block; }
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 220px;
+    height: 60px;
+    display: inline-block;
+    }
   .l-drus-header__form {
     box-sizing: border-box;
     display: flex;

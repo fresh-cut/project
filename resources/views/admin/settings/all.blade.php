@@ -86,11 +86,29 @@
                 <hr style="margin-top: 0">
             </div>
             <img class="img-fluid" src="../img/bg_first_big.jpg" alt="...">
-            <form class="form-control" action="{{ route("admin.download") }}" method="post" enctype="multipart/form-data">
+            <form class="form-control" action="{{ route("admin.download.head") }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="image" accept="image/jpg" class="form-control-file" >
-                    <button class="btn btn-success" type="submit">отправить</button>
+                    <button class="btn btn-success" type="submit">загрузить</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Текущий лого</h3>
+                <hr style="margin-top: 0">
+            </div>
+            <img class="img-fluid" src="../img/sprite.png" width="150px" height="150px" alt="...">
+            <form class="form-control" action="{{ route("admin.download.logo") }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="image" accept="image/png" class="form-control-file" >
+                    <button class="btn btn-success" type="submit">загрузить</button>
                 </div>
             </form>
         </div>

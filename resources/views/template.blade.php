@@ -78,53 +78,21 @@
 
     <main class="l-drus-main__box l-drus-main__main">
         @yield('main-content')
-
     </main>
-
     @else
-
         @if( Route::is('company'))
             <div id="basicMap" class="l-drus-main__map" style="width: 100%;height: 300px;"></div>
         @endif
-
-
     <main class="l-drus-main__box l-drus-main__main<?= (Route::is('company')) ? ' l-drus-main__main--item' : '' ?>">
-
-
         @yield('main-content')
-
-{{--        @if( Route::is('company'))--}}
-{{--            @include('includes.aside')--}}
-{{--        @endif--}}
-
     </main>
-
     @endif
 
     @include('footer')
 
 </div>
 
-<div class="c-drus-modal__bg" id="js-share__modal-bg">
-    &nbsp;
-</div>
-
-<div class="c-drus-modal__content" id="js-share__modal-content">
-    <div class="c-drus-modal__content-box">
-        <div class="c-drus-modal__close" id="js-share__modal-close">
-            &#10007;
-        </div>
-        @include('includes.social')
-    </div>
-</div>
-
-
 <script src="{{ asset('js/main.js') }}"></script>
-<script async
-        src="//maps.googleapis.com/maps/api/js?key=AIzaSyDbickfYySUu9zg4MdoaWT5p7gQQnKyawQ&libraries=places&callback=initMap&language=en"
-        defer></script>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     if( {{ session()->has('message-success')}})
         alert("{{ session()->get('message-success') }}");

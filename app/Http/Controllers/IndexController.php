@@ -99,7 +99,7 @@ class IndexController extends Controller
         $last_reviews    =   $this->reviewRepository->getReviews(3);
         $footer_regions    =   $regions->random(($regions->count()>12)?12:$regions->count());
         $footer_localities =   $this->localityRepository->getLocalities(12);
-        $breadcrumbs=   ['All states'=>['all-regions','']];
+        $breadcrumbs=   [settings('footer-all-states-text', 'All states')=>['all-regions','']];
         return view('region.all', compact('regions', 'last_items', 'last_reviews', 'breadcrumbs', 'footer_localities', 'footer_regions'));
     }
 
