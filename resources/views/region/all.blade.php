@@ -1,13 +1,11 @@
 @extends('template')
 @section('main-content')
-    <meta>
         @section('title')
             <?php echo settings('allStates-title-text', 'List of Business services in the United States near me: Opening hours, phone numbers, driving directions and customer reviews')?>
         @endsection
         @section('description')
             <?php echo settings('allStates-description-text','Business services the most complete and current list. Contact information, addresses and phone numbers, opening hours  in all United States cities. Customer Reviews and ratings of popularity Business services.')?>
         @endsection
-    </meta>
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">

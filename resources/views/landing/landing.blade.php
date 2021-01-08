@@ -1,5 +1,11 @@
 @extends('template')
 @section('main-content')
+@section('title')
+    <?php echo settings('title-text', env('APP_NAME'))?>
+@endsection
+@section('description')
+    <?php echo settings('description-text','This is '.env('APP_NAME'))?>
+@endsection
 <div class="l-drus-main__article">
     <article class="l-drus-article">
         <header class="l-drus-article__header" style="text-align: center;">

@@ -11,6 +11,8 @@ class TranslateController extends Controller
     public function index()
     {
         $landingPage=[
+            'title-text'=>['Текст "title"', 'text-area', env('APP_NAME')],
+            'description-text'=>['Текст "description"', 'text-area', 'This is '.env('APP_NAME')],
             'logo-text'=>['Текст около лого в шапке', 'text-area', 'Business services<br>in the United States'],
             'search-text'=>['Текст над строкой поиска', 'text-area', 'Find business services in the United States'],
             'head-text'=>['Текст заголовка', 'text-area', 'All business services in the United States'],
