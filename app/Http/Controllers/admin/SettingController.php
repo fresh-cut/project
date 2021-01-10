@@ -12,6 +12,8 @@ class SettingController extends Controller
 {
     public function index()
     {
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
         $mainSettings=[
             'admin_email'=>['Е-mail на который присылать уведомление', 'text'],
             'maps_key'=>['Maps key (<a href="//opencagedata.com" target="_blank">opencagedata.com</a>)', 'text'],
@@ -48,14 +50,20 @@ class SettingController extends Controller
         $urlOtherCatalogs=[
             'url_other_catalog'=>['Url на другие каталоги','text-area'],
         ];
-        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings', 'urlOtherCatalogs'));
+
+        $addCode=[
+            'code_head'=>['Код перед head','text-area'],
+            'code_footer'=>['Код перед footer','text-area'],
+        ];
+
+
+        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings', 'urlOtherCatalogs', 'addCode'));
     }
 
     public function fileHeadDownload(Request $request)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpg|max:2048',
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = 'bg_first_big'.'.'.$request->image->extension();
@@ -63,7 +71,7 @@ class SettingController extends Controller
         if($result){
             Artisan::call('view:clear');
             Artisan::call('cache:clear');
-            return back()
+            return redirect()->route('admin.settings')
                 ->with('success','You have successfully upload image.')
                 ->with('image',$imageName);
         }
@@ -76,7 +84,6 @@ class SettingController extends Controller
     public function fileLogoDownload(Request $request)
     {
         $request->validate([
-//            'image' => 'required|image|mimes:jpg|max:2048',
             'image' => 'required|image|mimes:png|max:2048',
         ]);
 
@@ -85,7 +92,28 @@ class SettingController extends Controller
         if($result){
             Artisan::call('view:clear');
             Artisan::call('cache:clear');
+            return redirect()->route('admin.settings')
+                ->with('success','You have successfully upload image.')
+                ->with('image',$imageName);
+        }
+        else
             return back()
+                ->withErrors(['msg'=>'Ошибка сохранения'])
+                ->withInput();
+    }
+
+    public function fileFaviconDownload(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:png|max:2048',
+        ]);
+
+        $imageName = 'favicon'.'.'.$request->image->extension();
+        $result=$request->image->move(public_path(), $imageName);
+        if($result){
+            Artisan::call('view:clear');
+            Artisan::call('cache:clear');
+            return redirect()->route('admin.settings')
                 ->with('success','You have successfully upload image.')
                 ->with('image',$imageName);
         }

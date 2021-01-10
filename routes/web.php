@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('admin', 'admin/settings');
+Route::redirect('COKwdvLUsZXNgVBESh', 'COKwdvLUsZXNgVBESh/settings');
 
 // Админка
 $groupData=[
     'middleware'=>'costumAuth',
     'namespace'=>'\App\Http\Controllers\admin',
-    'prefix'=>'admin/', // то что будет в строке url после имени сайта
+    'prefix'=>'COKwdvLUsZXNgVBESh/', // то что будет в строке url после имени сайта
 ];
 Route::group($groupData, function(){
     // admin->offerscompany
@@ -47,15 +47,16 @@ Route::group($groupData, function(){
     Route::get('settings', 'SettingController@index')->name('admin.settings');
     Route::post('settings/filehead', 'SettingController@fileHeadDownload')->name('admin.download.head');
     Route::post('settings/filelogo', 'SettingController@fileLogoDownload')->name('admin.download.logo');
+    Route::post('settings/filefavicon', 'SettingController@fileFaviconDownload')->name('admin.download.favicon');
     Route::post('settings/add', 'SettingController@addSettings')->name('admin.addSettings');
 
     // admin->translate
     Route::get('translate', 'TranslateController@index')->name('admin.translate');
     Route::post('translate/add', 'TranslateController@addTranslate')->name('admin.addTranslate');
 
-    // admin->pages
-    Route::get('pages', 'PagesController@index')->name('admin.pages');
-    Route::post('pages/add_404', 'PagesController@add_404')->name('admin.add_404');
+//    // admin->pages
+//    Route::get('pages', 'PagesController@index')->name('admin.pages');
+//    Route::post('pages/add_404', 'PagesController@add_404')->name('admin.add_404');
 
     Route::group(['prefix'=>'regions/{id}/'], function(){
         Route::post('localities/search','LocalityController@search')->name('admin.localities.search');
@@ -93,9 +94,9 @@ Route::get('/terms-and-conditions', ['\App\Http\Controllers\IndexController', 't
 
 
 // login
-Route::get('/login', ['\App\Http\Controllers\LoginController', 'index'] )->name('login.index');
-Route::post('/login', ['\App\Http\Controllers\LoginController', 'authenticate'] )->name('login');
-Route::get('/logout', ['\App\Http\Controllers\LoginController', 'logout'] )->name('logout');
+Route::get('COKwdvLUsZXNgVBESh/login', ['\App\Http\Controllers\LoginController', 'index'] )->name('login.index');
+Route::post('COKwdvLUsZXNgVBESh/login', ['\App\Http\Controllers\LoginController', 'authenticate'] )->name('login');
+Route::get('COKwdvLUsZXNgVBESh/logout', ['\App\Http\Controllers\LoginController', 'logout'] )->name('logout');
 
 // sitemap
 Route::get('/sitemap.xml', ['\App\Http\Controllers\SitemapController', 'index'] )->name('sitemap.index');

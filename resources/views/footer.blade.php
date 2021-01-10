@@ -97,4 +97,5 @@
             <?= date('Y') ?>
         </div>
     </div>
+    <?php echo settings('code_footer', '') ?>
 </footer>

@@ -28,6 +28,7 @@ class AdminSettingsAddRequest extends FormRequest
             'count_last_review'=>'nullable|integer',
             'count_popular_company'=>'nullable|integer',
             'count_companies_review'=>'nullable|integer',
+
         ];
     }
 

@@ -83,9 +83,7 @@
                         <ul class="c-drus-list">
                             @foreach($urlOther as $key=>$value)
                                 <li class="c-drus-list__item c-drus-list__item--6 item-center">
-                                    <a href="{{ $value }}" target="_blank"
-{{--                                       class="c-drus-list__link c-drus-list__link--nav"--}}
-                                    >
+                                    <a href="{{ $value }}" target="_blank">
                                         {{ $key }}
                                     </a>
                                 </li>

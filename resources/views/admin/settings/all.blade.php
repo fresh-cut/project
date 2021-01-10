@@ -23,13 +23,21 @@
         <div class="col-md-9">
             <div class="page-header">
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Url на другие каталоги</h3>
+                <p class="ml-5">
+                    Образец:<br>
+                    {<br>
+                        "имя1":"ссылка1",<br>
+                        ....<br>
+                        "имяN":"ссылкаN" (после каждой строчки запятая, кроме последней строки)
+                    <br>}
+                </p>
                 <hr style="margin-top: 0; ">
             </div>
             <div class="form-group">
                 @foreach($urlOtherCatalogs as $key=>$value)
                     <label>
                         {{ $value[0] }}
-                        <textarea style="width: 700px;" onblur="run('{{$key}}')" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="10">{{ settings($key) }}</textarea>
+                        <textarea style="width: 800px;" onblur="run('{{$key}}')" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="10">{{ settings($key) }}</textarea>
                     </label>
                 @endforeach
             </div>
@@ -47,6 +55,21 @@
                 <label>
                     {{ $value[0] }}
                     <input type="{{ $value[1] }}" class="form-control" onblur="run('{{$key}}')" style="width: 350px;" id="{{ $key }}" name="{{ $key }}" value="{{ settings($key, $value[2]) }}" autocomplete="off">
+                </label>
+            @endforeach
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Добавить код</h3>
+                <hr style="margin-top: 0; ">
+            </div>
+            @foreach($addCode as $key=>$value)
+                <label>
+                    {{ $value[0] }}
+                    <textarea onblur="run('{{$key}}')" style="width: 800px;" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="7">{{ settings($key) }}</textarea>
                 </label>
             @endforeach
             <hr>
@@ -121,8 +144,26 @@
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Текущий лого</h3>
                 <hr style="margin-top: 0">
             </div>
-            <img class="img-fluid" src="../img/logo.png" width="150px" height="150px" alt="...">
+            <img class="img-fluid" src="../img/logo.png" width="220px" height="60px" alt="...">
             <form class="form-control" action="{{ route("admin.download.logo") }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="image" accept="image/png" class="form-control-file" >
+                    <button class="btn btn-success" type="submit">загрузить</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Текущая иконка</h3>
+                <hr style="margin-top: 0">
+            </div>
+            <img class="img-fluid" src="../favicon.png" width="150px" height="150px" alt="...">
+            <form class="form-control" action="{{ route("admin.download.favicon") }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="image" accept="image/png" class="form-control-file" >

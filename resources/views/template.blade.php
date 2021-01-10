@@ -16,8 +16,8 @@
 
 
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/css/main.css') }}">
     @include('includes.style')
     @if(Route::is('add-company') || Route::is('edit-company'))
@@ -43,7 +43,7 @@
         ga('create', 'UA-107038667-1', 'auto');
         ga('send', 'pageview');
     </script>
-
+    <?php echo settings('code_head', '') ?>
 </head>
 <body>
 

@@ -7,7 +7,6 @@
                     <span itemprop="name">Home</span>
                 </a>
             </li>
-
             @foreach($breadcrumbs as $name => $data)
             <li class="l-drus-bread__item" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem">
@@ -16,7 +15,6 @@
                 </a>
             </li>
             @endforeach
-
         </ul>
-        </nav>
-        @endif
+</nav>
+@endif

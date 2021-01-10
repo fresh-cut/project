@@ -86,7 +86,6 @@
     </article>
 </div>
 
-
 <script async src="//www.google.com/recaptcha/api.js"></script>
 
 

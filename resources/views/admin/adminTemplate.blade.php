@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{asset('css/css/app.css')}}">
     <meta charset="UTF-8">
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -28,7 +30,7 @@
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.reviews.index') }}">Отзывы</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.settings') }}">Глобальные настройки</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.translate') }}">Переводы</a></li>
-                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.pages') }}">Страницы</a></li>
+{{--                <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('admin.pages') }}">Страницы</a></li>--}}
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('home') }}">Вернуться на сайт</a></li>
                 <li class="sidebar-menu-item"><a class="sidebar-menu-link" href="{{ route('logout') }}">Выход</a></li>
             </ul>
