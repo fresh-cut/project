@@ -80,7 +80,7 @@ class CompanyAddEditController extends Controller
 
     public function addCompany()
     {
-        $breadcrumbs=   [settings('footer-add-listing-text','Add listing')=>['add-company','']];
+        $breadcrumbs=   [settings_translate('footer_add_listing_text','Add listing')=>['add-company','']];
         $footer_regions    =   $this->regionRepository->getRegions(12);
         $footer_localities =   $this->localityRepository->getLocalities(12);
         return view('company.add', compact('breadcrumbs', 'footer_localities', 'footer_regions'));

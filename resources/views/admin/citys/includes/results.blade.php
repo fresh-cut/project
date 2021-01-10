@@ -17,7 +17,11 @@
                     {{$locality->name}}
                 </a>
             </td>
-            <td align="left">{{$locality->url}}</td>
+            <td align="left">
+                <a href="{{ route('city', $locality->url) }}" target="_blank">
+                    {{$locality->url}}
+                </a>
+            </td>
             <td align="left">
                 {{--                    <a href="" class="btn btn-warning">Добавить город</a>--}}
                 {{--                    <a href="" class="btn btn-danger">Удалить</a>--}}

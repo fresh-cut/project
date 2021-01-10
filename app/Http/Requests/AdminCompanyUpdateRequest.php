@@ -29,7 +29,6 @@ class AdminCompanyUpdateRequest extends FormRequest
                 'required',
                 'string',
                 'max:250',
-                Rule::unique('companies', 'name')->ignore($this->route('company')),
             ],
             'category_name'=>'required|string|max:250',
             'region_name'=>'required|string|max:250',

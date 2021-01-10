@@ -2,11 +2,9 @@
 @section('main-content')
 
 @section('title')
-    Write a review about  {{ $company->name }}
+    <?php echo settings_translate('reviewPage_title_text', 'Write a review about')?> {{ $company->name }}
 @endsection
-@section('description')
-    Write a review about  {{ $company->name }}
-@endsection
+@section('description')<?php echo settings_translate('reviewPage_description_text', 'Write a review about')?>  {{ $company->name }}@endsection
 
 <div class="l-drus-main__article">
     <article class="l-drus-article">
@@ -19,7 +17,7 @@
                         </div>
                     @endif
                     <h2 class="l-drus-article__h2">
-                        Write a review
+                        <?php echo settings_translate('reviewPage_head_text', 'Write a review')?>
                     </h2>
                     <form method="post" action="{{ route('store-review', [$company->region_url, $company->locality_url, $company->url]) }}" class="c-drus-form">
                         @csrf
@@ -46,11 +44,11 @@
                         </label>
 
                         <label class="c-drus-form__label">
-                            <sup>*</sup> &mdash; Required information
+                            <sup>*</sup> &mdash; <?php echo settings_translate('reviewPage_required_text', 'Write a review')?>
                         </label>
 
                         <label class="c-drus-form__label">
-                            <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="Add a review">
+                            <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="<?php echo settings_translate('reviewPage_button_text', 'Add a review')?>">
                         </label>
 
                     </form>

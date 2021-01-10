@@ -12,10 +12,9 @@ class CategoryRepository extends CoreRepository
         return Model::class;
     }
 
-    public function getIdByUrl($url)
+    public function getCategoryByUrl($url)
     {
         return $this->startConditions()
-            ->select('id')
             ->where('url', $url)
             ->toBase()
             ->first();

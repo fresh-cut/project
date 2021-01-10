@@ -18,8 +18,9 @@ class SettingController extends Controller
             'google_search_key'=>['Идентификатор поисковой системы', 'text'],
             'google_recapcha_site_key'=>['Google reCAPTCHA ключ сайта', 'text'],
             'google_recapcha_secret_key'=>['Google reCAPTCHA секретный ключ', 'text'],
-            'count_popular_company'=>['Количество компаний в блоке Popular services', 'text'],
-            'count_last_review'=>['Количество комментариев в блоке Latest reviews', 'text'],
+            'count_popular_company'=>['Кол-во компаний в блоке Popular services (бок.панель)', 'text'],
+            'count_last_review'=>['Кол-во коммент. в блоке Latest reviews (бок.панель)', 'text'],
+            'count_companies_review'=>['Кол-во популярных компаний на стр. компании', 'text'],
             ];
         $colorSettings=[
             'body-color'=>['Цвет основного шрифта сайта', 'color','#01A3DF'],
@@ -43,7 +44,11 @@ class SettingController extends Controller
             'ads-eight'=>['8-ое место', 'text-area'],
             'ads-nine'=>['9-ое место', 'text-area'],
         ];
-        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings'));
+
+        $urlOtherCatalogs=[
+            'url_other_catalog'=>['Url на другие каталоги','text-area'],
+        ];
+        return view('admin.settings.all', compact('mainSettings', 'colorSettings', 'landingAdsSettings', 'regionAdsSetting', 'companyAdsSettings', 'urlOtherCatalogs'));
     }
 
     public function fileHeadDownload(Request $request)
@@ -75,7 +80,7 @@ class SettingController extends Controller
             'image' => 'required|image|mimes:png|max:2048',
         ]);
 
-        $imageName = 'sprite'.'.'.$request->image->extension();
+        $imageName = 'logo'.'.'.$request->image->extension();
         $result=$request->image->move(public_path('img'), $imageName);
         if($result){
             Artisan::call('view:clear');

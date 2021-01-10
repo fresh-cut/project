@@ -23,6 +23,9 @@
                             <a class="nav-link " data-toggle="tab" href="#localityPage" aria-controls="localityPage" aria-selected="false" role="tab">Страница города</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#categoryPage" aria-controls="categoryPage" aria-selected="false" role="tab">Страница категории</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " data-toggle="tab" href="#asidePage" aria-controls="asidePage" aria-selected="false" role="tab">Боковая панель</a>
                         </li>
                         <li class="nav-item">
@@ -30,6 +33,18 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " data-toggle="tab" href="#allStatesPage" aria-controls="allStatesPage" aria-selected="false" role="tab">Страница All states</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#updateCompanyPage" aria-controls="updateCompanyPage" aria-selected="false" role="tab">Страница "Предложить обновление компании"</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#writeReviewPage" aria-controls="writeReviewPage" aria-selected="false" role="tab">Страница "написать коментарий"</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#addCompanyPage" aria-controls="addCompanyPage" aria-selected="false" role="tab">Страница "Добавить компанию"</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#contactPage" aria-controls="contactPage" aria-selected="false" role="tab">Страница "связаться с нами"</a>
                         </li>
                     </ul>
                     <br>
@@ -46,6 +61,9 @@
                         <div class="tab-pane" id="localityPage" role="tabpanel" aria-labelledby="localityPage-tab">
                             @include('admin.translate.includes.localityPage')
                         </div>
+                        <div class="tab-pane" id="categoryPage" role="tabpanel" aria-labelledby="categoryPage-tab">
+                            @include('admin.translate.includes.categoryPage')
+                        </div>
                         <div class="tab-pane" id="asidePage" role="tabpanel" aria-labelledby="asidePage-tab">
                             @include('admin.translate.includes.asidePage')
                         </div>
@@ -54,6 +72,18 @@
                         </div>
                         <div class="tab-pane" id="allStatesPage" role="tabpanel" aria-labelledby="allStatesPage-tab">
                             @include('admin.translate.includes.allStatesPage')
+                        </div>
+                        <div class="tab-pane" id="updateCompanyPage" role="tabpanel" aria-labelledby="updateCompanyPage-tab">
+                            @include('admin.translate.includes.updateCompanyPage')
+                        </div>
+                        <div class="tab-pane" id="writeReviewPage" role="tabpanel" aria-labelledby="writeReviewPage-tab">
+                            @include('admin.translate.includes.writeReviewPage')
+                        </div>
+                        <div class="tab-pane" id="addCompanyPage" role="tabpanel" aria-labelledby="addCompanyPage-tab">
+                            @include('admin.translate.includes.addCompanyPage')
+                        </div>
+                        <div class="tab-pane" id="contactPage" role="tabpanel" aria-labelledby="contactPage-tab">
+                            @include('admin.translate.includes.contactPage')
                         </div>
                     </div>
 

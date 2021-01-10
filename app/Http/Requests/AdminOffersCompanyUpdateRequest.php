@@ -32,8 +32,6 @@ class AdminOffersCompanyUpdateRequest extends FormRequest
                 'required',
                 'string',
                 'max:250',
-                (isset($data['type']) && $data['type']=='add')?Rule::unique('companies', 'name'):
-                    Rule::unique('companies', 'name')->ignore($data['company_id']),
             ],
             'category_name'=>'required|string|max:250',
             'region_name'=>'required|string|max:250',

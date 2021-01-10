@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="streetaddress">Адресс</label>
+                                    <label for="streetaddress">Адрес (без слова "улица" и всех его сокращений)</label>
                                     <input type="text" class="form-control" id="streetaddress" name="streetaddress" value="{{ old('streetaddress', $item->streetaddress) }}" autocomplete="off" required>
                                 </div>
 
@@ -140,7 +140,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="old_streetaddress">Адресс</label>
+                                        <label for="old_streetaddress">Адрес </label>
                                         <input type="text" class="form-control" id="old_streetaddress" name="old_streetaddress" value="{{  $old_item->streetaddress }}" disabled>
                                     </div>
 

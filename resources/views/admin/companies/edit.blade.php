@@ -4,17 +4,21 @@
 @endsection
 @section('content')
             <h1>Редактирование компании</h1>
-            @include('admin.includes.result_messages')
             <div class="form-group">
                 <a href="{{ route('admin.company.index') }}" class="btn btn-secondary ">назад</a>
             </div>
             <div class="row">
             <div class="col-md-8">
+                @include('admin.includes.result_messages')
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('admin.company.update', $company->id) }}" method="post">
                             @csrf
                             @method('PATCH')
+                            <div class="form-group" >
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control" id="id" value="{{$company->id }}" disabled>
+                            </div>
                             <div class="form-group" >
                                 <label for="name">Название</label>
                                 <input type="text"  class="form-control" id="name" name="name" value="{{ old('name',$company->name) }}" required autocomplete="no">
@@ -35,7 +39,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="streetaddress">Адресс (без слова "улица" и всех его сокращений)</label>
+                                <label for="streetaddress">Адрес (без слова "улица" и всех его сокращений)</label>
                                 <input type="text" class="form-control" id="streetaddress" name="streetaddress" value="{{  old('streetaddress',$company->streetaddress) }}" required autocomplete="no">
                             </div>
 

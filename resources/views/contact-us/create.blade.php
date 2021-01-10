@@ -1,9 +1,9 @@
 @extends('template')
 @section('main-content')
 @section('title')
-            <?php echo settings('footer-contact-us-text', 'Contact us')?>
+            <?php echo settings_translate('contactPage_title_text', 'Contact us')?>
 @endsection
-@section('description')Send message to site administrator @endsection
+@section('description')<?php echo settings_translate('contactPage_description_text', 'Send message to site administrator')?>@endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
@@ -16,7 +16,7 @@
                             </div>
                         @endif
                         <h2 class="l-drus-article__h2">
-                            <?php echo settings('footer-contact-us-text', 'Contact us')?>
+                            <?php echo settings_translate('contactPage_head_text', 'Contact us')?>
                         </h2>
                         <form action="{{ route('store-contact-us') }}" method="post" class="c-drus-form">
                             @csrf
@@ -42,11 +42,11 @@
 
 
                             <label class="c-drus-form__label">
-                                <sup>*</sup> &mdash; Required information
+                                <sup>*</sup> &mdash; <?php echo settings_translate('contactPage_required_text', 'Required information')?>
                             </label>
 
                             <label class="c-drus-form__label">
-                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="Send">
+                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="<?php echo settings_translate('contactPage_button_text', 'Send')?>">
                             </label>
                         </form>
 

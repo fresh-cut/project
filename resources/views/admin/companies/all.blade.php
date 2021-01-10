@@ -5,16 +5,17 @@
 @section('content')
     <h1>Компании</h1>
     <br>
-    @include('admin.includes.result_messages')
+
     <div class="row">
         <div class="col-md-6">
+            @include('admin.includes.result_messages')
             <form action="{{ route('admin.company.search') }}" method="post">
                 @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" name="search" value="{{ old('search', '') }}" autocomplete="off" placeholder="поиск по url">
+                    <input type="text" class="form-control" name="search" value="{{ old('search', '') }}" autocomplete="off" placeholder="поиск">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-secondary" type="submit">найти</button>
+                    <button class="btn btn-dark" type="submit">найти</button>
                 </div>
             </form>
         </div>
@@ -29,7 +30,7 @@
                 <tr>
                     <th>id</th>
                     <th>Название компании</th>
-                    <th>Адресс</th>
+                    <th>Адрес</th>
                     <th>Сайт</th>
                     <th></th>
                 </tr>

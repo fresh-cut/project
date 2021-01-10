@@ -2,9 +2,9 @@
 @section('main-content')
 
 @section('title')
-    Suggest an Edit  {{ $company->name }}
+    <?php echo settings_translate('updatePage_title_text', 'Suggest an update')?>  {{ $company->name }}
 @endsection
-@section('description')Suggest an Edit  {{ $company->name }} @endsection
+@section('description')<?php echo settings_translate('updatePage_description_text', 'Suggest an update')?>  {{ $company->name }} @endsection
 
 <div class="l-drus-main__article">
     <article class="l-drus-article">
@@ -17,7 +17,7 @@
                         </div>
                     @endif
                         <h2 class="l-drus-article__h2">
-                            Suggest an Edit
+                            <?php echo settings_translate('updatePage_head_text', 'Suggest an update')?>
                         </h2>
                         <form method="post" action="{{ route('editstore-company', [$company->region_url, $company->locality_url, $company->url]) }}" class="c-drus-form">
                             @csrf
@@ -89,11 +89,11 @@
                             </label>
 
                             <label class="c-drus-form__label">
-                                <sup>*</sup> &mdash; Required information
+                                <sup>*</sup> &mdash; <?php echo settings_translate('updatePage_required_text', 'Required information')?>
                             </label>
 
                             <label class="c-drus-form__label">
-                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="Send">
+                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="<?php echo settings_translate('updatePage_button_text', 'Send')?>">
                             </label>
 
                         </form>

@@ -70,7 +70,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -151,25 +151,32 @@ class CompanyController extends Controller
 
     public function search(Request $request)
     {
-        $this->regionRepository   =   app(RegionRepository::class);
-        $this->localityRepository =   app(LocalityRepository::class);
-        $url=rtrim($request->input('search'),'/');
-        $url_array=explode('/', $url);
-        $count=count($url_array);
-        $region_url=$url_array[$count-3];
-        $locality_url=$url_array[$count-2];
-        $company_url=$url_array[$count-1];
-        $region = $this->regionRepository->getRegionByUrl($region_url);
-        if(!$region)
-            return back()->withErrors(['msg'=>'Не найден регион '.$region_url])->withInput();
-        $locality = $this->localityRepository->getLocalityByUrl($locality_url);
-        if(!$locality)
-            return back()->withErrors(['msg'=>'Не найден город '.$locality_url])->withInput();
-        $id=$this->companyRepository->isCompanyByUrl($region->id, $locality->id, $company_url);
-        if(!$id)
-            return back()->withErrors(['msg'=>'Компания не найдена'])->withInput();
-        return redirect()->route('admin.company.edit', $id->id);
-
+        $searchValue=$request->input('search');
+        if(mb_substr_count($searchValue,'/')>1){
+            $this->regionRepository   =   app(RegionRepository::class);
+            $this->localityRepository =   app(LocalityRepository::class);
+            $url=rtrim($searchValue,'/');
+            $url_array=explode('/', $url);
+            $count=count($url_array);
+            $region_url=$url_array[$count-3];
+            $locality_url=$url_array[$count-2];
+            $company_url=$url_array[$count-1];
+            $region = $this->regionRepository->getRegionByUrl($region_url);
+            if(!$region)
+                return redirect()->route('admin.company.index')->withErrors(['msg'=>'Регион с url "'.$region_url.'" не найден'])->withInput();
+            $locality = $this->localityRepository->getLocalityByUrl($locality_url);
+            if(!$locality)
+                return redirect()->route('admin.company.index')->withErrors(['msg'=>'Город с url "'.$locality_url.'" не найден'])->withInput();
+            $findCompany=$this->companyRepository->findCompanyByUrl($region->id, $locality->id, $company_url);
+            if(!$findCompany || !$findCompany->count())
+                return redirect()->route('admin.company.index') ->withErrors(['msg'=>'Компания не найдена'])->withInput();
+        }
+        else {
+            $findCompany=$this->companyRepository->findCompanyByName($searchValue);
+            if(!$findCompany || !$findCompany->count())
+                return redirect()->route('admin.company.index') ->withErrors(['msg'=>'Компания "'.$searchValue.'" не найдена'])->withInput();
+        }
+        return view('admin.companies.findCompany', compact('findCompany', 'searchValue'));
 
     }
 

@@ -26,7 +26,11 @@
                         {{$region->name}}
                     </a>
                 </td>
-                <td align="left">{{$region->url}}</td>
+                <td align="left">
+                    <a href="{{ route('region',$region->url) }}" target="_blank">
+                        {{$region->url}}
+                    </a>
+                </td>
                 <td align="left">
                     <a href="{{ route('admin.localities.index', $region->id) }}" class="btn btn-warning">Города</a>
 {{--                    <a href="" class="btn btn-danger">Удалить</a>--}}

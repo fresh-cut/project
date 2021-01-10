@@ -1,9 +1,9 @@
 @extends('template')
 @section('main-content')
 @section('title')
-    <?php echo settings('footer-add-listing-text','Add listing')?>
+    <?php echo settings_translate('addCompanyPage_title_text','Add listing')?>
 @endsection
-@section('description')<?php echo settings('footer-add-listing-text','Add listing')?> @endsection
+@section('description')<?php echo settings_translate('addCompanyPage_description_text','Add listing')?> @endsection
 
     <div class="l-drus-main__article">
         <article class="l-drus-article">
@@ -16,7 +16,7 @@
                             </div>
                         @endif
                         <h2 class="l-drus-article__h2">
-                            <?php echo settings('footer-add-listing-text','Add listing')?>
+                            <?php echo settings_translate('addCompanyPage_head_text','Add listing')?>
                         </h2>
                         <form action="{{ route('addstore-company') }}" method="post" class="c-drus-form">
                             @csrf
@@ -82,11 +82,11 @@
 
 
                             <label class="c-drus-form__label">
-                                <sup>*</sup> &mdash; Required information
+                                <sup>*</sup> &mdash; <?php echo settings_translate('addCompanyPage_required_text','Required information')?>
                             </label>
 
                             <label class="c-drus-form__label">
-                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="Send">
+                                <input type="submit" class="c-drus-form__input c-drus-form__input--submit" value="<?php echo settings_translate('addCompanyPage_button_text','Send')?>">
                             </label>
                         </form>
 

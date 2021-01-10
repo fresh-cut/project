@@ -1,4 +1,5 @@
-        <nav class="l-drus-bread">
+@if(isset($breadcrumbs))
+<nav class="l-drus-bread">
         <ul class="l-drus-bread__box" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="l-drus-bread__item" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem">
@@ -6,6 +7,7 @@
                     <span itemprop="name">Home</span>
                 </a>
             </li>
+
             @foreach($breadcrumbs as $name => $data)
             <li class="l-drus-bread__item" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem">
@@ -14,6 +16,7 @@
                 </a>
             </li>
             @endforeach
+
         </ul>
         </nav>
-
+        @endif

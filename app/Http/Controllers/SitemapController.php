@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Locality;
 use App\Models\Region;
@@ -61,7 +62,7 @@ class SitemapController extends Controller
         $return .= "\n\t\t" . '<changefreq>daily</changefreq>';
         $return .= "\n\t" . '</url>';
 
-        //regions
+        //regions url
         $url=Region::select('url')->toBase()->get();
         if ($url) {
             foreach ($url as $value) {
@@ -71,6 +72,20 @@ class SitemapController extends Controller
                 $return .= "\n\t" . '</url>';
             }
         }
+
+        //categories url
+        $url=Category::select('url')->toBase()->get();
+        if ($url) {
+            foreach ($url as $value) {
+                $return .= "\n\t" . '<url>';
+                $return .= "\n\t\t" .'<loc>'. URL::route('category', $value->url) . '/</loc>';
+                $return .= "\n\t\t" . '<changefreq>daily</changefreq>';
+                $return .= "\n\t" . '</url>';
+            }
+        }
+
+
+
         $return .= "\n" . '</urlset>';
         echo $return;
     }

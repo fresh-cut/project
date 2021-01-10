@@ -26,6 +26,7 @@
         </tr>
         </thead>
         <tbody>
+        @if(isset($reviews) && $reviews->count())
         @foreach($reviews as $review)
             <tr @if($review->review_status==0) style="background-color: #ccc" @endif>
                 <td>{{ $review->review_id }}</td>
@@ -54,9 +55,21 @@
                 </td>
             </tr>
         @endforeach
+            @endif
         </tbody>
     </table>
     </form>
+    @if($reviews instanceof Illuminate\Pagination\LengthAwarePaginator && $reviews->total() > $reviews->count() )
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{ $reviews->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
 <style>
     .visually-hidden {
@@ -65,7 +78,6 @@
         width: 1px;
         height: 1px;
         margin: -1px;
-        …
     }
 </style>
     <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>

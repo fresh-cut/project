@@ -49,7 +49,7 @@
 
 <div class="l-drus-main">
     @include('header')
-    @if( !Route::is('home'))
+    @if( !Route::is('home') )
         @include('includes.breadcrumbs')
     @endif
 
@@ -57,7 +57,7 @@
     <div class="p-drus-first">
         <div class="p-drus-first__box">
             <div class="p-drus-first__form-name">
-                <?php echo settings('search-text', 'Find business services in the United States') ?>
+                <?php echo settings_translate('search_text', 'Find business services in the United States') ?>
             </div>
 {{--            <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"--}}
 {{--                  action="{{ route('search') }}">--}}
@@ -80,7 +80,7 @@
         @yield('main-content')
     </main>
     @else
-        @if( Route::is('company'))
+        @if( Route::is('company') && isset($company))
             <div id="basicMap" class="l-drus-main__map" style="width: 100%;height: 300px;"></div>
         @endif
     <main class="l-drus-main__box l-drus-main__main<?= (Route::is('company')) ? ' l-drus-main__main--item' : '' ?>">
@@ -94,8 +94,9 @@
 
 <script src="{{ asset('js/main.js') }}"></script>
 <script>
-    if( {{ session()->has('message-success')}})
+    @if( session()->has('message-success'))
         alert("{{ session()->get('message-success') }}");
+    @endif
 </script>
 </body>
 </html>

@@ -22,6 +22,24 @@
     <div class="row">
         <div class="col-md-9">
             <div class="page-header">
+                <h3 style="margin-bottom: 0; color:#0d5c6d">Url на другие каталоги</h3>
+                <hr style="margin-top: 0; ">
+            </div>
+            <div class="form-group">
+                @foreach($urlOtherCatalogs as $key=>$value)
+                    <label>
+                        {{ $value[0] }}
+                        <textarea style="width: 700px;" onblur="run('{{$key}}')" id="{{ $key }}" name="{{ $key }}" class="form-control"  rows="10">{{ settings($key) }}</textarea>
+                    </label>
+                @endforeach
+            </div>
+
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="page-header">
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Цветовые настройки сайта</h3>
                 <hr style="margin-top: 0">
             </div>
@@ -103,7 +121,7 @@
                 <h3 style="margin-bottom: 0; color:#0d5c6d">Текущий лого</h3>
                 <hr style="margin-top: 0">
             </div>
-            <img class="img-fluid" src="../img/sprite.png" width="150px" height="150px" alt="...">
+            <img class="img-fluid" src="../img/logo.png" width="150px" height="150px" alt="...">
             <form class="form-control" action="{{ route("admin.download.logo") }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

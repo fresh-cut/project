@@ -1,34 +1,11 @@
 <aside class="l-drus-main__aside l-drus-aside">
-{{--    <?php if ($data['news']) { ?>--}}
-{{--    <div class="l-drus-aside__section">--}}
-{{--        <h3 class="l-drus-aside__header">--}}
-{{--            New articles--}}
-{{--        </h3>--}}
-{{--        <ul class="l-drus-aside-list">--}}
-{{--            <?php foreach ($data['news'] as $news) { ?>--}}
-{{--            <li class="l-drus-aside-list__item">--}}
-{{--                <a href="//<?= App::getRouter()->getHostMain() ?>/articles/<?= $news['url'] ?>/"--}}
-{{--                   class="l-drus-aside-list__link l-drus-aside-list__link--header">--}}
-{{--                    <?= $news['header'] ?></a>--}}
-{{--                <small class="c-drus-card__line c-drus-card__line--small">--}}
-{{--                    <?= $news['description'] ?>--}}
-{{--                </small>--}}
-{{--                <small class="c-drus-card__line c-drus-card__line--small">--}}
-{{--                    <?= $news['date'] ?>--}}
-{{--                </small>--}}
-{{--            </li>--}}
-{{--            <?php } ?>--}}
-{{--        </ul>--}}
-{{--    </div>--}}
-{{--    <?php } ?>--}}
-
     <section class="l-drus-article__section l-drus-article__section--ads">
         @include('includes.ads.ads-five')
     </section>
     @if(isset($last_items) && $last_items->count())
     <div class="l-drus-aside__section">
         <h3 class="l-drus-aside__header">
-            <?php echo settings('aside-popular-services-text', 'Popular business services')?>
+            <?php echo settings_translate('aside_popular_services_text', 'Popular business services')?>
         </h3>
         <ul class="l-drus-aside-list">
             @foreach($last_items as $item)
@@ -59,7 +36,7 @@
     @if(isset($last_reviews) && $last_reviews->count())
      <div class="l-drus-aside__section">
         <h3 class="l-drus-aside__header">
-            <?php echo settings('aside-latest-reviews-text', 'Latest reviews')?>
+            <?php echo settings_translate('aside_latest_reviews_text', 'Latest reviews')?>
         </h3>
         <ul class="l-drus-aside-list">
             @foreach($last_reviews as $review)

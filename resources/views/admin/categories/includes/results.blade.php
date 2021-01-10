@@ -17,7 +17,11 @@
                         {{$category->name}}
                     </a>
                 </td>
-                <td align="left">{{$category->url}}</td>
+                <td align="left">
+                    <a href="{{ route('category',$category->url) }}" target="_blank">
+                        {{$category->url}}
+                    </a>
+                </td>
                 <td align="left">
 
                 </td>

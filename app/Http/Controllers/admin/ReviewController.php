@@ -23,7 +23,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews=$this->reviewRepository->getReviews('all');
+        $reviews=$this->reviewRepository->getReviewsWithPaginate(15);
         return view('admin.reviews.all', compact('reviews'));
     }
 

@@ -78,6 +78,19 @@ class CompanyRepository extends CoreRepository
             ->get();
     }
 
+    public function getCompaniesByCategory($count=24, $category_id)
+    {
+        return $this->startConditions()
+            ->where('companies.category_id', $category_id)
+            ->join('category', 'companies.category_id', '=', 'category.id')
+            ->join('locality', 'companies.locality_id', '=', 'locality.id')
+            ->join('region', 'companies.region_id', '=', 'region.id')
+            ->select('companies.*', 'category.url as category_url', 'category.name as category_name', 'locality.url as locality_url', 'locality.name as locality_name', 'region.url as region_url', 'region.name as region_name')
+            ->take($count)
+            ->toBase()
+            ->get();
+    }
+
     public function getLastCompanies($count=10)
     {
         return $this->startConditions()
@@ -87,16 +100,27 @@ class CompanyRepository extends CoreRepository
             ->get();
     }
 
-    public function isCompanyByUrl($region_id, $locality_id, $company_url)
+    public function findCompanyByUrl($region_id, $locality_id, $company_url)
     {
         return $this->startConditions()
-            ->select('companies.id')
+            ->select('companies.id', 'companies.url', 'companies.name', 'locality.url as locality_url', 'region.url as region_url')
             ->join('locality', 'companies.locality_id', '=', 'locality.id')
             ->join('region', 'companies.region_id', '=', 'region.id')
             ->where('companies.url', $company_url)
             ->where('region.id', $region_id)
             ->where('locality.id', $locality_id)
             ->toBase()
-            ->first();
+            ->get();
+    }
+
+    public function findCompanyByName($company_name)
+    {
+        return $this->startConditions()
+            ->select('companies.id', 'companies.url', 'companies.name', 'locality.url as locality_url', 'region.url as region_url')
+            ->join('locality', 'companies.locality_id', '=', 'locality.id')
+            ->join('region', 'companies.region_id', '=', 'region.id')
+            ->where('companies.name','like', '%'.$company_name.'%')
+            ->toBase()
+            ->get();
     }
 }
