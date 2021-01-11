@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminLoginRequest;
 use http\Env;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class LoginController extends Controller
         return view('login.login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(AdminLoginRequest $request)
     {
         $login = $request->only('login');
         $password = $request->only('password');

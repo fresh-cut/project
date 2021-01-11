@@ -19,10 +19,14 @@
                 <div class="form-group">
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 </div>
+                <div class="form-group">
+                    {!! app('captcha')->display() !!}
+                </div>
                 <button class="btn btn-dark btn-block" type="submit">Go</button>
             </form>
         </div>
     </div>
 
 </body>
+{!! NoCaptcha::renderJs()  !!}
 </html>
