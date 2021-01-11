@@ -39,8 +39,7 @@
                         <input type="hidden" name="company_name" value="{{ $company->name }}">
 
                         <label class="c-drus-form__label">
-                            <div class="g-recaptcha"
-                                 data-sitekey="{{settings('google_recapcha_site_key')}}"></div>
+                            {!! app('captcha')->display() !!}
                         </label>
 
                         <label class="c-drus-form__label">
@@ -86,8 +85,6 @@
     </article>
 </div>
 
-<script async src="//www.google.com/recaptcha/api.js"></script>
-
-
+{!! NoCaptcha::renderJs()  !!}
 @endsection
 

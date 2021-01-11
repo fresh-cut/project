@@ -28,6 +28,7 @@ class ReviewStoreRequest extends FormRequest
             'email'=>'required|email|string',
             'company_id'=>'int',
             'review'=>'string|min:20',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 }

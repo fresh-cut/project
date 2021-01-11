@@ -85,7 +85,7 @@
                             </label>
 
                             <label class="c-drus-form__label">
-                                <div class="g-recaptcha" data-sitekey="{{settings('google_recapcha_site_key')}}"></div>
+                                {!! app('captcha')->display() !!}
                             </label>
 
                             <label class="c-drus-form__label">
@@ -150,8 +150,8 @@
          autoFocus:true,
     });
 </script>
-<script async src="//www.google.com/recaptcha/api.js"></script>
 
 
+{!! NoCaptcha::renderJs()  !!}
 @endsection
 

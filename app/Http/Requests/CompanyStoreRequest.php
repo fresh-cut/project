@@ -42,6 +42,7 @@ class CompanyStoreRequest extends FormRequest
             'website'=>'required|string|max:250',
             'descr'=>'required|string|min:20',
             'edit'=>'required|string|min:20',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 

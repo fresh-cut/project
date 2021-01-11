@@ -9,12 +9,6 @@
     <meta name="description" content="@yield('description')">
     <link rel="canonical" href="{{url()->current()}}"/>
 
-{{-- для рекламы--}}
-    <script type="text/javascript"> rbConfig={start:performance.now(),rbDomain:"rwbk.kikwwwi.site",rotator:'1a0'};</script>
-    <script async="async" type="text/javascript" src="//rwbk.kikwwwi.site/1a0.min.js"></script>
-
-
-
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="icon" href="/favicon.png" type="image/x-icon">
@@ -59,16 +53,6 @@
             <div class="p-drus-first__form-name">
                 <?php echo settings_translate('search_text', 'Find business services in the United States') ?>
             </div>
-{{--            <form class="l-drus-header__form p-drus-first__form" method="get" id="js-header-form"--}}
-{{--                  action="{{ route('search') }}">--}}
-{{--                <input type="text" class="l-drus-header__form-input" id="js-header-form__input">--}}
-{{--                <input type="hidden" name="query" id="js-header-form__input--query" value="">--}}
-{{--                <input type="hidden" name="lat" id="js-header-form__input--lat" value="">--}}
-{{--                <input type="hidden" name="lng" id="js-header-form__input--lng" value="">--}}
-{{--                <button type="submit" class="l-drus-header__form-submit" id="js-header-form__submit">--}}
-{{--                    <span></span>--}}
-{{--                </button>--}}
-{{--            </form>--}}
             <div>
                 <script async src="https://cse.google.com/cse.js?cx={{ settings('google_search_key', '') }}"></script>
                 <div class="gcse-search"></div>
