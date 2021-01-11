@@ -810,6 +810,7 @@ body {
 .l-drus-aside-list__small {
   color: #0A246A;
   display: block;
+    overflow: auto;
   font-size: 14px; }
   .l-drus-aside-list__small::before {
     content: ' ';

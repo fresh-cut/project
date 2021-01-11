@@ -36,6 +36,7 @@ class TranslateController extends Controller
             'company_how_rate_text'=>['Текст "How would you rate this service?"', 'text-area', 'How would you rate this service?'],
             'company_about_text'=>['Текст "About"', 'text-area', 'About'],
             'company_nearest_text'=>['Текст сбоку "The nearest business services in"', 'text-area', 'The nearest business services in'],
+            'company_last_review_text'=>['Текст сбоку "Latest reviews"', 'text-area', 'Latest reviews'],
         ];
         $regionPage=[
             'region_title_text'=>['Текст "title"', 'text-area', 'Business services locations in { $region->name } near me. Opening hours, driving directions, services and customer reviews'],

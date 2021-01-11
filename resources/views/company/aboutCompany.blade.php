@@ -187,7 +187,28 @@
                         </li>
                         @endforeach
                     </ul>
+                    @if(isset($last_reviews) && $last_reviews->count())
+                    <h3 class="l-drus-aside__header" style="margin-top: 20px">
+                        <?php echo settings_translate('company_last_review_text', 'Latest reviews').' '?>
+                    </h3>
+
+                    <ul class="l-drus-aside-list">
+                        @foreach($last_reviews as $review)
+                            <li class="l-drus-aside-list__item">
+                                <a class="l-drus-aside-list__link l-drus-aside-list__link--header"
+                                   href="{{ route('company', [$review->region_url, $review->locality_url, $review->url]) }}">
+                                    {{ $review->name }}
+                                </a>
+                                <small class="l-drus-aside-list__small">
+                                    <?= (strlen($review->review_comment) > 150) ? substr($review->review_comment, 0, 150) . '...' : $review->review_comment ?>
+                                </small>
+                            </li>
+                        @endforeach
+                    </ul>
+                        @endif
                 </div>
+
+
             </div>
         </div>
     </article>

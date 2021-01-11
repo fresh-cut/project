@@ -44,7 +44,7 @@
                         </label>
 
                         <label class="c-drus-form__label">
-                            <sup>*</sup> &mdash; <?php echo settings_translate('reviewPage_required_text', 'Write a review')?>
+                            <sup>*</sup> &mdash; <?php echo settings_translate('reviewPage_required_text', 'Required information')?>
                         </label>
 
                         <label class="c-drus-form__label">

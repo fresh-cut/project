@@ -20,8 +20,10 @@ class SettingController extends Controller
             'google_search_key'=>['Идентификатор поисковой системы', 'text'],
             'google_recapcha_site_key'=>['Google reCAPTCHA ключ сайта', 'text'],
             'google_recapcha_secret_key'=>['Google reCAPTCHA секретный ключ', 'text'],
-            'count_popular_company'=>['Кол-во компаний в блоке Popular services (бок.панель)', 'text'],
-            'count_last_review'=>['Кол-во коммент. в блоке Latest reviews (бок.панель)', 'text'],
+            'count_popular_company'=>['Кол-во компаний в блоке Popular services (sidebar)', 'text'],
+            'count_last_review_sidebar'=>['Кол-во коммент. в блоке Latest reviews (sidebar)', 'text'],
+            'count_last_review_landing'=>['Кол-во коммент. в блоке Latest reviews (главная)', 'text'],
+            'count_nearest_company'=>['Кол-во nearest business services на стр. компании', 'text'],
             'count_companies_review'=>['Кол-во популярных компаний на стр. компании', 'text'],
             ];
         $colorSettings=[

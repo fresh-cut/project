@@ -15,7 +15,7 @@
             </p>
 
         </header>
-        <div class="l-drus-article__section l-drus-article__section--ads">
+        <div class="l-drus-article__section l-drus-article__section--ads" style="text-align: center">
             @include('includes.ads.ads-one')
         </div>
         <section class="l-drus-article__section">
@@ -25,7 +25,7 @@
             </h2>
             @include('includes.list-items')
         </section>
-        <div class="l-drus-article__section l-drus-article__section--ads">
+        <div class="l-drus-article__section l-drus-article__section--ads" style="text-align: center">
             @include('includes.ads.ads-two')
         </div>
         <section class="l-drus-article__section l-drus-article__section--white">
@@ -43,9 +43,9 @@
                 @endforeach
             </ul>
         </section>
-        <div class="l-drus-article__section l-drus-article__section--ads">
+        <div class="l-drus-article__section l-drus-article__section--ads" style="text-align: center">
             @include('includes.ads.ads-three')
-        </di    v>
+        </div>
         <section class="l-drus-article__section l-drus-article__section--white">
             <h2 class="l-drus-article__h2" style="text-align: center;">
                 <?php echo settings_translate('popular_locality_text','Popular cities')?>

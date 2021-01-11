@@ -38,7 +38,7 @@ class IndexController extends Controller
         $regions    =   $regions->take(floor($regions->count()/4)*4);
         $localities =   $this->localityRepository->getLocalities(48);
         $localities =   $localities->take(floor($localities->count()/4)*4);
-        $reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $reviews    =   $this->reviewRepository->getReviews(settings('count_last_review_landing', 3));
         return view('landing.landing', compact('items', 'regions', 'localities', 'reviews', 'urlOther'));
     }
 
@@ -52,15 +52,16 @@ class IndexController extends Controller
         if(!$company) abort(404);
         $items = $this->companyRepository->getCompanies(settings('count_companies_review', 6));
         $reviews        =   $this->reviewRepository->getReviewsByCompanyId($company->id);
-        $nearest_item = $this->companyRepository->getCompaniesByCity(6,$locality->id);
+        $nearest_item = $this->companyRepository->getCompaniesByCity(settings('count_nearest_company', 6),$locality->id);
         $footer_regions    =   $this->regionRepository->getRegions(12);
+        $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review_sidebar', 3));
         $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs    =   [
             $region->name   =>  ['region', $region_url],
             $locality->name =>  ['city', $locality_url],
             $company->name  =>  ['company', [$region_url, $locality_url, $company_url]]
          ];
-        return view('company.aboutCompany', compact('items','company', 'reviews', 'breadcrumbs', 'nearest_item', 'footer_regions', 'footer_localities'));
+        return view('company.aboutCompany', compact('items','company', 'reviews', 'breadcrumbs', 'nearest_item', 'footer_regions', 'last_reviews', 'footer_localities'));
     }
 
     public function region($region_url)
@@ -71,7 +72,7 @@ class IndexController extends Controller
         $items      =   $this->companyRepository->getCompaniesByRegion(6,$region->id);
         $region_reviews= $this->reviewRepository->getReviewsByRegion($region->id);
         $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
-        $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review_sidebar', 3));
         $footer_regions    =   $this->regionRepository->getRegions(12);
         $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs    =   ([
@@ -86,7 +87,7 @@ class IndexController extends Controller
         if(!$locality) abort(404);
         $items       =   $this->companyRepository->getCompaniesByCity(24,$locality->id);
         $last_items  =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
-        $last_reviews     =   $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $last_reviews     =   $this->reviewRepository->getReviews(settings('count_last_review_sidebar', 3));
         $footer_regions    =   $this->regionRepository->getRegions(12);
         $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs =   [
@@ -101,7 +102,7 @@ class IndexController extends Controller
         if(!$category) abort(404);
         $items = $this->companyRepository->getCompaniesByCategory(24,$category->id);
         $last_items = $this->companyRepository->getCompanies(settings('count_popular_company', 4));
-        $last_reviews = $this->reviewRepository->getReviews(settings('count_last_review', 3));
+        $last_reviews = $this->reviewRepository->getReviews(settings('count_last_review_sidebar', 3));
         $footer_regions = $this->regionRepository->getRegions(12);
         $footer_localities = $this->localityRepository->getLocalities(12);
         $breadcrumbs =   [
@@ -114,7 +115,7 @@ class IndexController extends Controller
     {
         $regions = $this->regionRepository->getRegions('all');
         $last_items =   $this->companyRepository->getCompanies(settings('count_popular_company', 4));
-        $last_reviews    =   $this->reviewRepository->getReviews(3);
+        $last_reviews    =   $this->reviewRepository->getReviews(settings('count_last_review_sidebar', 3));
         $footer_regions    =   $regions->random(($regions->count()>12)?12:$regions->count());
         $footer_localities =   $this->localityRepository->getLocalities(12);
         $breadcrumbs=   [settings_translate('footer_all_states_text', 'All states')=>['all-regions','']];

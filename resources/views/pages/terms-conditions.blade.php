@@ -4,7 +4,6 @@
     {{ settings_translate('footer_terms_conditions_text', 'Terms and Conditions') }}
 @endsection
 @section('description'){{settings_translate('footer_terms_conditions_text', 'Terms and Conditions')}}@endsection
-
 <style>
     h1 {
         margin-bottom: 10px;
