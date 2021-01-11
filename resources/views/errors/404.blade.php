@@ -6,7 +6,7 @@
     <section class="container">
         <div class="row">
             <section class="col-md-6">
-                <h1 class="l-drus-article__h1"  style="text-align:center;margin-bottom: 5px"><?php echo settings_404('header_text', '404 - Page not found')?></h1>
+                <h1 class="l-drus-article__h1"  style="text-align:center;margin-bottom: 5px">404 - Page not found</h1>
                 <img style="display: block; margin: auto"src="/img/404.png" alt="picture" width="300px" height="300px">
             </section>
             <section class="col-md-6">

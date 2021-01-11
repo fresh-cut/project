@@ -131,6 +131,10 @@ class SettingController extends Controller
         $result=false;
         foreach($data as $key=>$value)
         {
+            if($key=='google_recapcha_site_key')
+                $this->putPermanentEnv('NOCAPTCHA_SITEKEY', $value);
+            if($key=='google_recapcha_secret_key')
+                $this->putPermanentEnv('NOCAPTCHA_SECRET', $value);
             if($value==null){
                 $result=$settings->forget($key);
                 continue;
@@ -140,5 +144,20 @@ class SettingController extends Controller
         if(!$result)
             return response()->json('', 404);
         return response()->json('', 200);
+    }
+
+
+
+    public function putPermanentEnv($key, $value)
+    {
+        $path = app()->environmentFilePath();
+
+        $escaped = preg_quote('='.env($key), '/');
+
+        file_put_contents($path, preg_replace(
+            "/^{$key}{$escaped}/m",
+            "{$key}={$value}",
+            file_get_contents($path)
+        ));
     }
 }
