@@ -30,4 +30,12 @@ class ContactUsRequest extends FormRequest
             'g-recaptcha-response' => 'required|captcha',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'g-recaptcha-response.required' => 'Please complete the captcha',
+            'g-recaptcha-response.captcha'=>'Captcha verification failed',
+        ];
+    }
 }

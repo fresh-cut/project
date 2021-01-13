@@ -52,6 +52,8 @@ class CompanyStoreRequest extends FormRequest
             'name.unique'=>'Сompany with this name already exists',
             'edit.min'=>'Your comments must be at least :min characters.',
             'descr.min'=>'Company description must be at least :min characters.',
+            'g-recaptcha-response.required' => 'Please complete the captcha',
+            'g-recaptcha-response.captcha'=>'Captcha verification failed',
         ];
     }
 }

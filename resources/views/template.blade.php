@@ -77,13 +77,13 @@
 </div>
 
 <script src="{{ asset('js/main.js') }}"></script>
-</body>
 <script>
     window.onload = function() {
         @if( session()->has('message-success'))
         alert("{{ session()->get('message-success') }}");
         @endif
     };
-
 </script>
+</body>
+
 </html>
