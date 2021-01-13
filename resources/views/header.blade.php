@@ -6,12 +6,10 @@
         </a>
 
         @if(!Route::is('home'))
-        <div class="">
             <div>
                 <script async src="https://cse.google.com/cse.js?cx={{ settings('google_search_key', '') }}"></script>
                 <div class="gcse-search"></div>
             </div>
-        </div>
 
         @endif
 

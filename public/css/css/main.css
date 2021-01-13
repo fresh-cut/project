@@ -189,8 +189,9 @@ body {
   background-color: #fff;
 }
   .l-drus-header__box {
-    display: flex;
-    justify-content: space-between; }
+      display: block;
+    /*justify-content: space-between; */
+  }
   .l-drus-header__logo {
     align-items: center;
     box-sizing: border-box;
@@ -202,6 +203,10 @@ body {
     width: 1200px;
     display: inline-block; }
     @media (min-width: 744px) {
+        .l-drus-header__box {
+            display: flex;
+            justify-content: space-between; }
+
       .l-drus-header__logo {
         height: 72px; } }
     .l-drus-header__logo:hover {
