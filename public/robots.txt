@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /sxd
+Disallow: /img
+Disallow: /css
+Disallow: /js
+
+Sitemap: https://usaisonline.com/sitemap.xml

@@ -27,7 +27,7 @@
         <div class="l-drus-article__section l-drus-article__section--ads" style="text-align: center">
                 @include('includes.ads.ads-six')
         </div>
-        <section class="l-drus-article__section l-drus-article__section--white l-drus-article__item">
+        <section class="l-drus-article__section l-drus-article__section--white l-drus-article__item" itemscope itemtype="https://schema.org/Organization">
 
             <div class="l-drus-article__item-item">
                 <div class="l-drus-article__section l-drus-article__section--ads">
@@ -37,7 +37,7 @@
 
 
             <div class="l-drus-article__item-item">
-                <h2 class="l-drus-article__h2">
+                <h2 class="l-drus-article__h2" itemprop="name">
                     <?php echo settings_translate('company_contacts_of_text', 'Contacts of').' '?>{{ $company->name }}:
                 </h2>
                 <p>
@@ -47,17 +47,17 @@
                         {{ $company->category_name }}</a>
                 </p>
                 <p>
-                <address>
-                    {{ $company->streetaddress }},<br>
-                    {{ $company->locality_name }},
-                    {{ $company->region_name }}<br>
-                    <?= ($company->postalcode) ? $company->postalcode . '' : '' ?>
+                <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                    <span itemprop="streetAddress">{{ $company->streetaddress }}</span>,<br>
+                    <span itemprop="addressLocality">{{ $company->locality_name }}</span>,
+                    <span itemprop="addressRegion">{{ $company->region_name }}</span><br>
+                    <span itemprop="postalCode"><?= ($company->postalcode) ? $company->postalcode . '' : '' ?></span>
                 </address>
                 </p>
 
                 @if($company->telephone)
                     <p>
-                        <b>{{ $company->telephone }}</b>
+                        <span itemprop="telephone"><b>{{ $company->telephone }}</b></span>
                     </p>
                 @endif
 
@@ -146,7 +146,6 @@
                     @endif
                 </section>
 
-{{--                <section class="l-drus-article__section l-drus-article__section--white">--}}
                 <section class="l-drus-article__section ">
                     <h2 class="l-drus-article__h2" style="text-align: center; margin-top: 25px">
                         <?php echo settings_translate('popular_company_text','Popular business services')?>
@@ -166,22 +165,25 @@
                     </h3>
                     <ul class="l-drus-aside-list">
                         @foreach($nearest_item as $item)
-                        <li class="l-drus-aside-list__item">
+                        <li class="l-drus-aside-list__item" itemscope itemtype="https://schema.org/Organization">
                             <a class="l-drus-aside-list__link l-drus-aside-list__link--header"
                                href="{{ route('company', [$item->region_url, $item->locality_url, $item->url]) }}">
-                                {{ $item->name}}
+                                <span itemprop="name">{{ $item->name }}</span>
                             </a>
 
                             <div class="l-drus-aside-list__flex">
-                                <small class="l-drus-aside-list__small">
+                                <small class="l-drus-aside-list__small" >
                                     @if(isset($item->telephone))
-                                    {{ $item->telephone }}
+                                        <span itemprop="telephone">{{ $item->telephone }}</span>
                                     <br>
                                     @endif
-                                    {{ $item->streetaddress }},
-                                    {{ $item->locality_name }},
-                                    {{ $item->region_name }}
-                                    <?= ($item->postalcode) ? $item->postalcode . '' : '' ?>
+                                    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                                        <span itemprop="streetAddress">{{ $item->streetaddress }}</span>,
+                                        <span itemprop="addressLocality">{{ $item->locality_name }}</span>,
+                                        <span itemprop="addressRegion">{{ $item->region_name }}</span>
+                                        <span itemprop="postalCode"><?= ($item->postalcode)? $item->postalcode : '' ?></span>
+
+                                    </span>
                                 </small>
                             </div>
                         </li>
@@ -194,11 +196,21 @@
 
                     <ul class="l-drus-aside-list">
                         @foreach($last_reviews as $review)
-                            <li class="l-drus-aside-list__item">
+                            <li class="l-drus-aside-list__item" itemscope itemtype="https://schema.org/Review">
+                                <meta itemprop="name" content="Review of '{{ $review->name }}' at {{ $review->locality_name }}"/>
                                 <a class="l-drus-aside-list__link l-drus-aside-list__link--header"
                                    href="{{ route('company', [$review->region_url, $review->locality_url, $review->url]) }}">
                                     {{ $review->name }}
                                 </a>
+                                <link itemprop="url" href="{{ URL::route('company', [$review->region_url, $review->locality_url, $review->url]) }}">
+                                <span itemprop="itemReviewed" itemscope itemtype="http://schema.org/Organization">
+                                    <meta itemprop="name" content="{{ $review->name }}"/>
+                                </span>
+                                <meta itemprop="reviewBody" content="{{ $review->review_comment }}"/>
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <meta itemprop="name" content="{{ $review->reviewer_name }}"/>
+                                </span>
+                                <meta itemprop="datePublished" content="{{ $review->review_data }}"/>
                                 <small class="l-drus-aside-list__small">
                                     <?= (strlen($review->review_comment) > 150) ? substr($review->review_comment, 0, 150) . '...' : $review->review_comment ?>
                                 </small>

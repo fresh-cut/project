@@ -149,21 +149,7 @@ class IndexController extends Controller
     public function termsConditions()
     {
         $breadcrumbs = [settings_translate('footer_terms_conditions_text', 'Terms and Conditions')=>['terms-conditions','']];
-        $items=[
-            '1. Domain of application of Terms and Conditions'=>[
-                '1.1 These Terms and Conditions (hereinafter collectively referred to as "Terms") of catalog.com (hereinafter "CYLEX") applies to all services provided in the business directory catalog.com, unless there are special circumstances for a certain service.'=>[
-                    '222',
-                    '333',
-                    ],
-                '1.2 In CYLEX portal, users (hereinafter referred to as "Users") can search for different information about companies and authorised natural persons, this information being recorded directly in the CYLEX business directory by legal representatives of firms and authorised natural persons in question or being taken from publicly accessible documents. Clients (hereinafter called "Clients") are authorised natural persons, legal persons, partners or private associations, that present their activities in CYLEX by using the offered services of the portal or that use the different registration requiring services.'=>[
-
-                ],
-                '1.3 The users or clients can apply for the portal services offered with or without registration solely on the basis of these terms and conditions. Validity of other conditions is excluded. The terms listed here are also valid if CYLEX fulfils an unconditioned request knowing the client\'s divergent conditions, even if these are different from the ones listed here. CYLEX Employees are not authorised to make additional oral agreements.'=>[],
-            ],
-            '2. Preliminary conditions for the use of www.cylex.us.com'=>'1',
-
-        ];
-        return view('pages.terms-conditions', compact('items', 'breadcrumbs'));
+        return view('pages.terms-conditions', compact('breadcrumbs'));
     }
 
 

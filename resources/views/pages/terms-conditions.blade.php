@@ -20,35 +20,6 @@
 </style>
 
 <section class="container mb-12">
-{{--        <div class="row">--}}
-{{--            <div class="col-md-12">--}}
-{{--                <ul>--}}
-{{--                    @foreach($items as $key=>$value)--}}
-{{--                        <li>--}}
-{{--                            <h2>{{$key}}</h2>--}}
-{{--                            @if(is_array($value))--}}
-{{--                                <ul class="pl-4">--}}
-{{--                                    @foreach($value as $key1=>$value1)--}}
-{{--                                        <li>--}}
-{{--                                            {{ $key1 }}--}}
-{{--                                            @if(isset($value1) && is_array($value1)))--}}
-{{--                                            <ul class="pl-5">--}}
-{{--                                                @foreach($value1 as $key2)--}}
-{{--                                                    <li type="circle">--}}
-{{--                                                        {{ $key2 }}--}}
-{{--                                                    </li>--}}
-{{--                                                @endforeach--}}
-{{--                                            </ul>--}}
-{{--                                            @endif--}}
-{{--                                        </li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-{{--                            @endif--}}
-{{--                        </li>--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
         <div class="row">
             <div class="col-md-12">
                 <h1>Terms and Conditions</h1>
