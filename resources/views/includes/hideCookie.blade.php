@@ -69,7 +69,7 @@
 
 <div id="cookie-alert">
     This website use cookie.
-    We use cookies for internal purposes only to help us to provide you with a better user <experience class=""></experience>
+    We use cookies for internal purposes only to help us to provide you with a better user experience.
     <a class="cookie" href="{{ route('cookies-privacy') }}">Cookie policy</a>
     <div style="margin-top: 10px">
         <a href="javascript:rejectCookie();" class="decline">DECLINE</a>
