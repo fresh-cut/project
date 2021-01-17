@@ -75,6 +75,9 @@
         @endif
     };
 </script>
+
+@include('includes.hideCookie')
+
 </body>
 
 </html>

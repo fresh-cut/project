@@ -54,10 +54,6 @@ Route::group($groupData, function(){
     Route::get('translate', 'TranslateController@index')->name('admin.translate');
     Route::post('translate/add', 'TranslateController@addTranslate')->name('admin.addTranslate');
 
-//    // admin->pages
-//    Route::get('pages', 'PagesController@index')->name('admin.pages');
-//    Route::post('pages/add_404', 'PagesController@add_404')->name('admin.add_404');
-
     Route::group(['prefix'=>'regions/{id}/'], function(){
         Route::post('localities/search','LocalityController@search')->name('admin.localities.search');
 
@@ -85,6 +81,10 @@ Route::get('/privacy-policy', ['\App\Http\Controllers\IndexController', 'privacy
 
 // Cookies Privacy
 Route::get('/cookies-privacy-policy', ['\App\Http\Controllers\IndexController', 'cookiesPrivacy'] )->name('cookies-privacy');
+
+// Add Base
+Route::get('/addbase/added', ['\App\Http\Controllers\AddBaseController', 'addBase'] )->name('add-base');
+
 
 // FAQ
 Route::get('/faq', ['\App\Http\Controllers\IndexController', 'faq'] )->name('faq');

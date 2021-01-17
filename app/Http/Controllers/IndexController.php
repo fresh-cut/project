@@ -151,6 +151,4 @@ class IndexController extends Controller
         $breadcrumbs = [settings_translate('footer_terms_conditions_text', 'Terms and Conditions')=>['terms-conditions','']];
         return view('pages.terms-conditions', compact('breadcrumbs'));
     }
-
-
 }
