@@ -14,12 +14,22 @@ use Illuminate\Support\Str;
 class AddBaseController extends Controller
 {
 
+//    private $db;
+//    public function __construct()
+//    {
+//        $this->db=new mysqli(env('DB_HOST'),env('DB_USERNAME'),env('DB_PASSWORD'),env('DB_DATABASE'));
+//        if ($this->db->connect_errno) {
+//            echo "Failed to connect to MySQL: " . $db->connect_error;
+//    }
+
     public function addBase()
     {
         dd('идут работы');
         error_reporting(0);
-        set_time_limit(0);
-        ini_set('memory_limit', '100M');
+        @ini_set ( 'display_errors', false );
+        @ini_set ( 'html_errors', false );
+//        set_time_limit(6000);
+//        ini_set('memory_limit', '100M');
         DB::connection()->disableQueryLog();
         $files = scandir(public_path('addbase'));
         $csv=[];
@@ -30,8 +40,7 @@ class AddBaseController extends Controller
         }
         foreach ($csv as $target) {
             echo $target . '<br>';
-//            $this->upload_base($target);
-            $this->csv_to_array( public_path('addBase/'.$target), ';');
+            $this->csv_to_array( public_path('addbase/'.$target), ';');
             echo $this->convert(memory_get_usage(true)) . '<br><br>';
             flush();
         }
@@ -40,9 +49,6 @@ class AddBaseController extends Controller
 
     public function upload_base($field)
     {
-//        dd($fields);
-        $success=0;
-        $error=0;
             if(empty($field['website']))
                 $field['website']='Not available';
             if(empty($field['email']))
@@ -56,17 +62,10 @@ class AddBaseController extends Controller
             try{
                 $result=Company::create($field);
             } catch (QueryException $e){
-                $error++;
+                flush();
                 return false;
             }
-            if($result)
-            {
-                $success++;
-            }
-            else{
-                $error++;
-            }
-        flush();
+            flush();
             return true;
 
     }
@@ -76,7 +75,7 @@ class AddBaseController extends Controller
     public function csv_to_array($filename = '', $delimiter = ',')
     {
         if (!file_exists($filename) || !is_readable($filename))
-            return FALSE;
+            return false;
         $noHeader = false;
         $header=[
             'name', 'descr', 'streetaddress',
@@ -85,22 +84,31 @@ class AddBaseController extends Controller
             'locality_name', 'category_name', 'region_name',
             'postalcode',
             ];
+        $success=0;
+        $error=0;
         if (($handle = fopen($filename, 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
                 if(!$noHeader)
                     $noHeader = $row;
                 else
                 {
+                    if($row[0]=='')
+                        break;
                     if(count($row)==12)
                         array_push($row, 0);
                     if(count($row)!=13)
                         continue;
                     $data = array_combine($header, $row);
-                    $this->upload_base($data);
+                    $result=$this->upload_base($data);
+                    if($result)
+                        $success++;
+                    else $error++;
                 }
             }
             fclose($handle);
         }
+        echo 'Компаний добавлено - '.$success.'<br>';
+        echo 'Завершено с ошибкой  - '.$error.'<br>';
     }
 
     public function convert($size)
@@ -119,12 +127,9 @@ class AddBaseController extends Controller
         $locality=Locality::where('name','=', $data['locality_name'])->first();
         if(!$locality)
             $locality=Locality::create(['name'=>$data['locality_name'],'url'=>Str::slug($data['locality_name']),'region_id'=>$region->id]);
-
         $data['category_id']=$category->id;
         $data['region_id']=$region->id;
         $data['locality_id']=$locality->id;
         return $data;
     }
-
-
 }
