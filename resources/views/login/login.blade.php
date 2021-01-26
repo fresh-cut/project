@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/css/app.css')}}">
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow, noarchive">
     <title>login</title>
 </head>
 <body>

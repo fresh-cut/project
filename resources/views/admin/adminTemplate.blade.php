@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <meta name="robots" content="noindex, nofollow, noarchive">
     <link rel="icon" href="/favicon.png" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -14,8 +15,6 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
-
-    {{--    <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>--}}
 
 </head>
 <body>
